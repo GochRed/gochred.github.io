@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cemar International | Armoring Materials</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts & Custom CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600&display=swap');
+        
+        .font-extended { 
+          font-family: 'Archivo Black', sans-serif; 
+          text-transform: uppercase; 
+          letter-spacing: 0.03em;
+        }
+        .font-inter { 
+          font-family: 'Inter', sans-serif; 
+        }
+        
+        /* Smooth Animations */
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        .animate-fade-up { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-fade-in { animation: fadeIn 1.5s ease-out forwards; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        /* Professional subtle grid background */
+        .bg-grid-pattern {
+          background-image: 
+            linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#F8F9FA] font-inter text-gray-900 selection:bg-[#CC0000] selection:text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 border-b bg-transparent border-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            
+            <!-- LOGO SECTION -->
+            <div class="flex items-center gap-2 cursor-pointer relative group">
+                <img 
+                    src="cemar-logo.png" 
+                    alt="Cemar International Logo" 
+                    class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <!-- Fallback Text Logo if image is missing -->
+                <div class="hidden flex-col">
+                    <span id="nav-logo-text-1" class="font-extended text-2xl leading-none text-white transition-colors duration-500">CEMAR</span>
+                    <span id="nav-logo-text-2" class="text-[9px] font-bold tracking-[0.25em] uppercase leading-none mt-1 text-red-400 transition-colors duration-500">International</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <div id="nav-links" class="hidden md:flex space-x-10 items-center font-medium text-sm tracking-wider text-gray-200 transition-colors duration-500">
+                <a href="#" class="hover:text-[#CC0000] transition-colors">COMPANY</a>
+                <a href="#" class="hover:text-[#CC0000] transition-colors">PRODUCTS</a>
+                <a href="#" class="hover:text-[#CC0000] transition-colors">FACILITY</a>
+                <a href="#" class="hover:text-[#CC0000] transition-colors">CONTACT</a>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex items-center gap-6">
+                <a href="tel:+97148839798" id="nav-phone" class="hidden lg:flex items-center gap-2 text-sm font-semibold text-white hover:text-red-400 transition-colors duration-500">
+                    <i data-lucide="phone-call" class="w-4 h-4"></i>
+                    <span>+971 4 8839 798</span>
+                </a>
+                <button class="bg-[#CC0000] hover:bg-[#A30000] text-white px-7 py-3 font-extended text-sm tracking-widest transition-all duration-300 shadow-lg shadow-red-900/20">
+                    REQUEST QUOTE
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] flex items-center bg-[#0B0F19] overflow-hidden">
+        <!-- Background Image Placeholder -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0B0F19] via-[#0B0F19]/90 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent z-10 opacity-80"></div>
+            <img 
+                src="hero-placeholder.jpg" 
+                alt="Tactical Armoring Background" 
+                class="w-full h-full object-cover opacity-40 animate-fade-in"
+                style="filter: grayscale(20%) contrast(120%);"
+                onerror="this.style.display='none';"
+            >
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-20 w-full pt-20">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 border border-[#CC0000]/30 bg-[#CC0000]/10 text-red-400 rounded-full text-xs font-semibold tracking-widest mb-8 animate-fade-up opacity-0">
+                    <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                    ISO 9001:2015 CERTIFIED MANUFACTURER
+                </div>
+                
+                <h1 class="font-extended text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-white mb-6 animate-fade-up delay-100 opacity-0">
+                    ARMORING THE FUTURE.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#CC0000] to-red-500">
+                        ENGINEERED FOR SURVIVAL.
+                    </span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl font-light leading-relaxed animate-fade-up delay-200 opacity-0">
+                    The premier single-point source for certified ballistic steel, transparent armor, and heavy-duty tactical vehicle components. Supplying the global defense industry.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-5 animate-fade-up delay-300 opacity-0">
+                    <button class="bg-[#CC0000] hover:bg-[#A30000] text-white px-8 py-4 font-extended text-sm tracking-widest flex items-center justify-center gap-3 transition-all">
+                        EXPLORE CATALOG
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                    <button class="bg-transparent hover:bg-white/5 border border-white/20 text-white px-8 py-4 font-extended text-sm tracking-widest flex items-center justify-center gap-3 transition-all">
+                        <i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i>
+                        DOWNLOAD SPECS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Stats Bar - Professional Minimalist -->
+    <section class="bg-white border-b border-gray-200 relative z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-start md:items-center md:border-r border-gray-100 last:border-0">
+                    <div class="font-extended text-3xl md:text-4xl text-gray-900 mb-1">71+</div>
+                    <div class="text-gray-500 text-xs font-semibold tracking-widest uppercase">Countries Served</div>
+                </div>
+                <div class="flex flex-col items-start md:items-center md:border-r border-gray-100 last:border-0">
+                    <div class="font-extended text-3xl md:text-4xl text-[#CC0000] mb-1">4M+</div>
+                    <div class="text-gray-500 text-xs font-semibold tracking-widest uppercase">Tons Traded Annually</div>
+                </div>
+                <div class="flex flex-col items-start md:items-center md:border-r border-gray-100 last:border-0">
+                    <div class="font-extended text-3xl md:text-4xl text-gray-900 mb-1">100%</div>
+                    <div class="text-gray-500 text-xs font-semibold tracking-widest uppercase">Certified Quality</div>
+                </div>
+                <div class="flex flex-col items-start md:items-center last:border-0">
+                    <div class="font-extended text-3xl md:text-4xl text-gray-900 mb-1">24/7</div>
+                    <div class="text-gray-500 text-xs font-semibold tracking-widest uppercase">Global Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Grid - Clean Corporate Style -->
+    <section class="py-24 bg-[#F8F9FA] bg-grid-pattern">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="max-w-3xl">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-[2px] bg-[#CC0000]"></div>
+                        <h2 class="font-extended text-[#CC0000] text-sm tracking-widest">PRODUCT CATALOG</h2>
+                    </div>
+                    <h3 class="font-extended text-3xl md:text-5xl text-gray-900 leading-[1.1]">
+                        PRECISION MATERIALS. <br>TACTICAL ADVANTAGE.
+                    </h3>
+                </div>
+                <button class="mt-8 md:mt-0 text-gray-900 font-bold text-sm tracking-wide flex items-center gap-2 hover:text-[#CC0000] transition-colors group">
+                    VIEW FULL INVENTORY 
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="group bg-white p-8 border border-gray-200 hover:border-[#CC0000] transition-all duration-300 relative cursor-pointer flex flex-col h-full shadow-sm hover:shadow-xl hover:shadow-red-900/5">
+                    <div class="w-14 h-14 bg-gray-50 text-gray-700 flex items-center justify-center mb-8 group-hover:bg-[#CC0000] group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="layers" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-extended text-lg text-gray-900 mb-4 group-hover:text-[#CC0000] transition-colors">Ballistic & Blast Steel</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">High-hardness armor steel certified for extreme ballistic threat levels. Available in sheets or processed kits.</p>
+                    <div class="flex items-center text-[#CC0000] text-sm font-semibold tracking-wide mt-auto opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                        LEARN MORE <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group bg-white p-8 border border-gray-200 hover:border-[#CC0000] transition-all duration-300 relative cursor-pointer flex flex-col h-full shadow-sm hover:shadow-xl hover:shadow-red-900/5">
+                    <div class="w-14 h-14 bg-gray-50 text-gray-700 flex items-center justify-center mb-8 group-hover:bg-[#CC0000] group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="shield" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-extended text-lg text-gray-900 mb-4 group-hover:text-[#CC0000] transition-colors">Bullet Resistant Glass</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Optically pristine, tested, and certified transparent armor systems for tactical and civilian applications.</p>
+                    <div class="flex items-center text-[#CC0000] text-sm font-semibold tracking-wide mt-auto opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                        LEARN MORE <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group bg-white p-8 border border-gray-200 hover:border-[#CC0000] transition-all duration-300 relative cursor-pointer flex flex-col h-full shadow-sm hover:shadow-xl hover:shadow-red-900/5">
+                    <div class="w-14 h-14 bg-gray-50 text-gray-700 flex items-center justify-center mb-8 group-hover:bg-[#CC0000] group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="truck" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-extended text-lg text-gray-900 mb-4 group-hover:text-[#CC0000] transition-colors">Run Flat Systems</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Heavy-duty inserts ensuring continuous operation and mobility under fire or critical tire failure.</p>
+                    <div class="flex items-center text-[#CC0000] text-sm font-semibold tracking-wide mt-auto opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                        LEARN MORE <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group bg-white p-8 border border-gray-200 hover:border-[#CC0000] transition-all duration-300 relative cursor-pointer flex flex-col h-full shadow-sm hover:shadow-xl hover:shadow-red-900/5">
+                    <div class="w-14 h-14 bg-gray-50 text-gray-700 flex items-center justify-center mb-8 group-hover:bg-[#CC0000] group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="crosshair" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-extended text-lg text-gray-900 mb-4 group-hover:text-[#CC0000] transition-colors">Suspension Upgrades</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">Reinforced chassis and suspension components engineered to handle maximum up-armored vehicle weights.</p>
+                    <div class="flex items-center text-[#CC0000] text-sm font-semibold tracking-wide mt-auto opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                        LEARN MORE <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Profile / Facility View -->
+    <section class="py-24 bg-white border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Facility Image Component -->
+                <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden group border border-gray-200 shadow-lg">
+                    <div class="absolute inset-0 bg-[#0B0F19]/20 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
+                    <img 
+                        src="A_wideangle_hyperrealistic_architectural_photograp_delpmaspu.jpg" 
+                        alt="Dubai Manufacturing Facility" 
+                        class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-[1.03] transition-transform duration-1000 ease-out"
+                    >
+                    <!-- Professional Overlay Badge -->
+                    <div class="absolute bottom-6 left-6 z-20 bg-white/95 backdrop-blur-sm p-4 border-l-4 border-[#CC0000] shadow-xl">
+                        <p class="font-extended text-xs tracking-widest text-gray-500 mb-1">HEADQUARTERS</p>
+                        <p class="font-bold text-gray-900">National Industries Park, Dubai</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-[2px] bg-[#CC0000]"></div>
+                        <h2 class="font-extended text-[#CC0000] text-sm tracking-widest">COMPANY PROFILE</h2>
+                    </div>
+                    
+                    <h3 class="font-extended text-3xl md:text-5xl text-gray-900 leading-[1.1] mb-8">
+                        GLOBAL REACH. <br>LOCAL PRECISION.
+                    </h3>
+                    
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed font-light">
+                        Operating from our state-of-the-art facility in Dubai, CEMAR International sets the global standard in armoring material supply, utilizing advanced fiber lasers, CNC bending, and precision machining.
+                    </p>
+                    
+                    <p class="text-gray-600 mb-10 leading-relaxed font-light">
+                        As a single-point source for defense contractors and armored vehicle builders worldwide, our materials undergo rigorous testing by highly accredited laboratories to ensure zero failure rates in the field.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-[#CC0000] flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Accredited Testing</h4>
+                                <p class="text-sm text-gray-600">Certified by TUV, HP WHITE, BESCHUSSAM, and other global bodies.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i data-lucide="check-circle-2" class="w-6 h-6 text-[#CC0000] flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">In-House Engineering</h4>
+                                <p class="text-sm text-gray-600">Custom CNC laser cutting and ready-made ballistic steel kits.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate CTA & Footer -->
+    <footer class="bg-[#0B0F19] text-white pt-24 border-t-4 border-[#CC0000]">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <!-- CTA Banner -->
+            <div class="bg-[#111827] border border-gray-800 p-10 md:p-16 relative overflow-hidden mb-24 flex flex-col md:flex-row items-center justify-between gap-10">
+                <!-- Subtle abstract lines in background -->
+                <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #CC0000 0, #CC0000 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
+                
+                <div class="relative z-10 max-w-2xl">
+                    <h3 class="font-extended text-3xl md:text-4xl mb-4 text-white">SECURE YOUR SUPPLY CHAIN.</h3>
+                    <p class="text-gray-400 text-lg font-light">Connect with our engineering sales team to discuss custom armouring kits, bulk material supply, and technical specifications.</p>
+                </div>
+                
+                <div class="relative z-10 flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                    <button class="bg-[#CC0000] hover:bg-[#A30000] text-white px-8 py-4 font-extended text-sm tracking-widest transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                        <i data-lucide="mail" class="w-4 h-4"></i> CONTACT SALES
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-800 pb-16 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img 
+                            src="cemar-logo.png" 
+                            alt="Cemar International Logo" 
+                            class="h-8 w-auto grayscale brightness-200"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <div class="hidden flex-col">
+                            <span class="font-extended text-xl leading-none text-white">CEMAR</span>
+                            <span class="text-[8px] font-bold tracking-[0.25em] text-gray-400 uppercase leading-none mt-1">International</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                        Plot No TP040107, National Industries Park, Dubai, UAE.<br>P.O. Box 454576
+                    </p>
+                    <a href="mailto:info@cemar-international.com" class="text-[#CC0000] hover:text-red-400 font-semibold tracking-wide transition-colors">info@cemar-international.com</a>
+                </div>
+                
+                <div>
+                    <h4 class="font-extended text-sm mb-6 tracking-widest text-gray-500">PRODUCTS</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Ballistic Steel</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Bullet Resistant Glass</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Run Flat Systems</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Suspension Kits</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-extended text-sm mb-6 tracking-widest text-gray-500">COMPANY</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Global Certifications</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Manufacturing Facility</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 pb-8">
+                <p>© 2026 Cemar International. All Rights Reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-400 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect (Frosted Glass / Color Changes)
+        const navbar = document.getElementById('navbar');
+        const logoText1 = document.getElementById('nav-logo-text-1');
+        const logoText2 = document.getElementById('nav-logo-text-2');
+        const navLinks = document.getElementById('nav-links');
+        const phoneLink = document.getElementById('nav-phone');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Scrolled State
+                navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-gray-100', 'py-3');
+                navbar.classList.remove('bg-transparent', 'border-transparent', 'py-6');
+                
+                // Update text colors for white background
+                if(logoText1) {
+                    logoText1.classList.remove('text-white');
+                    logoText1.classList.add('text-gray-900');
+                }
+                if(logoText2) {
+                    logoText2.classList.remove('text-red-400');
+                    logoText2.classList.add('text-[#CC0000]');
+                }
+                if(navLinks) {
+                    navLinks.classList.remove('text-gray-200');
+                    navLinks.classList.add('text-gray-600');
+                }
+                if(phoneLink) {
+                    phoneLink.classList.remove('text-white', 'hover:text-red-400');
+                    phoneLink.classList.add('text-gray-900', 'hover:text-[#CC0000]');
+                }
+            } else {
+                // Top State
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-gray-100', 'py-3');
+                navbar.classList.add('bg-transparent', 'border-transparent', 'py-6');
+                
+                // Revert text colors for dark background
+                if(logoText1) {
+                    logoText1.classList.remove('text-gray-900');
+                    logoText1.classList.add('text-white');
+                }
+                if(logoText2) {
+                    logoText2.classList.remove('text-[#CC0000]');
+                    logoText2.classList.add('text-red-400');
+                }
+                if(navLinks) {
+                    navLinks.classList.remove('text-gray-600');
+                    navLinks.classList.add('text-gray-200');
+                }
+                if(phoneLink) {
+                    phoneLink.classList.remove('text-gray-900', 'hover:text-[#CC0000]');
+                    phoneLink.classList.add('text-white', 'hover:text-red-400');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
