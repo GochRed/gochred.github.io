@@ -6,17 +6,24 @@
   <title>CEMAR International — Ballistic Protection Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Manrope:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
   <style>
     /* ===========================
-       CSS VARIABLES
+       CSS VARIABLES & FONTS
     =========================== */
+    @font-face {
+        font-family: 'Unison';
+        src: url('https://gochred.github.io/Unison-Pro-Bold.otf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+    }
+
     :root {
-      --blue:       #004B93;
+      --blue:       #004893; /* Updated to brand guideline */
       --blue-dark:  #003670;
       --blue-light: #1A6BB5;
-      --red:        #C9002B;
+      --red:        #C9002B; /* Updated to brand guideline */
       --red-dark:   #9E0022;
       --black:      #000000;
       --grey-deep:  #0D0D0D;
@@ -31,7 +38,7 @@
       --border:     rgba(0,0,0,0.07);
       --border-strong: rgba(0,0,0,0.14);
       --mono:       'Share Tech Mono', monospace;
-      --display:    'Michroma', sans-serif;
+      --display:    'Unison', sans-serif; /* Updated to Unison */
       --body:       'Manrope', sans-serif;
     }
 
@@ -155,7 +162,6 @@
 
     .nav-logo-name {
       font-family: var(--display);
-      font-weight: 800;
       font-size: 20px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -426,7 +432,6 @@
 
     .hero-title {
       font-family: var(--display);
-      font-weight: 400;
       font-size: clamp(34px, 4vw, 58px);
       line-height: 1.1;
       letter-spacing: 0.07em;
@@ -442,7 +447,6 @@
     }
 
     .hero-title .thin {
-      font-weight: 400;
       font-style: normal;
       font-size: 0.58em;
       display: block;
@@ -481,7 +485,6 @@
 
     .hero-stat-num {
       font-family: var(--display);
-      font-weight: 400;
       font-size: 36px;
       line-height: 1;
       color: var(--black);
@@ -627,7 +630,6 @@
 
     .panel-title {
       font-family: var(--display);
-      font-weight: 400;
       font-size: 18px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -739,7 +741,6 @@
 
     .section-title {
       font-family: var(--display);
-      font-weight: 400;
       font-size: clamp(28px, 3.2vw, 48px);
       line-height: 1.15;
       letter-spacing: 0.07em;
@@ -854,7 +855,6 @@
 
     .stat-num {
       font-family: var(--display);
-      font-weight: 400;
       font-size: 52px;
       line-height: 1;
       color: var(--black);
@@ -961,7 +961,6 @@
     .cap-card-num {
       font-family: var(--mono);
       font-size: 32px;
-      font-weight: 400;
       color: var(--border-strong);
       line-height: 1;
       margin-bottom: 28px;
@@ -992,7 +991,6 @@
 
     .cap-card-title {
       font-family: var(--display);
-      font-weight: 400;
       font-size: 16px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1244,7 +1242,6 @@
 
     .svc-title {
       font-family: var(--display);
-      font-weight: 400;
       font-size: 16px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1326,7 +1323,6 @@
 
     .cta-title {
       font-family: var(--display);
-      font-weight: 400;
       font-size: clamp(26px, 3vw, 46px);
       line-height: 1.2;
       text-transform: uppercase;
@@ -1373,7 +1369,6 @@
       background: transparent;
       color: #fff;
       font-family: var(--display);
-      font-weight: 700;
       font-size: 14px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -1433,7 +1428,6 @@
 
     .info-value {
       font-family: var(--display);
-      font-weight: 600;
       font-size: 16px;
       letter-spacing: 0.02em;
       color: var(--black);
@@ -1521,7 +1515,6 @@
 
     .footer-logo-name {
       font-family: var(--display);
-      font-weight: 400;
       font-size: 24px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1581,7 +1574,6 @@
 
     .footer-col-title {
       font-family: var(--display);
-      font-weight: 700;
       font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -1699,786 +1691,3 @@
     @media (max-width: 860px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .hero-content { grid-template-columns: 1fr; gap: 48px; }
-      .hero-geometry { width: 100%; clip-path: none; opacity: 0.4; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .global-grid { grid-template-columns: 1fr; gap: 48px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .cta-content { flex-direction: column; align-items: flex-start; }
-      .about-stats-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .section { padding: 72px 0; }
-      .cap-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .global-regions { grid-template-columns: 1fr; }
-      .hero-meta { gap: 24px; }
-      .contact-info, .contact-form-wrap { padding: 36px 28px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .form-row.two-col { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- ================================
-       NAVIGATION
-  ================================ -->
-  <nav class="nav" id="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <!-- Logo -->
-        <a href="#" class="nav-logo">
-          <img src="img/cii-logo2.svg" alt="Cemar International" style="height:44px;width:auto;display:block;" />
-        </a>
-
-        <!-- Links -->
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#capabilities">Capabilities</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#global">Global</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <!-- CTA -->
-        <div class="nav-cta">
-          <span class="nav-cert">ISO 9001:2015</span>
-          <a href="#contact" class="btn-primary">
-            Request Quote <span class="btn-arrow">→</span>
-          </a>
-        </div>
-
-        <!-- Mobile -->
-        <div class="nav-hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ================================
-       HERO
-  ================================ -->
-  <section class="hero" id="home">
-    <div class="hero-grid"></div>
-    <div class="hero-geometry"><div class="hero-geometry-inner"></div></div>
-    <div class="hero-stripe"></div>
-    <div class="hero-stripe-right"></div>
-    <div class="reticle reticle-tl"></div>
-    <div class="reticle reticle-br"></div>
-    <div class="hero-scanline"></div>
-
-    <div class="container">
-      <div class="hero-content">
-
-        <!-- Left: Copy -->
-        <div class="hero-left">
-          <div class="hero-label">
-            <span class="hero-label-line"></span>
-            <span class="hero-label-text">Dubai, UAE · Est. Global Operations</span>
-          </div>
-
-          <h1 class="hero-title">
-            <span class="thin">Built for</span>
-            Extreme
-            <span class="accent">Protection.</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            Cemar International engineers and supplies mission-critical armoring materials, ballistic protection systems, and precision-machined vehicle components to defence contractors and manufacturers worldwide.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#contact" class="btn-primary">
-              Request a Quote <span class="btn-arrow">→</span>
-            </a>
-            <a href="#capabilities" class="btn-ghost">
-              Our Capabilities <span class="btn-arrow">→</span>
-            </a>
-          </div>
-
-          <div class="hero-meta">
-            <div class="hero-stat">
-              <div class="hero-stat-num">7<span>+</span></div>
-              <div class="hero-stat-label">Global Regions</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num">ISO<span>✓</span></div>
-              <div class="hero-stat-label">9001:2015 Certified</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num">B2B<span>.</span></div>
-              <div class="hero-stat-label">Defence & Industrial</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: Hero image + compact panels -->
-        <div class="hero-right">
-
-          <!-- Hero image -->
-          <div class="hero-image-wrap">
-            <div class="hero-image-corner hero-image-corner--tl"></div>
-            <div class="hero-image-corner hero-image-corner--br"></div>
-            <div class="hero-image-scanbar"></div>
-            <img
-              src="img/hero-placeholder.jpg"
-              alt="Armored vehicle ballistic protection components"
-              class="hero-image"
-            />
-            <!-- Classification badge -->
-            <div class="hero-image-badge">
-              <span class="badge-dot"></span>
-              <span>CEMAR INTL · PRODUCT LINE</span>
-            </div>
-          </div>
-
-          <!-- Compact panels row -->
-          <div class="hero-panels-row">
-            <div class="hero-panel-sm">
-              <div class="panel-num">// 01</div>
-              <div class="panel-title">Ballistic Steel</div>
-              <div class="panel-tags"><span class="panel-tag">BR Rated</span><span class="panel-tag">MIL-Grade</span></div>
-            </div>
-            <div class="hero-panel-sm">
-              <div class="panel-num">// 02</div>
-              <div class="panel-title">BR Glass</div>
-              <div class="panel-tags"><span class="panel-tag">BR1–BR7</span><span class="panel-tag">Custom Cut</span></div>
-            </div>
-            <div class="hero-panel-sm">
-              <div class="panel-num">// 03</div>
-              <div class="panel-title">Run-Flat</div>
-              <div class="panel-tags"><span class="panel-tag">Heavy-Duty</span><span class="panel-tag">Tactical</span></div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       TICKER
-  ================================ -->
-  <div class="ticker">
-    <div class="ticker-track">
-      <!-- duplicated for seamless loop -->
-      <span class="ticker-item">ISO 9001:2015 Certified<span class="sep"></span></span>
-      <span class="ticker-item">Ballistic Steel Supply<span class="sep"></span></span>
-      <span class="ticker-item">CNC Fiber Laser Cutting<span class="sep"></span></span>
-      <span class="ticker-item">BR Glass Solutions<span class="sep"></span></span>
-      <span class="ticker-item">Run-Flat Systems<span class="sep"></span></span>
-      <span class="ticker-item">Armored Vehicle Components<span class="sep"></span></span>
-      <span class="ticker-item">Middle East · Europe · Asia · Africa<span class="sep"></span></span>
-      <span class="ticker-item">National Industries Park, Dubai UAE<span class="sep"></span></span>
-      <span class="ticker-item">ISO 9001:2015 Certified<span class="sep"></span></span>
-      <span class="ticker-item">Ballistic Steel Supply<span class="sep"></span></span>
-      <span class="ticker-item">CNC Fiber Laser Cutting<span class="sep"></span></span>
-      <span class="ticker-item">BR Glass Solutions<span class="sep"></span></span>
-      <span class="ticker-item">Run-Flat Systems<span class="sep"></span></span>
-      <span class="ticker-item">Armored Vehicle Components<span class="sep"></span></span>
-      <span class="ticker-item">Middle East · Europe · Asia · Africa<span class="sep"></span></span>
-      <span class="ticker-item">National Industries Park, Dubai UAE<span class="sep"></span></span>
-    </div>
-  </div>
-
-  <!-- ================================
-       ABOUT
-  ================================ -->
-  <section class="section about" id="about">
-    <div class="container">
-      <div class="about-grid">
-
-        <div class="about-left">
-          <div class="section-label reveal">
-            <span class="section-label-text">About Cemar</span>
-            <span class="section-label-line"></span>
-            <span class="section-label-num">01</span>
-          </div>
-
-          <h2 class="section-title reveal reveal-delay-1">
-            <span class="block">Single-Point</span>
-            <span class="block accent">Precision.</span>
-            <span class="block light">Global Scale.</span>
-          </h2>
-
-          <div class="about-body reveal reveal-delay-2">
-            <p>
-              Cemar International is a single-point stockist and dealer of armoring materials and ballistic protection solutions, headquartered at National Industries Park, Dubai, UAE. We design, machine, and supply components to the world's most demanding defence programmes.
-            </p>
-            <p>
-              Operating exclusively B2B, we serve armored vehicle manufacturers, defence contractors, military procurement divisions, law enforcement agencies, and cash-in-transit fleet builders across seven global regions.
-            </p>
-          </div>
-
-          <div class="about-cert reveal reveal-delay-3">
-            <div class="cert-icon">ISO<br/>9001</div>
-            <div class="cert-text">
-              <strong>ISO 9001:2015 Certified</strong>
-              <small>Quality Management System</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-right">
-          <div class="mission-box reveal reveal-delay-1">
-            <div class="mission-box-label">// Mission Statement</div>
-            <p class="mission-text">
-              "To engineer and deliver the most reliable ballistic protection and armoring materials on the planet — with precision, compliance, and zero compromise."
-            </p>
-          </div>
-
-          <div class="about-stats-grid reveal reveal-delay-2">
-            <div class="about-stat-box">
-              <div class="stat-num">7<span class="unit">+</span></div>
-              <div class="stat-label">Export Regions</div>
-            </div>
-            <div class="about-stat-box">
-              <div class="stat-num">1<span class="unit">K+</span></div>
-              <div class="stat-label">Components Supplied</div>
-            </div>
-            <div class="about-stat-box">
-              <div class="stat-num">B2B</div>
-              <div class="stat-label">Exclusive Market</div>
-            </div>
-            <div class="about-stat-box">
-              <div class="stat-num">24<span class="unit">H</span></div>
-              <div class="stat-label">Quote Response</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       CAPABILITIES
-  ================================ -->
-  <section class="section capabilities" id="capabilities">
-    <div class="container">
-
-      <div class="cap-header reveal">
-        <div>
-          <div class="section-label">
-            <span class="section-label-text">Product Range</span>
-            <span class="section-label-line"></span>
-            <span class="section-label-num">02</span>
-          </div>
-          <h2 class="section-title">
-            <span class="block">Full-Spectrum</span>
-            <span class="block accent">Armoring</span>
-          </h2>
-        </div>
-        <a href="#contact" class="btn-ghost">All Products <span class="btn-arrow">→</span></a>
-      </div>
-
-      <div class="cap-grid">
-
-        <!-- Card 1 -->
-        <div class="cap-card reveal">
-          <div class="cap-card-num">01</div>
-          <div class="cap-card-icon">
-            <svg class="cap-icon-svg" viewBox="0 0 48 48">
-              <rect x="6" y="10" width="36" height="28" rx="1"/>
-              <line x1="6" y1="24" x2="42" y2="24"/>
-              <line x1="24" y1="10" x2="24" y2="38"/>
-              <polyline points="12,16 18,16 18,20"/>
-            </svg>
-          </div>
-          <div class="cap-card-title">Ballistic Steel & Protection Plate</div>
-          <div class="cap-card-desc">High-hardness ballistic and blast-protection steel, supplied as raw plate or fully processed kits machined to your vehicle specifications.</div>
-          <a href="#contact" class="cap-card-link">Request specifications</a>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="cap-card reveal reveal-delay-1">
-          <div class="cap-card-num">02</div>
-          <div class="cap-card-icon">
-            <svg class="cap-icon-svg" viewBox="0 0 48 48">
-              <rect x="8" y="8" width="32" height="32" rx="1"/>
-              <rect x="14" y="14" width="20" height="20" rx="1"/>
-              <line x1="8" y1="8" x2="14" y2="14"/>
-              <line x1="40" y1="8" x2="34" y2="14"/>
-              <line x1="8" y1="40" x2="14" y2="34"/>
-              <line x1="40" y1="40" x2="34" y2="34"/>
-            </svg>
-          </div>
-          <div class="cap-card-title">Bullet-Resistant Glass</div>
-          <div class="cap-card-desc">Transparent armor glazing solutions rated to EN 1063 and STANAG standards, custom cut and laminated for automotive and structural applications.</div>
-          <a href="#contact" class="cap-card-link">Request specifications</a>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="cap-card reveal reveal-delay-2">
-          <div class="cap-card-num">03</div>
-          <div class="cap-card-icon">
-            <svg class="cap-icon-svg" viewBox="0 0 48 48">
-              <circle cx="24" cy="24" r="14"/>
-              <circle cx="24" cy="24" r="6"/>
-              <line x1="24" y1="10" x2="24" y2="6"/>
-              <line x1="24" y1="38" x2="24" y2="42"/>
-              <line x1="10" y1="24" x2="6" y2="24"/>
-              <line x1="38" y1="24" x2="42" y2="24"/>
-            </svg>
-          </div>
-          <div class="cap-card-title">Run-Flat Systems & Military Tires</div>
-          <div class="cap-card-desc">Heavy-duty run-flat inserts and military-grade tire solutions enabling continued mobility after ballistic penetration or puncture events.</div>
-          <a href="#contact" class="cap-card-link">Request specifications</a>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="cap-card reveal">
-          <div class="cap-card-num">04</div>
-          <div class="cap-card-icon">
-            <svg class="cap-icon-svg" viewBox="0 0 48 48">
-              <polyline points="8,36 16,20 24,28 32,16 40,28"/>
-              <line x1="8" y1="40" x2="40" y2="40"/>
-              <circle cx="16" cy="20" r="2" fill="currentColor" stroke="none"/>
-              <circle cx="32" cy="16" r="2" fill="currentColor" stroke="none"/>
-            </svg>
-          </div>
-          <div class="cap-card-title">Suspension & Braking Kits</div>
-          <div class="cap-card-desc">Specialized suspension components and high-performance braking systems engineered for the elevated gross weights of armored tactical vehicles.</div>
-          <a href="#contact" class="cap-card-link">Request specifications</a>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="cap-card reveal reveal-delay-1">
-          <div class="cap-card-num">05</div>
-          <div class="cap-card-icon">
-            <svg class="cap-icon-svg" viewBox="0 0 48 48">
-              <circle cx="24" cy="24" r="12"/>
-              <circle cx="24" cy="24" r="16" stroke-dasharray="4 4"/>
-              <circle cx="24" cy="24" r="4"/>
-              <line x1="24" y1="12" x2="24" y2="8"/>
-              <line x1="36" y1="24" x2="40" y2="24"/>
-            </svg>
-          </div>
-          <div class="cap-card-title">Wheel Assemblies & Turret Rings</div>
-          <div class="cap-card-desc">Heavy-duty rims, custom wheel assemblies, and precision-machined turret rings for rotating weapons platforms on armored vehicles.</div>
-          <a href="#contact" class="cap-card-link">Request specifications</a>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="cap-card reveal reveal-delay-2">
-          <div class="cap-card-num">06</div>
-          <div class="cap-card-icon">
-            <svg class="cap-icon-svg" viewBox="0 0 48 48">
-              <rect x="10" y="6" width="28" height="36" rx="1"/>
-              <line x1="16" y1="16" x2="32" y2="16"/>
-              <line x1="16" y1="22" x2="32" y2="22"/>
-              <line x1="16" y1="28" x2="26" y2="28"/>
-              <polyline points="30,26 38,26 38,42 30,42"/>
-            </svg>
-          </div>
-          <div class="cap-card-title">Armored Structural Protection</div>
-          <div class="cap-card-desc">Ballistic panels and structural hardening solutions for fixed installations, safe rooms, and vehicle cab protection beyond standard OEM specification.</div>
-          <a href="#contact" class="cap-card-link">Request specifications</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       GLOBAL REACH
-  ================================ -->
-  <section class="section global" id="global">
-    <div class="global-bg-grid"></div>
-    <div class="global-red-stripe"></div>
-
-    <div class="container global-content">
-      <div class="global-grid">
-
-        <div>
-          <div class="section-label reveal">
-            <span class="section-label-text" style="color:var(--red)">Global Presence</span>
-            <span class="section-label-line" style="background:rgba(255,255,255,0.1)"></span>
-            <span class="section-label-num">03</span>
-          </div>
-          <h2 class="section-title global-title reveal reveal-delay-1">
-            <span class="block">Defence-Grade</span>
-            <span class="block accent">Supply Chain</span>
-            <span class="block light">— Worldwide.</span>
-          </h2>
-          <p class="global-body reveal reveal-delay-2">
-            From our manufacturing hub at National Industries Park, Dubai, Cemar International exports to defence and armored vehicle sectors across every major theatre. Our dedicated European Division (CEMAR International Europe) provides regional support and compliance management.
-          </p>
-
-          <div class="global-regions reveal reveal-delay-3">
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">Middle East</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">Europe</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">India</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">Turkey</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">Far East Asia</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">Africa</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">Canada</span></div>
-            <div class="region-item"><span class="region-dot"></span><span class="region-name">+ Expanding</span></div>
-          </div>
-        </div>
-
-        <div class="global-map reveal reveal-delay-2">
-          <div class="map-frame">
-            <!-- BlankMap-World.svg — Robinson projection, 2754×1398 native
-                 Wikimedia Commons (PD) · upload.wikimedia.org -->
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/7/74/BlankMap-World.svg"
-              alt="World map"
-              class="map-svg"
-              crossorigin="anonymous"
-            />
-
-            <!-- Animated location dots
-                 Robinson projection approximations (% of 2754×1398):
-                 Dubai  (55.3E, 25.2N) → ~63%, 37%
-                 Europe (10E,  51N)    → ~51%, 22%
-                 India  (78E,  20N)    → ~70%, 38%
-                 Far East (120E, 25N)  → ~78%, 36%
-                 Africa (20E,  0N)     → ~53%, 50%
-                 Canada (96W, 56N)     → ~24%, 19%
-                 Turkey (35E, 39N)     → ~58%, 28%  -->
-            <div class="map-dots-layer">
-              <div class="map-dot" style="left:63%;top:37%;" title="Dubai HQ"></div>
-              <div class="map-dot" style="left:51%;top:22%;" title="Europe"></div>
-              <div class="map-dot" style="left:70%;top:38%;" title="India"></div>
-              <div class="map-dot" style="left:78%;top:36%;" title="Far East Asia"></div>
-              <div class="map-dot" style="left:53%;top:50%;" title="Africa"></div>
-              <div class="map-dot" style="left:24%;top:19%;" title="Canada"></div>
-              <div class="map-dot" style="left:58%;top:28%;" title="Turkey"></div>
-            </div>
-
-            <div class="map-label">// CEMAR GLOBAL NETWORK · ACTIVE EXPORT REGIONS</div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       INDUSTRIAL SERVICES
-  ================================ -->
-  <section class="section services" id="services">
-    <div class="container">
-
-      <div class="section-label reveal">
-        <span class="section-label-text">Industrial Services</span>
-        <span class="section-label-line"></span>
-        <span class="section-label-num">04</span>
-      </div>
-
-      <div class="services-grid">
-
-        <!-- Featured: CNC -->
-        <div class="svc-card svc-card-featured reveal">
-          <div class="svc-num">// PRECISION MACHINING</div>
-          <div class="svc-title">In-House CNC Manufacturing</div>
-          <div class="svc-desc">
-            Our Dubai factory operates advanced CNC fiber laser cutting, press brake forming, and CNC lathe machining — delivering end-to-end component production under one ISO-certified roof. We machine to your exact engineering drawings and material specifications.
-          </div>
-          <div class="svc-specs">
-            <div class="svc-spec">CNC Fiber Laser Cutting — High-precision contour cutting of armor-grade steel</div>
-            <div class="svc-spec">Press Brake Forming — Tight-tolerance bending for complex protective geometry</div>
-            <div class="svc-spec">CNC Lathe Machining — Rotational and cylindrical precision components</div>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="svc-card reveal reveal-delay-1">
-          <div class="svc-num">// SUPPLY</div>
-          <div class="svc-title">Single-Point Stockist</div>
-          <div class="svc-desc">
-            As a single-point dealer of armoring materials, we consolidate your supply chain — reducing vendor complexity and ensuring consistent specification compliance across every order.
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="svc-card reveal reveal-delay-2">
-          <div class="svc-num">// ENGINEERING</div>
-          <div class="svc-title">Custom Component Design</div>
-          <div class="svc-desc">
-            From concept drawings to finished parts, our engineering team works with armored vehicle manufacturers to design, iterate, and deliver custom protective components at production scale.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       CTA BANNER
-  ================================ -->
-  <section class="cta-section">
-    <div class="cta-bg"></div>
-    <div class="cta-stripe"></div>
-    <div class="container">
-      <div class="cta-content">
-        <div class="cta-text">
-          <h2 class="cta-title">Ready to Spec<br/>Your Next Build?</h2>
-          <p class="cta-sub">Our technical team responds within 24 hours. Share your project requirements and we'll provide tailored material and component recommendations.</p>
-        </div>
-        <div class="cta-btns">
-          <a href="#contact" class="btn-white">Request a Quote →</a>
-          <a href="/cdn-cgi/l/email-protection#bcd5d2dad3fcdfd9d1ddce91d5d2c8d9ced2ddc8d5d3d2ddd092dfd3d1" class="btn-outline-white">Email Us →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       CONTACT
-  ================================ -->
-  <section class="section contact" id="contact">
-    <div class="container">
-
-      <div class="section-label reveal">
-        <span class="section-label-text">Get in Touch</span>
-        <span class="section-label-line"></span>
-        <span class="section-label-num">05</span>
-      </div>
-
-      <h2 class="section-title reveal reveal-delay-1">
-        <span class="block">Start a</span>
-        <span class="accent">Conversation.</span>
-      </h2>
-
-      <div class="contact-grid">
-
-        <!-- Info -->
-        <div class="contact-info reveal reveal-delay-1">
-          <div class="info-divider"></div>
-
-          <div class="info-group">
-            <div class="info-label">Headquarters & Factory</div>
-            <div class="info-value">Plot No TP040107<br/>National Industries Park<br/>Dubai, UAE · P.O. Box 454576</div>
-          </div>
-
-          <div class="info-group">
-            <div class="info-label">European Division</div>
-            <div class="info-value">CEMAR International Europe<br/>Regional Operations</div>
-          </div>
-
-          <div class="info-group">
-            <div class="info-label">Email</div>
-            <div class="info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70191e161f3013151d11025d191e0415021e1104191f1e111c5e131f1d">[email&#160;protected]</a></div>
-          </div>
-
-          <div class="info-group">
-            <div class="info-label">Markets Served</div>
-            <div class="info-value">Defence · Law Enforcement · PMSCs<br/>Cash-in-Transit · Armored OEMs</div>
-          </div>
-
-          <div class="info-group">
-            <div class="info-label">Certification</div>
-            <div class="info-value">ISO 9001:2015</div>
-          </div>
-        </div>
-
-        <!-- Form -->
-        <div class="contact-form-wrap reveal reveal-delay-2">
-          <div class="form-row two-col">
-            <div class="form-group">
-              <label class="form-label">First Name *</label>
-              <input type="text" class="form-input" placeholder="John" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Last Name *</label>
-              <input type="text" class="form-input" placeholder="Smith" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Company / Organisation *</label>
-              <input type="text" class="form-input" placeholder="Armoured Vehicle Corp." />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Business Email *</label>
-              <input type="email" class="form-input" placeholder="john@company.com" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Enquiry Type</label>
-              <select class="form-select form-input">
-                <option value="">— Select product category —</option>
-                <option>Ballistic Steel / Armor Plate</option>
-                <option>Bullet-Resistant Glass</option>
-                <option>Run-Flat Systems</option>
-                <option>Suspension / Braking</option>
-                <option>Wheel Assemblies / Turret Rings</option>
-                <option>CNC Machining Services</option>
-                <option>General Enquiry</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Project Details *</label>
-              <textarea class="form-textarea" placeholder="Describe your requirements, quantities, specifications, or project scope…"></textarea>
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;clip-path:none;">
-              Submit Enquiry <span class="btn-arrow">→</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================
-       FOOTER
-  ================================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-
-        <div class="footer-brand">
-          <div class="footer-logo-name">Cemar International</div>
-          <div class="footer-logo-sub">Ballistic Protection Solutions</div>
-          <p class="footer-tagline">
-            ISO-certified single-point manufacturer and dealer of armoring materials and ballistic protection systems for the global defence industry.
-          </p>
-          <div class="footer-cert-badge">
-            <div class="footer-cert-icon">ISO<br/>9001</div>
-            <div class="footer-cert-text">ISO 9001:2015<br/>Quality Certified</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-col-title">Products</div>
-          <ul class="footer-links">
-            <li><a href="#">Ballistic Steel</a></li>
-            <li><a href="#">BR Glass</a></li>
-            <li><a href="#">Run-Flat Systems</a></li>
-            <li><a href="#">Suspension Kits</a></li>
-            <li><a href="#">Turret Rings</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="footer-col-title">Services</div>
-          <ul class="footer-links">
-            <li><a href="#">CNC Laser Cutting</a></li>
-            <li><a href="#">Press Braking</a></li>
-            <li><a href="#">CNC Lathe</a></li>
-            <li><a href="#">Custom Kitting</a></li>
-            <li><a href="#">OEM Supply</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="footer-col-title">Company</div>
-          <ul class="footer-links">
-            <li><a href="#">About Cemar</a></li>
-            <li><a href="#">Global Reach</a></li>
-            <li><a href="#">European Division</a></li>
-            <li><a href="#">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-copy">© 2025 Cemar International. All rights reserved. Dubai, UAE.</div>
-        <div class="footer-flags">
-          <span class="footer-flag">UAE</span>
-          <span class="footer-flag">EU</span>
-          <span class="footer-flag">INTL</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ================================
-       SCRIPTS
-  ================================ -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Nav scroll state
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    // Scroll-reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    reveals.forEach(el => observer.observe(el));
-
-    // Animated stat counters
-    function animateCount(el, target, suffix = '') {
-      let start = 0;
-      const duration = 1800;
-      const startTime = performance.now();
-      function tick(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
-        el.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-
-    // Observer for stat numbers
-    const statObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.target, 10);
-          const suffix = el.dataset.suffix || '';
-          animateCount(el, target, suffix);
-          statObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
-
-    // Smooth anchor scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          const offset = target.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top: offset, behavior: 'smooth' });
-        }
-      });
-    });
-
-    // Subtle parallax on hero geometry
-    const heroGeo = document.querySelector('.hero-geometry');
-    window.addEventListener('scroll', () => {
-      if (heroGeo) {
-        heroGeo.style.transform = `translateY(${window.scrollY * 0.08}px)`;
-      }
-    }, { passive: true });
-  </script>
-
-</body>
-</html>
