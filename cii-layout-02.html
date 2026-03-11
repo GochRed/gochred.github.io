@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cemar International | Advanced Armoring Solutions</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Manrope (Body) & Archivo Black (Headings/Unison Pro Alternative) -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --brand-blue: #004893;
+            --brand-red: #C9002B;
+            --brand-light: #f5f5f7; /* Apple-esque off-white */
+            --brand-dark: #001a33;
+        }
+
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--brand-light);
+            color: var(--brand-dark);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography Utilities */
+        .font-extended { 
+          font-family: 'Archivo Black', sans-serif; 
+          text-transform: uppercase; 
+          letter-spacing: 0.02em;
+        }
+        .text-balance { text-wrap: balance; }
+
+        /* Smooth Scroll Reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Glassmorphism Nav */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 72, 147, 0.1);
+        }
+
+        /* Parallax Container */
+        .parallax-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .parallax-img {
+            will-change: transform;
+            transform: translateY(0);
+            transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Custom Buttons */
+        .btn-sleek {
+            background-color: var(--brand-blue);
+            color: white;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 72, 147, 0.2);
+        }
+        .btn-sleek:hover {
+            background-color: #003366;
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 72, 147, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--brand-blue);
+            border: 2px solid rgba(0, 72, 147, 0.2);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--brand-blue);
+            background-color: rgba(0, 72, 147, 0.05);
+        }
+
+        /* Subtle gradient text */
+        .text-gradient {
+            background: linear-gradient(135deg, #004893 0%, #001a33 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="selection:bg-[#C9002B] selection:text-white">
+
+    <!-- Global Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
+            
+            <!-- Logo area -->
+            <div class="flex items-center gap-3 cursor-pointer group">
+                <img 
+                    src="img/cii-logo2.svg" 
+                    alt="Cemar International Logo" 
+                    class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="hidden flex-col">
+                    <span class="font-extended text-2xl leading-none text-[#004893]">CEMAR</span>
+                    <span class="text-[9px] font-bold tracking-[0.25em] uppercase leading-none mt-1 text-[#C9002B]">International</span>
+                </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex space-x-10 items-center text-sm font-bold tracking-wide text-[#004893]">
+                <a href="#materials" class="hover:text-[#C9002B] transition-colors">MATERIALS</a>
+                <a href="#engineering" class="hover:text-[#C9002B] transition-colors">ENGINEERING</a>
+                <a href="#facility" class="hover:text-[#C9002B] transition-colors">FACILITY</a>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-6">
+                <a href="tel:+97148839798" class="hidden lg:flex items-center gap-2 text-sm font-bold text-[#004893] hover:text-[#C9002B] transition-colors duration-300">
+                    <i data-lucide="phone-call" class="w-4 h-4"></i>
+                    <span>+971 4 8839 798</span>
+                </a>
+                <button class="bg-[#C9002B] hover:bg-[#a30022] text-white rounded-full px-6 py-2.5 font-bold text-sm tracking-wide transition-all shadow-lg shadow-[#C9002B]/20 hover:scale-105 flex items-center gap-2">
+                    Request Quote <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-20 lg:pt-56 lg:pb-32 bg-white overflow-hidden rounded-b-[3rem] lg:rounded-b-[4rem] shadow-sm z-10">
+        <div class="max-w-[1000px] mx-auto px-6 text-center">
+            
+            <p class="reveal text-sm font-bold tracking-widest text-[#C9002B] uppercase mb-6 flex items-center justify-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> ISO 9001:2015 Certified
+            </p>
+            
+            <h1 class="reveal reveal-delay-1 text-5xl md:text-7xl lg:text-8xl font-extended leading-[1.05] text-balance mb-8 text-gradient drop-shadow-sm">
+                ENGINEERED WITH <br> ABSOLUTE PRECISION.
+            </h1>
+            
+            <p class="reveal reveal-delay-2 text-xl md:text-2xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed mb-12">
+                Defining the global standard in ballistic steel, transparent armor, and tactical mobility systems for critical environments.
+            </p>
+            
+            <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="btn-sleek px-8 py-4 text-sm font-bold tracking-wide flex items-center gap-2">
+                    Explore Capabilities <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <button class="btn-outline px-8 py-4 text-sm font-bold tracking-wide flex items-center gap-2">
+                    Download Specifications <i data-lucide="download" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Parallax Image -->
+    <section class="max-w-[1400px] mx-auto px-6 lg:px-12 -mt-16 lg:-mt-24 relative z-20 mb-32">
+        <div class="parallax-wrapper rounded-3xl overflow-hidden aspect-[16/9] lg:aspect-[21/9] bg-[#004893] shadow-2xl shadow-[#004893]/20 reveal border-4 border-white">
+            <img 
+                src="img/hero-placeholder-3.webp" 
+                alt="Advanced Armoring Material" 
+                class="parallax-img w-full h-[120%] object-cover absolute top-0 left-0 mix-blend-overlay opacity-90"
+                onerror="this.style.display='none';"
+            >
+            <!-- Sleek Overlay gradient using Brand Blue -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#001a33]/60 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- Essential Metrics -->
+    <section class="py-20 bg-[var(--brand-light)]">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 divide-x divide-[#004893]/10">
+                <div class="reveal text-center">
+                    <div class="font-extended text-5xl lg:text-6xl text-[#004893] mb-3">71<span class="text-[#C9002B]">+</span></div>
+                    <div class="text-xs font-bold tracking-widest text-gray-500 uppercase">Countries Supplied</div>
+                </div>
+                <div class="reveal reveal-delay-1 text-center">
+                    <div class="font-extended text-5xl lg:text-6xl text-[#004893] mb-3">4<span class="text-[#C9002B]">M+</span></div>
+                    <div class="text-xs font-bold tracking-widest text-gray-500 uppercase">Tons Traded Annually</div>
+                </div>
+                <div class="reveal reveal-delay-2 text-center">
+                    <div class="font-extended text-5xl lg:text-6xl text-[#004893] mb-3">100<span class="text-[#C9002B]">%</span></div>
+                    <div class="text-xs font-bold tracking-widest text-gray-500 uppercase">Certified Quality</div>
+                </div>
+                <div class="reveal reveal-delay-3 text-center border-0">
+                    <div class="font-extended text-5xl lg:text-6xl text-[#004893] mb-3">24<span class="text-[#C9002B]">/7</span></div>
+                    <div class="text-xs font-bold tracking-widest text-gray-500 uppercase">Global Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Materials / Products -->
+    <section id="materials" class="py-32 bg-white">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            
+            <div class="mb-20 text-center max-w-3xl mx-auto reveal">
+                <h2 class="font-extended text-4xl md:text-5xl mb-6 text-[#004893]">MASTERING THE ELEMENTS OF DEFENSE.</h2>
+                <p class="text-xl text-gray-500 font-medium">Uncompromising materials engineered for integration into the world's most advanced tactical platforms.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
+                
+                <!-- Card 1 -->
+                <div class="reveal bg-[var(--brand-light)] rounded-[2rem] overflow-hidden flex flex-col h-full hover:shadow-xl hover:shadow-[#004893]/10 transition-all duration-500 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="img/ballistic-placeholder.webp" alt="Ballistic Steel" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#004893]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="p-10 lg:p-12 flex-grow flex flex-col">
+                        <div class="w-12 h-12 rounded-full bg-white shadow-sm text-[#004893] flex items-center justify-center mb-6">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-extended text-2xl mb-4 text-[#004893] group-hover:text-[#C9002B] transition-colors">Ballistic Steel.</h3>
+                        <p class="text-gray-600 font-medium leading-relaxed mb-8 flex-grow">High-hardness armor steel rigorously tested for extreme threat levels. Delivered in raw sheets or precision-processed kits ready for immediate assembly.</p>
+                        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#C9002B]">
+                            View specifications <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="reveal reveal-delay-1 bg-[var(--brand-light)] rounded-[2rem] overflow-hidden flex flex-col h-full hover:shadow-xl hover:shadow-[#004893]/10 transition-all duration-500 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="img/glass-placeholder.webp" alt="Bullet Resistant Glass" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#004893]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="p-10 lg:p-12 flex-grow flex flex-col">
+                        <div class="w-12 h-12 rounded-full bg-white shadow-sm text-[#004893] flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-extended text-2xl mb-4 text-[#004893] group-hover:text-[#C9002B] transition-colors">Bullet Resistant Glass.</h3>
+                        <p class="text-gray-600 font-medium leading-relaxed mb-8 flex-grow">Optically pristine, bullet-resistant glass systems. Certified to withstand sustained impact while maintaining complete visual clarity for operators.</p>
+                        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#C9002B]">
+                            View specifications <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="reveal bg-[var(--brand-light)] rounded-[2rem] overflow-hidden flex flex-col h-full hover:shadow-xl hover:shadow-[#004893]/10 transition-all duration-500 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="img/runflat-placeholder.webp" alt="Run Flat Systems" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#004893]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="p-10 lg:p-12 flex-grow flex flex-col">
+                        <div class="w-12 h-12 rounded-full bg-white shadow-sm text-[#004893] flex items-center justify-center mb-6">
+                            <i data-lucide="truck" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-extended text-2xl mb-4 text-[#004893] group-hover:text-[#C9002B] transition-colors">Run Flat Systems.</h3>
+                        <p class="text-gray-600 font-medium leading-relaxed mb-8 flex-grow">Heavy-duty polymer inserts ensuring continuous mobility and extraction capabilities under sustained fire or critical tire decompression.</p>
+                        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#C9002B]">
+                            View specifications <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="reveal reveal-delay-1 bg-[var(--brand-light)] rounded-[2rem] overflow-hidden flex flex-col h-full hover:shadow-xl hover:shadow-[#004893]/10 transition-all duration-500 border border-gray-100 group cursor-pointer">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="img/suspension-placeholder.webp" alt="Tactical Suspension" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#004893]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="p-10 lg:p-12 flex-grow flex flex-col">
+                        <div class="w-12 h-12 rounded-full bg-white shadow-sm text-[#004893] flex items-center justify-center mb-6">
+                            <i data-lucide="crosshair" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-extended text-2xl mb-4 text-[#004893] group-hover:text-[#C9002B] transition-colors">Tactical Suspension.</h3>
+                        <p class="text-gray-600 font-medium leading-relaxed mb-8 flex-grow">Reinforced chassis and suspension components meticulously engineered to handle the severe dynamics and weight of up-armored vehicles.</p>
+                        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#C9002B]">
+                            View specifications <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Facility / Capabilities -->
+    <section id="facility" class="py-32 bg-[#004893] text-white rounded-t-[3rem] lg:rounded-t-[4rem] relative overflow-hidden">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-20">
+            
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                
+                <!-- Text Content -->
+                <div class="order-2 lg:order-1 reveal">
+                    <p class="text-sm font-bold tracking-widest text-[#C9002B] uppercase mb-4 bg-white/10 inline-block px-4 py-1 rounded-full">
+                        Headquarters & Manufacturing
+                    </p>
+                    <h2 class="font-extended text-5xl lg:text-6xl mb-8 text-balance leading-[1.1]">
+                        GLOBAL REACH. <br>LOCAL PRECISION.
+                    </h2>
+                    
+                    <p class="text-xl text-blue-100 font-medium leading-relaxed mb-8">
+                        Operating from the National Industries Park in Dubai, our state-of-the-art facility utilizes advanced fiber lasers, CNC bending, and precision machining to deliver flawless components.
+                    </p>
+                    
+                    <ul class="space-y-6 mb-12 border-t border-white/20 pt-8">
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-[#C9002B] flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="check" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Rigorous Certification</h4>
+                                <p class="text-blue-100 text-sm mt-1 font-medium">Tested and certified by TUV, HP WHITE, and BESCHUSSAM to guarantee zero failure rates.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-[#C9002B] flex items-center justify-center shrink-0 mt-1">
+                                <i data-lucide="check" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">In-House Engineering</h4>
+                                <p class="text-blue-100 text-sm mt-1 font-medium">End-to-end processing of ready-made ballistic steel kits directly to your assembly line.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <button class="bg-white text-[#004893] hover:bg-gray-100 rounded-full px-8 py-3.5 text-sm font-bold tracking-wide transition-colors shadow-lg">
+                        View Facility Capabilities
+                    </button>
+                </div>
+
+                <!-- Image Parallax -->
+                <div class="order-1 lg:order-2 parallax-wrapper rounded-3xl overflow-hidden aspect-[4/5] lg:aspect-[3/4] reveal reveal-delay-2 shadow-2xl border-4 border-white/10">
+                    <img 
+                        src="img/factory-placeholder.webp" 
+                        alt="Dubai Manufacturing Facility" 
+                        class="parallax-img w-full h-[120%] object-cover absolute top-0 left-0 opacity-95"
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="bg-[#001a33] pt-20 pb-10 border-t-8 border-[#C9002B]">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+            
+            <div class="text-center max-w-3xl mx-auto mb-32 reveal">
+                <h2 class="font-extended text-4xl md:text-5xl text-white mb-6">SECURE YOUR SUPPLY CHAIN.</h2>
+                <p class="text-blue-200 text-lg font-medium mb-10">Connect directly with our engineering sales team to discuss custom armouring kits, bulk material supply, and exact technical specifications.</p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button class="bg-[#C9002B] hover:bg-[#a30022] text-white rounded-full px-10 py-4 text-sm font-bold tracking-wide transition-all shadow-lg shadow-[#C9002B]/30 flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i> Contact Sales Team
+                    </button>
+                    <a href="mailto:info@cemar-international.com" class="text-white font-bold text-sm hover:text-[#C9002B] underline-offset-8 transition-colors flex items-center gap-2 border-b-2 border-transparent hover:border-[#C9002B] pb-1">
+                        info@cemar-international.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-blue-900 pb-12 mb-8 reveal">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6 bg-white inline-block p-2 rounded w-fit">
+                        <img 
+                            src="img/cii-logo2.svg" 
+                            alt="Logo" 
+                            class="h-8 w-auto object-contain"
+                            onerror="this.style.display='none';"
+                        >
+                    </div>
+                    <p class="text-blue-200 text-sm leading-relaxed max-w-xs mb-4 font-medium">
+                        Plot No TP040107, National Industries Park.<br>Dubai, UAE. P.O. Box 454576
+                    </p>
+                    <p class="text-white font-bold text-lg">
+                        +971 4 8839 798
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-extended text-blue-400 mb-6 text-sm tracking-widest">CAPABILITIES</h4>
+                    <ul class="space-y-3 text-sm text-white font-medium">
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Ballistic Steel</a></li>
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Bullet Resistant Glass</a></li>
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Run Flat Systems</a></li>
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Chassis Suspension</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-extended text-blue-400 mb-6 text-sm tracking-widest">COMPANY</h4>
+                    <ul class="space-y-3 text-sm text-white font-medium">
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Certifications</a></li>
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Manufacturing</a></li>
+                        <li><a href="#" class="hover:text-[#C9002B] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-blue-400 font-bold tracking-wide">
+                <p>COPYRIGHT © 2026 CEMAR INTERNATIONAL. ALL RIGHTS RESERVED.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts for Animations & Parallax -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Scroll Reveal Animation using Intersection Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+
+        // 2. Smooth Parallax Effect for Images
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            
+            parallaxImages.forEach(img => {
+                const rect = img.parentElement.getBoundingClientRect();
+                if(rect.top < window.innerHeight && rect.bottom > 0) {
+                    const yPos = (rect.top * -0.15); 
+                    img.style.transform = `translateY(${yPos}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
