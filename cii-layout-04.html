@@ -11,9 +11,16 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts: Manrope (Body) & Archivo Black (Headings) -->
+    <!-- Google Fonts: Manrope (Body) & Custom Font: Unison (Headings) -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+        
+        @font-face {
+            font-family: 'Unison';
+            src: url('https://gochred.github.io/Unison-Pro-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
         
         :root {
             --brand-blue: #004893;
@@ -30,7 +37,7 @@
         }
 
         .font-extended { 
-            font-family: 'Archivo Black', sans-serif; 
+            font-family: 'Unison', sans-serif; 
             text-transform: uppercase; 
             letter-spacing: 0.02em;
         }
@@ -71,18 +78,13 @@
         <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex justify-between items-center">
             
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
+            <a href="#" class="flex items-center group cursor-pointer">
                 <img 
                     src="img/cii-logo2.svg" 
                     alt="Cemar International Logo" 
                     class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    onerror="this.style.display='none';"
                 >
-                <!-- Fallback Text Logo -->
-                <div class="hidden flex-col">
-                    <span class="font-extended text-2xl leading-none text-[#004893]">CEMAR</span>
-                    <span class="text-[9px] font-bold tracking-[0.25em] uppercase leading-none mt-1 text-[#C9002B]">International</span>
-                </div>
             </a>
 
             <!-- Desktop Links -->
