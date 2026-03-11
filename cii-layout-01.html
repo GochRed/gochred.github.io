@@ -60,6 +60,7 @@
             <!-- LOGO SECTION -->
             <div class="flex items-center gap-2 cursor-pointer relative group">
                 <img 
+                    id="nav-logo-img"
                     src="img/cii-logo.svg" 
                     alt="Cemar International Logo" 
                     class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
@@ -243,7 +244,7 @@
                 <div class="relative aspect-[4/3] bg-gray-100 overflow-hidden group border border-gray-200 shadow-xl rounded-sm">
                     <div class="absolute inset-0 bg-[#004893]/10 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"></div>
                     <img 
-                        src="img/factory-placeholder.webp" 
+                        src="A_wideangle_hyperrealistic_architectural_photograp_delpmaspu.jpg" 
                         alt="Dubai Manufacturing Facility" 
                         class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-[1.03] transition-transform duration-1000 ease-out"
                     >
@@ -372,6 +373,7 @@
 
         // Navbar Scroll Effect (Frosted Glass / Color Changes)
         const navbar = document.getElementById('navbar');
+        const logoImg = document.getElementById('nav-logo-img');
         const logoText1 = document.getElementById('nav-logo-text-1');
         const navLinks = document.getElementById('nav-links');
         const phoneLink = document.getElementById('nav-phone');
@@ -382,6 +384,11 @@
                 navbar.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-gray-100', 'py-3');
                 navbar.classList.remove('bg-transparent', 'border-transparent', 'py-6');
                 
+                // Change logo to alternative version
+                if(logoImg) {
+                    logoImg.src = 'img/cii-logo2.svg';
+                }
+
                 // Update text colors for white background
                 if(logoText1) {
                     logoText1.classList.remove('text-white');
@@ -400,6 +407,11 @@
                 navbar.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-gray-100', 'py-3');
                 navbar.classList.add('bg-transparent', 'border-transparent', 'py-6');
                 
+                // Revert logo back to original version
+                if(logoImg) {
+                    logoImg.src = 'img/cii-logo.svg';
+                }
+
                 // Revert text colors for dark background
                 if(logoText1) {
                     logoText1.classList.remove('text-[#004893]');
