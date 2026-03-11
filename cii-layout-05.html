@@ -20,10 +20,10 @@
     }
 
     :root {
-      --blue:       #004893; /* Updated to brand guideline */
+      --blue:       #004893; /* Official Cemar Blue */
       --blue-dark:  #003670;
       --blue-light: #1A6BB5;
-      --red:        #C9002B; /* Updated to brand guideline */
+      --red:        #C9002B; /* Official Cemar Red */
       --red-dark:   #9E0022;
       --black:      #000000;
       --grey-deep:  #0D0D0D;
@@ -38,7 +38,7 @@
       --border:     rgba(0,0,0,0.07);
       --border-strong: rgba(0,0,0,0.14);
       --mono:       'Share Tech Mono', monospace;
-      --display:    'Unison', sans-serif; /* Updated to Unison */
+      --display:    'Unison', sans-serif;
       --body:       'Manrope', sans-serif;
     }
 
@@ -536,7 +536,7 @@
       position: absolute;
       left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, transparent, rgba(208,2,27,0.6), transparent);
+      background: linear-gradient(90deg, transparent, rgba(201, 0, 43, 0.6), transparent);
       z-index: 4;
       pointer-events: none;
       animation: scanbar 4s linear infinite;
@@ -1143,7 +1143,8 @@
       inset: 0;
       object-fit: cover;
       object-position: center;
-      filter: brightness(0) invert(1) opacity(0.15);
+      opacity: 0.85;
+      transition: opacity 0.5s ease;
     }
 
     .map-dots-layer {
@@ -1723,7 +1724,7 @@
       <div class="nav-inner">
         <!-- Logo -->
         <a href="#" class="nav-logo">
-          <img src="img/cii-logo2.svg" alt="Cemar International" style="height:44px;width:auto;display:block;" />
+          <img src="img/cii-logo2.svg" alt="Cemar International" style="height:44px;width:auto;display:block;" onerror="this.style.display='none';" />
         </a>
 
         <!-- Links -->
@@ -1817,9 +1818,10 @@
             <div class="hero-image-corner hero-image-corner--br"></div>
             <div class="hero-image-scanbar"></div>
             <img
-              src="img/hero-placeholder.jpg"
+              src="img/hero-placeholder.webp"
               alt="Armored vehicle ballistic protection components"
               class="hero-image"
+              onerror="this.style.display='none';"
             />
             <!-- Classification badge -->
             <div class="hero-image-badge">
@@ -2116,24 +2118,15 @@
 
         <div class="global-map reveal reveal-delay-2">
           <div class="map-frame">
-            <!-- BlankMap-World.svg — Robinson projection, 2754×1398 native
-                 Wikimedia Commons (PD) · upload.wikimedia.org -->
+            
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/7/74/BlankMap-World.svg"
+              src="img/world-map-placeholder.webp"
               alt="World map"
               class="map-svg"
-              crossorigin="anonymous"
+              onerror="this.style.display='none';"
             />
 
-            <!-- Animated location dots
-                 Robinson projection approximations (% of 2754×1398):
-                 Dubai  (55.3E, 25.2N) → ~63%, 37%
-                 Europe (10E,  51N)    → ~51%, 22%
-                 India  (78E,  20N)    → ~70%, 38%
-                 Far East (120E, 25N)  → ~78%, 36%
-                 Africa (20E,  0N)     → ~53%, 50%
-                 Canada (96W, 56N)     → ~24%, 19%
-                 Turkey (35E, 39N)     → ~58%, 28%  -->
+            <!-- Animated location dots -->
             <div class="map-dots-layer">
               <div class="map-dot" style="left:63%;top:37%;" title="Dubai HQ"></div>
               <div class="map-dot" style="left:51%;top:22%;" title="Europe"></div>
@@ -2217,7 +2210,7 @@
         </div>
         <div class="cta-btns">
           <a href="#contact" class="btn-white">Request a Quote →</a>
-          <a href="/cdn-cgi/l/email-protection#bcd5d2dad3fcdfd9d1ddce91d5d2c8d9ced2ddc8d5d3d2ddd092dfd3d1" class="btn-outline-white">Email Us →</a>
+          <a href="mailto:info@cemar-international.com" class="btn-outline-white">Email Us →</a>
         </div>
       </div>
     </div>
@@ -2258,7 +2251,7 @@
 
           <div class="info-group">
             <div class="info-label">Email</div>
-            <div class="info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70191e161f3013151d11025d191e0415021e1104191f1e111c5e131f1d">[email&#160;protected]</a></div>
+            <div class="info-value"><a href="mailto:info@cemar-international.com">info@cemar-international.com</a></div>
           </div>
 
           <div class="info-group">
@@ -2341,8 +2334,10 @@
       <div class="footer-grid">
 
         <div class="footer-brand">
-          <div class="footer-logo-name">Cemar International</div>
-          <div class="footer-logo-sub">Ballistic Protection Solutions</div>
+          <div class="footer-logo-name">
+            <img src="img/cii-logo2.svg" alt="Cemar International" style="height:32px;width:auto;display:block;" onerror="this.style.display='none';" />
+          </div>
+          <div class="footer-logo-sub" style="margin-top: 10px;">Ballistic Protection Solutions</div>
           <p class="footer-tagline">
             ISO-certified single-point manufacturer and dealer of armoring materials and ballistic protection systems for the global defence industry.
           </p>
@@ -2388,7 +2383,7 @@
       </div>
 
       <div class="footer-bottom">
-        <div class="footer-copy">© 2025 Cemar International. All rights reserved. Dubai, UAE.</div>
+        <div class="footer-copy">© 2026 Cemar International. All rights reserved. Dubai, UAE.</div>
         <div class="footer-flags">
           <span class="footer-flag">UAE</span>
           <span class="footer-flag">EU</span>
@@ -2401,7 +2396,7 @@
   <!-- ================================
        SCRIPTS
   ================================ -->
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Nav scroll state
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
