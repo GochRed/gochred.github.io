@@ -11,10 +11,17 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts: Manrope (Body/Data) & Archivo Black (Headings) -->
+    <!-- Google Fonts: Manrope (Body/Data) & Custom Font: Unison (Headings) -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
         
+        @font-face {
+            font-family: 'Unison';
+            src: url('https://gochred.github.io/Unison-Pro-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
         :root {
             --brand-red: #C9002B;
             --brand-blue: #004893;
@@ -32,10 +39,10 @@
 
         /* Tactical to Corporate Typography Mapping */
         h1, h2, h3, h4, .font-tactical {
-            font-family: 'Archivo Black', sans-serif;
+            font-family: 'Unison', sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.02em;
-            font-weight: normal; /* Archivo is natively heavy */
+            font-weight: normal; /* Unison is natively bold */
         }
 
         .font-data {
@@ -137,29 +144,19 @@
             </a>
 
             <!-- Desktop Links (HUD Style) -->
-            <div class="hidden md:flex space-x-8 items-center font-data text-xs tracking-widest text-[#004893]/70">
-                <a href="#" class="hover:text-[#004893] transition-colors flex items-center gap-2">
-                    <span class="text-[#C9002B]">01.</span> COMPANY
-                </a>
-                <a href="#" class="hover:text-[#004893] transition-colors flex items-center gap-2">
-                    <span class="text-[#C9002B]">02.</span> PRODUCTS / SERVICES
-                </a>
-                <a href="#" class="hover:text-[#004893] transition-colors flex items-center gap-2">
-                    <span class="text-[#C9002B]">03.</span> EXHIBITION
-                </a>
-                <a href="#" class="hover:text-[#004893] transition-colors flex items-center gap-2">
-                    <span class="text-[#C9002B]">04.</span> CONTACT
-                </a>
-                <a href="#" class="hover:text-[#004893] transition-colors flex items-center gap-2">
-                    <span class="text-[#C9002B]">05.</span> MEDIA
-                </a>
+            <div class="hidden md:flex space-x-10 items-center font-bold text-sm tracking-wide text-[#004893]">
+                <a href="#facility" class="hover:text-[#C9002B] transition-colors">Company</a>
+                <a href="#matrices" class="hover:text-[#C9002B] transition-colors">Products / Services</a>
+                <a href="#" class="hover:text-[#C9002B] transition-colors">Exhibitions</a>
+                <a href="#" class="hover:text-[#C9002B] transition-colors">Media</a>
+                <a href="#contact" class="hover:text-[#C9002B] transition-colors">Contact</a>
             </div>
 
             <!-- CTA -->
             <div class="flex items-center gap-6">
                 <div class="hidden lg:flex flex-col items-end font-data text-xs">
                     <span class="text-gray-500">SPEAK TO SALES</span>
-                    <span class="text-[#004893]">+971 4 8839 798</span>
+                    <span class="text-[#004893] font-bold">+971 4 8839 798</span>
                 </div>
                 <button class="bg-[#C9002B] hover:bg-[#a30022] text-white px-6 py-2.5 font-tactical text-sm tracking-widest clip-angled transition-all flex items-center gap-2 shadow-md shadow-[#C9002B]/20">
                     REQUEST QUOTE <i data-lucide="chevron-right" class="w-4 h-4"></i>
