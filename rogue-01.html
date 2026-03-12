@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogue Media | Dare to be different</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            cursor: none; 
+            background-color: black;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        ::selection {
+            background-color: #d10000;
+            color: white;
+        }
+        
+        .bg-300\% { background-size: 300% 300%; }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animate-gradient { animation: gradient 8s ease infinite; }
+        
+        /* Hide default cursor on interactive elements */
+        a, button, input, select, textarea, .interactive { cursor: none !important; }
+        
+        /* Syncopate Font Utility */
+        .font-syncopate { font-family: 'Syncopate', sans-serif; }
+    </style>
+</head>
+<body class="antialiased text-white selection:bg-[#d10000] selection:text-white">
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-100 ease-out" style="background-color: #d10000; transform: translate(-100px, -100px);"></div>
+    <div id="cursor-outline" class="fixed top-0 left-0 w-10 h-10 border border-[#d10000] rounded-full pointer-events-none z-[9998] transition-all duration-300 ease-out opacity-50" style="transform: translate(-100px, -100px);"></div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <a href="#home" class="text-3xl font-black tracking-tighter text-white interactive font-syncopate">
+                ROGUE<span class="text-[#d10000]">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-sm font-bold text-white/70 hover:text-[#d10000] transition-colors uppercase tracking-widest interactive">About</a>
+                <a href="#services" class="text-sm font-bold text-white/70 hover:text-[#d10000] transition-colors uppercase tracking-widest interactive">Services</a>
+                <a href="#work" class="text-sm font-bold text-white/70 hover:text-[#d10000] transition-colors uppercase tracking-widest interactive">Work</a>
+                <a href="#team" class="text-sm font-bold text-white/70 hover:text-[#d10000] transition-colors uppercase tracking-widest interactive">Team</a>
+                <a href="#contact" class="text-sm font-bold text-white/70 hover:text-[#d10000] transition-colors uppercase tracking-widest interactive">Contact</a>
+            </div>
+            <button class="hidden md:block px-6 py-2 border border-[#d10000] text-[#d10000] font-bold hover:bg-[#d10000] hover:text-black transition-all duration-300 uppercase tracking-widest text-sm interactive group">
+                Go Rogue <i data-lucide="arrow-right" class="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+            <!-- Parallax Background -->
+            <div id="parallax-bg" class="absolute inset-0 z-0 opacity-40 transition-transform duration-75 ease-out" style="background-image: radial-gradient(circle at 50% 50%, #2a0000 0%, #000000 70%);">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay"></div>
+            </div>
+
+            <div class="relative z-10 container mx-auto px-6 lg:px-12 flex flex-col items-center text-center mt-20">
+                <p class="text-[#d10000] font-bold tracking-[0.3em] uppercase mb-6 animate-pulse">Dare to be different</p>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-none mb-8 mix-blend-lighten font-syncopate">
+                    We Are <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#d10000] to-white bg-300% animate-gradient">Rogue</span>
+                </h1>
+                <p class="max-w-2xl text-lg md:text-xl text-white/60 mb-12 font-light">
+                    A 360 creative powerhouse specializing in digital marketing, high-end production, and immersive experiences. 
+                    Stop settling for corporate dribble.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="#contact" class="px-8 py-4 bg-[#d10000] text-black font-black uppercase tracking-widest hover:bg-white transition-all duration-300 interactive flex items-center justify-center">
+                        Start a Project <i data-lucide="zap" class="ml-2 w-5 h-5"></i>
+                    </a>
+                    <a href="#work" class="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-widest hover:border-[#d10000] hover:text-[#d10000] transition-all duration-300 interactive flex items-center justify-center bg-white/5 backdrop-blur-sm">
+                        View Work
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+                <i data-lucide="chevron-down" class="text-white/30 w-8 h-8"></i>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <div class="bg-[#0a0a0a] border-y border-white/10 py-12 relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <p class="text-center text-white/40 text-sm font-bold uppercase tracking-widest mb-8">Trusted by industry disruptors</p>
+                <div class="flex flex-wrap justify-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="text-2xl font-black text-white tracking-tighter font-syncopate">VANGUARD</div>
+                    <div class="text-2xl font-black text-white tracking-tighter font-syncopate">NEON</div>
+                    <div class="text-2xl font-black text-white tracking-tighter font-syncopate">SYNTH</div>
+                    <div class="text-2xl font-black text-white tracking-tighter font-syncopate">APEX</div>
+                    <div class="text-2xl font-black text-white tracking-tighter font-syncopate">NOVA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-black relative">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-[#d10000]/20 blur-2xl rounded-full"></div>
+                        <img 
+                            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                            alt="Rogue Aesthetic" 
+                            class="relative z-10 w-full h-auto grayscale contrast-125 border border-white/10 interactive"
+                        />
+                        <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-[#d10000] mix-blend-multiply z-20 hidden md:block"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-5xl font-black text-white uppercase tracking-tighter mb-8 font-syncopate">
+                            Born from <span class="text-[#d10000]">Chaos</span>. <br/>Built for Impact.
+                        </h2>
+                        <p class="text-white/70 text-lg mb-6 leading-relaxed">
+                            We are not your standard agency. We are a collective of misfits, artists, and strategists tired of the same old corporate formulas. 
+                        </p>
+                        <p class="text-white/70 text-lg mb-10 leading-relaxed">
+                            Rogue was founded for entrepreneurs, company founders, and business owners who want to break through the noise. We blend brutalist design principles with high-end production to create digital experiences that refuse to be ignored.
+                        </p>
+                        <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+                            <div>
+                                <h4 class="text-4xl font-black text-[#d10000] mb-2">150+</h4>
+                                <p class="text-white/50 text-sm uppercase tracking-widest font-bold">Projects Delivered</p>
+                            </div>
+                            <div>
+                                <h4 class="text-4xl font-black text-[#d10000] mb-2">12</h4>
+                                <p class="text-white/50 text-sm uppercase tracking-widest font-bold">Industry Awards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-24 bg-[#050505] relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#1a0000] to-transparent opacity-50 pointer-events-none"></div>
+            
+            <div class="container mx-auto px-6 lg:px-12 relative z-10">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter font-syncopate">
+                        Our <span class="text-[#d10000] border-b-4 border-[#d10000]">Arsenal</span>
+                    </h2>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-12 min-h-[500px]">
+                    <!-- Service List -->
+                    <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                        
+                        <!-- Service 1 -->
+                        <div class="service-item p-8 border-l-4 border-[#d10000] bg-white/5 transition-all duration-300 cursor-pointer interactive group" data-idx="0">
+                            <div class="flex items-center mb-4">
+                                <div class="service-icon text-[#d10000] mr-4 transition-colors group-hover:text-white/60">
+                                    <i data-lucide="monitor-play" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="service-title text-3xl font-black uppercase tracking-tight text-white transition-colors group-hover:text-white/80 font-syncopate">
+                                    Digital Marketing
+                                </h3>
+                            </div>
+                            <div class="service-desc overflow-hidden transition-all duration-500 max-h-40 opacity-100">
+                                <p class="text-white/60 text-lg ml-12">Data-driven, aggressive campaigns that dominate algorithms and capture attention. We don't follow trends, we set them.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="service-item p-8 border-l-4 border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer interactive group" data-idx="1">
+                            <div class="flex items-center mb-4">
+                                <div class="service-icon text-white/30 mr-4 transition-colors group-hover:text-white/60">
+                                    <i data-lucide="zap" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="service-title text-3xl font-black uppercase tracking-tight text-white/40 transition-colors group-hover:text-white/80 font-syncopate">
+                                    High-End Production
+                                </h3>
+                            </div>
+                            <div class="service-desc overflow-hidden transition-all duration-500 max-h-0 opacity-0">
+                                <p class="text-white/60 text-lg ml-12">Cinematic quality video, hyper-realistic 3D, and audio that punches through the screen. Pure visual adrenaline.</p>
+                            </div>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="service-item p-8 border-l-4 border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer interactive group" data-idx="2">
+                            <div class="flex items-center mb-4">
+                                <div class="service-icon text-white/30 mr-4 transition-colors group-hover:text-white/60">
+                                    <i data-lucide="cuboid" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="service-title text-3xl font-black uppercase tracking-tight text-white/40 transition-colors group-hover:text-white/80 font-syncopate">
+                                    Immersive Experiences
+                                </h3>
+                            </div>
+                            <div class="service-desc overflow-hidden transition-all duration-500 max-h-0 opacity-0">
+                                <p class="text-white/60 text-lg ml-12">Web3, AR/VR, and interactive physical installations. We build worlds that your audience can step into.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Service Image Preview -->
+                    <div class="w-full lg:w-1/2 relative h-[400px] lg:h-auto overflow-hidden border border-white/10 group">
+                        
+                        <!-- Image 1 -->
+                        <div class="service-image absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10" id="img-0">
+                            <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/10 transition-colors duration-500"></div>
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Digital Marketing" class="w-full h-full object-cover grayscale contrast-125 scale-105 group-hover:scale-100 transition-transform duration-700" />
+                            <div class="absolute bottom-6 right-6 z-20 text-[#d10000] font-black text-8xl opacity-20 font-syncopate">01</div>
+                        </div>
+
+                        <!-- Image 2 -->
+                        <div class="service-image absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" id="img-1">
+                            <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/10 transition-colors duration-500"></div>
+                            <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="High-End Production" class="w-full h-full object-cover grayscale contrast-125 scale-105 group-hover:scale-100 transition-transform duration-700" />
+                            <div class="absolute bottom-6 right-6 z-20 text-[#d10000] font-black text-8xl opacity-20 font-syncopate">02</div>
+                        </div>
+
+                        <!-- Image 3 -->
+                        <div class="service-image absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" id="img-2">
+                            <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/10 transition-colors duration-500"></div>
+                            <img src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Immersive Experiences" class="w-full h-full object-cover grayscale contrast-125 scale-105 group-hover:scale-100 transition-transform duration-700" />
+                            <div class="absolute bottom-6 right-6 z-20 text-[#d10000] font-black text-8xl opacity-20 font-syncopate">03</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Preview -->
+        <section id="work" class="py-24 bg-black">
+            <div class="container mx-auto px-6 lg:px-12">
+                <div class="flex justify-between items-end mb-16">
+                    <h2 class="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter font-syncopate">
+                        Selected <br/><span class="text-[#d10000]">Works</span>
+                    </h2>
+                    <a href="#" class="hidden md:inline-block border-b border-[#d10000] text-[#d10000] font-bold uppercase tracking-widest pb-1 hover:text-white hover:border-white transition-colors interactive">
+                        View All Projects
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="group relative overflow-hidden bg-[#111] aspect-[4/3] interactive">
+                        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Neon Nights" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-[#d10000] font-bold tracking-widest uppercase text-sm mb-2">Production</p>
+                            <h3 class="text-3xl font-black text-white uppercase font-syncopate">Neon Nights</h3>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="group relative overflow-hidden bg-[#111] aspect-[4/3] interactive">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cyber Pulse" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-[#d10000] font-bold tracking-widest uppercase text-sm mb-2">Digital</p>
+                            <h3 class="text-3xl font-black text-white uppercase font-syncopate">Cyber Pulse</h3>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="group relative overflow-hidden bg-[#111] aspect-[4/3] interactive">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Void Canvas" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-[#d10000] font-bold tracking-widest uppercase text-sm mb-2">Immersive</p>
+                            <h3 class="text-3xl font-black text-white uppercase font-syncopate">Void Canvas</h3>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="group relative overflow-hidden bg-[#111] aspect-[4/3] interactive">
+                        <img src="https://images.unsplash.com/photo-1604871000636-074fa5117945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brutal Echo" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-[#d10000] font-bold tracking-widest uppercase text-sm mb-2">Branding</p>
+                            <h3 class="text-3xl font-black text-white uppercase font-syncopate">Brutal Echo</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section id="team" class="py-24 bg-[#0a0a0a] border-t border-white/5">
+            <div class="container mx-auto px-6 lg:px-12">
+                <h2 class="text-5xl md:text-7xl font-black text-center text-white uppercase tracking-tighter mb-20 font-syncopate">
+                    The <span class="text-[#d10000]">Syndicate</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Member 1 -->
+                    <div class="group relative overflow-hidden border border-white/10 bg-black interactive">
+                        <div class="aspect-[3/4] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Jax" class="w-full h-full object-cover grayscale contrast-150 group-hover:scale-110 transition-transform duration-700 mix-blend-luminosity" />
+                            <div class="absolute inset-0 bg-[#d10000] mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-md p-6 border-t border-[#d10000]/30 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <h3 class="text-2xl font-black text-white uppercase font-syncopate">Jax</h3>
+                            <p class="text-[#d10000] font-bold text-sm tracking-widest uppercase">Creative Director</p>
+                        </div>
+                    </div>
+                    <!-- Member 2 -->
+                    <div class="group relative overflow-hidden border border-white/10 bg-black interactive">
+                        <div class="aspect-[3/4] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Viper" class="w-full h-full object-cover grayscale contrast-150 group-hover:scale-110 transition-transform duration-700 mix-blend-luminosity" />
+                            <div class="absolute inset-0 bg-[#d10000] mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-md p-6 border-t border-[#d10000]/30 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <h3 class="text-2xl font-black text-white uppercase font-syncopate">Viper</h3>
+                            <p class="text-[#d10000] font-bold text-sm tracking-widest uppercase">Head of Digital</p>
+                        </div>
+                    </div>
+                    <!-- Member 3 -->
+                    <div class="group relative overflow-hidden border border-white/10 bg-black interactive">
+                        <div class="aspect-[3/4] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ghost" class="w-full h-full object-cover grayscale contrast-150 group-hover:scale-110 transition-transform duration-700 mix-blend-luminosity" />
+                            <div class="absolute inset-0 bg-[#d10000] mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-full bg-black/80 backdrop-blur-md p-6 border-t border-[#d10000]/30 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <h3 class="text-2xl font-black text-white uppercase font-syncopate">Ghost</h3>
+                            <p class="text-[#d10000] font-bold text-sm tracking-widest uppercase">Lead Producer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-24 bg-black relative overflow-hidden">
+            <!-- Abstract bg element -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#d10000]/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 lg:px-12 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-16">
+                    
+                    <div>
+                        <h2 class="text-5xl md:text-6xl font-black text-white uppercase tracking-tighter mb-6 font-syncopate">
+                            Go <span class="text-[#d10000]">Rogue</span>.
+                        </h2>
+                        <p class="text-white/60 text-lg mb-12 max-w-md">
+                            Ready to break the rules? Drop us a line. We only work with those who are serious about dominating their industry.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center text-white/80 hover:text-[#d10000] transition-colors interactive">
+                                <i data-lucide="mail" class="w-6 h-6 mr-4"></i>
+                                <span class="text-lg font-bold tracking-wider">ops@roguemedia.com</span>
+                            </div>
+                            <div class="flex items-center text-white/80 hover:text-[#d10000] transition-colors interactive">
+                                <i data-lucide="phone" class="w-6 h-6 mr-4"></i>
+                                <span class="text-lg font-bold tracking-wider">+1 (800) GO-ROGUE</span>
+                            </div>
+                            <div class="flex items-center text-white/80 hover:text-[#d10000] transition-colors interactive">
+                                <i data-lucide="map-pin" class="w-6 h-6 mr-4"></i>
+                                <span class="text-lg font-bold tracking-wider">Underground Bunker, NY 10001</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-[#d10000] uppercase tracking-widest">Name</label>
+                                <input type="text" class="w-full bg-black/50 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-[#d10000] transition-colors interactive" placeholder="John Doe" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-[#d10000] uppercase tracking-widest">Email</label>
+                                <input type="email" class="w-full bg-black/50 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-[#d10000] transition-colors interactive" placeholder="john@example.com" />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-[#d10000] uppercase tracking-widest">Objective</label>
+                            <select class="w-full bg-black/50 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-[#d10000] transition-colors interactive appearance-none">
+                                <option>Digital Marketing</option>
+                                <option>High-End Production</option>
+                                <option>Immersive Experience</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-[#d10000] uppercase tracking-widest">Message</label>
+                            <textarea rows="4" class="w-full bg-black/50 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-[#d10000] transition-colors interactive resize-none" placeholder="Tell us about the project..."></textarea>
+                        </div>
+                        <button type="button" class="w-full bg-[#d10000] text-black font-black uppercase tracking-widest py-4 hover:bg-white transition-colors duration-300 interactive mt-4">
+                            Initiate Contact
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 py-12">
+        <div class="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <a href="#home" class="text-2xl font-black tracking-tighter text-white interactive font-syncopate">
+                    ROGUE<span class="text-[#d10000]">.</span>
+                </a>
+                <p class="text-white/40 text-sm mt-2 font-bold tracking-widest uppercase">Dare to be different.</p>
+            </div>
+            
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="#" class="text-white/40 hover:text-[#d10000] transition-colors interactive"><i data-lucide="instagram"></i></a>
+                <a href="#" class="text-white/40 hover:text-[#d10000] transition-colors interactive"><i data-lucide="twitter"></i></a>
+                <a href="#" class="text-white/40 hover:text-[#d10000] transition-colors interactive"><i data-lucide="linkedin"></i></a>
+            </div>
+
+            <div class="text-white/30 text-xs font-bold tracking-widest uppercase text-center md:text-right">
+                &copy; <span id="year"></span> Rogue Media.<br/> All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set Current Year in Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Custom Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        let isHovering = false;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        const updateCursor = () => {
+            cursorDot.style.transform = `translate(${mouseX - 8}px, ${mouseY - 8}px) scale(${isHovering ? 2.5 : 1})`;
+            cursorOutline.style.transform = `translate(${mouseX - 20}px, ${mouseY - 20}px) scale(${isHovering ? 0 : 1})`;
+            cursorOutline.style.opacity = isHovering ? '0' : '0.5';
+            requestAnimationFrame(updateCursor);
+        };
+        requestAnimationFrame(updateCursor);
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.tagName.toLowerCase() === 'a' || e.target.tagName.toLowerCase() === 'button' || e.target.closest('.interactive')) {
+                isHovering = true;
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.tagName.toLowerCase() === 'a' || e.target.tagName.toLowerCase() === 'button' || e.target.closest('.interactive')) {
+                isHovering = false;
+            }
+        });
+
+        // Navbar Scroll Effect & Parallax Hero
+        const navbar = document.getElementById('navbar');
+        const parallaxBg = document.getElementById('parallax-bg');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Navbar
+            if (scrollY > 50) {
+                navbar.classList.add('py-4', 'bg-black/80', 'backdrop-blur-md', 'border-b', 'border-white/10');
+                navbar.classList.remove('py-6', 'bg-transparent');
+            } else {
+                navbar.classList.add('py-6', 'bg-transparent');
+                navbar.classList.remove('py-4', 'bg-black/80', 'backdrop-blur-md', 'border-b', 'border-white/10');
+            }
+
+            // Parallax
+            parallaxBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+        });
+
+        // Services Tab Logic
+        const serviceItems = document.querySelectorAll('.service-item');
+        const serviceImages = document.querySelectorAll('.service-image');
+
+        serviceItems.forEach((item) => {
+            item.addEventListener('mouseenter', () => {
+                const targetIdx = item.getAttribute('data-idx');
+
+                // Reset all items
+                serviceItems.forEach(si => {
+                    si.classList.remove('border-[#d10000]', 'bg-white/5');
+                    si.classList.add('border-white/10');
+                    
+                    const icon = si.querySelector('.service-icon');
+                    icon.classList.remove('text-[#d10000]');
+                    icon.classList.add('text-white/30');
+
+                    const title = si.querySelector('.service-title');
+                    title.classList.remove('text-white');
+                    title.classList.add('text-white/40');
+
+                    const desc = si.querySelector('.service-desc');
+                    desc.classList.remove('max-h-40', 'opacity-100');
+                    desc.classList.add('max-h-0', 'opacity-0');
+                });
+
+                // Reset all images
+                serviceImages.forEach(img => {
+                    img.classList.remove('opacity-100', 'z-10');
+                    img.classList.add('opacity-0', 'z-0');
+                });
+
+                // Activate hovered item
+                item.classList.add('border-[#d10000]', 'bg-white/5');
+                item.classList.remove('border-white/10');
+                
+                const activeIcon = item.querySelector('.service-icon');
+                activeIcon.classList.add('text-[#d10000]');
+                activeIcon.classList.remove('text-white/30');
+
+                const activeTitle = item.querySelector('.service-title');
+                activeTitle.classList.add('text-white');
+                activeTitle.classList.remove('text-white/40');
+
+                const activeDesc = item.querySelector('.service-desc');
+                activeDesc.classList.add('max-h-40', 'opacity-100');
+                activeDesc.classList.remove('max-h-0', 'opacity-0');
+
+                // Activate corresponding image
+                const targetImage = document.getElementById(`img-${targetIdx}`);
+                targetImage.classList.add('opacity-100', 'z-10');
+                targetImage.classList.remove('opacity-0', 'z-0');
+            });
+        });
+    </script>
+</body>
+</html>
