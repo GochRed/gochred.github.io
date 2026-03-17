@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vartovey — Case Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            /* Goch Brand Palette */
+            --bg-color: #d3ceb7;
+            --text-main: #222222;
+            --text-muted: #666666;
+            --accent-color: #c44c2c; 
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            
+            /* Custom Brutalist Crosshair Cursor */
+            cursor: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2V10M12 14V22M2 12H10M14 12H22" stroke="%23c44c2c" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="%23c44c2c"/></svg>') 12 12, auto;
+        }
+
+        /* Interactive Expanded Cursor for Links */
+        a, button, [role="button"] {
+            cursor: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 2V12M16 20V30M2 16H12M20 16H30" stroke="%23c44c2c" stroke-width="2"/><circle cx="16" cy="16" r="6" fill="%23c44c2c"/></svg>') 16 16, pointer !important;
+        }
+
+        /* Red Logo Mask Hack */
+        .logo-mask {
+            background-color: var(--accent-color);
+            -webkit-mask: url('https://gochred.github.io/red/Logo.svg') no-repeat left center / contain;
+            mask: url('https://gochred.github.io/red/Logo.svg') no-repeat left center / contain;
+        }
+
+        /* Editorial Typography Tweaks */
+        .title-display {
+            font-size: clamp(4rem, 12vw, 12rem);
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .editorial-body {
+            font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-text {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Image treatments */
+        .img-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #b5b09a;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-wrapper:hover .img-placeholder {
+            transform: scale(1.03);
+        }
+
+        .caption {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-left: 2px solid var(--accent-color);
+            padding-left: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Subtle entrance animation */
+        .fade-up {
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-[#c44c2c] selection:text-[#d3ceb7]">
+
+    <!-- Minimal Nav -->
+    <nav class="w-full p-6 md:p-12 flex justify-between items-center fixed top-0 z-50">
+        <a href="#" class="block w-24 md:w-32 h-6 md:h-8 hover:opacity-80 transition-opacity logo-mask"></a>
+        <a href="#" class="meta-text hover:text-[var(--accent-color)] transition-colors">Close Case Study ✕</a>
+    </nav>
+
+    <!-- Header / Hero Section -->
+    <header class="pt-32 md:pt-48 px-6 md:px-12 max-w-[1600px] mx-auto fade-up">
+        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-[#222222]/20 pb-8 mb-8 gap-6">
+            <h1 class="title-display text-[var(--text-main)]">Vartovey</h1>
+            <div class="text-right pb-2">
+                <p class="meta-text mb-1 !text-[var(--accent-color)]">Military Supply & Tactical Gear</p>
+                <p class="meta-text">Lviv, Ukraine</p>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="w-full h-[60vh] md:h-[80vh] img-wrapper fade-up delay-1">
+            <!-- Placeholder: Dark textured metallic/tactical feel -->
+            <img src="https://images.unsplash.com/photo-1614291880572-132d0c2ee522?q=80&w=2574&auto=format&fit=crop" alt="Vartovey Hero" class="img-placeholder grayscale opacity-90">
+        </div>
+    </header>
+
+    <!-- Context & Problem -->
+    <section class="py-24 px-6 md:px-12 max-w-[1600px] mx-auto fade-up delay-2">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+            
+            <!-- Meta Column -->
+            <div class="md:col-span-3 flex flex-col gap-8">
+                <div>
+                    <h4 class="meta-text mb-2 text-[var(--text-main)]">Categories</h4>
+                    <ul class="text-sm text-[var(--text-muted)] space-y-1 font-medium">
+                        <li>Branding & Identity</li>
+                        <li>UI/UX & Web Design</li>
+                        <li>Social Media Design</li>
+                        <li>Print & Packaging</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="meta-text mb-2 text-[var(--text-main)]">The Brief</h4>
+                    <p class="text-sm text-[var(--text-muted)] leading-relaxed font-medium">
+                        Creating an authoritative brand mark that honors historical symbolism while functioning effectively across rugged physical gear and digital e-commerce environments.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Narrative -->
+            <div class="md:col-span-8 md:col-start-5">
+                <p class="editorial-body text-[var(--text-main)] font-medium">
+                    Vartovey required a strong, heritage-driven visual identity paired with a modern, tactical aesthetic. The challenge was bridging historical weight with a sharp, multidisciplinary design approach suitable for both physical and digital spaces.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- The Solution (Callout Block) - Inverted to dark for punchy editorial rhythm -->
+    <section class="py-20 bg-[#222222] border-y border-[#222]">
+        <div class="px-6 md:px-12 max-w-[1200px] mx-auto text-center">
+            <h3 class="meta-text !text-[var(--accent-color)] mb-8">The Solution</h3>
+            <p class="text-2xl md:text-5xl font-medium leading-tight tracking-tight text-[var(--bg-color)]">
+                A sharp, utilitarian shield emblem featuring the Ruthenian lion, executed in a high-contrast gunmetal and icy blue palette, paired with assertive, custom typography.
+            </p>
+        </div>
+    </section>
+
+    <!-- Editorial Image Grid -->
+    <section class="py-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-x-12 md:gap-y-32">
+
+            <!-- Shot 1: Hardware Application -->
+            <div class="col-span-1">
+                <div class="aspect-[4/5] img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1598460613867-27bba092e071?q=80&w=2600&auto=format&fit=crop" class="img-placeholder grayscale">
+                </div>
+                <p class="caption">Hardware application showcasing the sharp curves and industrial strength of the mark.</p>
+            </div>
+
+            <!-- Shot 2: Apparel -->
+            <div class="col-span-1 md:mt-32">
+                <div class="aspect-[4/5] img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1542407517-57ff0eab6911?q=80&w=2670&auto=format&fit=crop" class="img-placeholder grayscale">
+                </div>
+                <p class="caption">Tactical apparel integration of the modernized Ruthenian lion shield.</p>
+            </div>
+
+            <!-- Shot 3: E-commerce Packaging -->
+            <div class="col-span-1 md:col-span-2">
+                <div class="aspect-[21/9] img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1620061994119-906f3cd426d0?q=80&w=2574&auto=format&fit=crop" class="img-placeholder grayscale">
+                </div>
+                <p class="caption w-full md:w-1/2">Physical e-commerce packaging utilizing the high-contrast gunmetal and blue color system.</p>
+            </div>
+
+            <!-- Shot 4: Digital Storefront -->
+            <div class="col-span-1">
+                <div class="aspect-square img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop" class="img-placeholder grayscale">
+                </div>
+                <p class="caption">Digital storefront translation, emphasizing the brand's modern online e-commerce presence.</p>
+            </div>
+
+            <!-- Shot 5: Social Media Ecosystem -->
+            <div class="col-span-1 md:-mt-16">
+                <div class="aspect-square img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop" class="img-placeholder grayscale">
+                </div>
+                <p class="caption">Social media ecosystem and digital content templates.</p>
+            </div>
+
+            <!-- Shot 6: Environmental LED Signage -->
+            <div class="col-span-1 md:col-span-2">
+                <div class="aspect-[16/9] img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563214815-fcfbafb47e26?q=80&w=2670&auto=format&fit=crop" class="img-placeholder grayscale">
+                </div>
+                <p class="caption w-full md:w-1/2">Large-scale environmental application for physical retail spaces.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer / Next Project -->
+    <footer class="pt-32 pb-16 px-6 md:px-12 text-center border-t border-[#222222]/20 mt-12">
+        <p class="meta-text mb-6 !text-[var(--text-main)]">Next Project</p>
+        <a href="#" class="inline-block group">
+            <h2 class="text-5xl md:text-8xl font-bold uppercase tracking-tighter text-[var(--text-main)] transition-colors duration-500">
+                Putty <span class="text-[var(--accent-color)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 inline-block transform translate-x-[-20px] group-hover:translate-x-0">→</span>
+            </h2>
+        </a>
+    </footer>
+
+</body>
+</html>
