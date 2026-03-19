@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elan Salon Booking</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C7A17A',
+                        primaryHover: '#B08D6A',
+                        secondary: '#2B2B2B',
+                        appbg: '#FAF9F6',
+                        surface: '#FFFFFF',
+                        apptext: '#1A1A1A',
+                        textLight: '#666666',
+                        appborder: '#E5E5E5',
+                        accent: '#F3EFEA'
+                    },
+                    fontFamily: {
+                        serif: ['Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(199, 161, 122, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Refined Animations */
+        .fade-in-up { 
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hidden-step { 
+            display: none !important; 
+        }
+        
+        /* Custom Scrollbar for a cleaner look if content overflows */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #C7A17A; }
+
+        /* Hide date picker calendar icon on webkit to use custom icon */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+        }
+    </style>
+</head>
+<body class="bg-appbg text-apptext font-sans antialiased min-h-screen flex items-center justify-center p-4 md:p-8 selection:bg-primary selection:text-white">
+
+    <div class="max-w-4xl w-full mx-auto shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row bg-surface">
+        
+        <!-- Left Panel - Summary -->
+        <div class="w-full md:w-1/3 p-6 md:p-10 text-white flex flex-col justify-between bg-secondary transition-all duration-300">
+            <div>
+                <div class="flex justify-between items-center md:block mb-6 md:mb-12">
+                    <h1 class="text-2xl md:text-3xl font-serif tracking-widest text-primary">ELAN</h1>
+                    <p class="text-xs uppercase tracking-widest text-gray-400 md:mt-2">Booking</p>
+                </div>
+                
+                <!-- On mobile, this becomes a horizontal scrolling list or compact grid, on desktop vertical -->
+                <div class="flex flex-row md:flex-col gap-4 md:space-y-6 overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
+                    <div id="summary-block-service" class="min-w-[140px] md:min-w-0 transition-opacity duration-300 opacity-100">
+                        <p class="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider mb-1">Service</p>
+                        <p id="summary-service-name" class="font-medium text-sm md:text-base truncate md:whitespace-normal">Not selected</p>
+                    </div>
+                    
+                    <div id="summary-block-datetime" class="min-w-[140px] md:min-w-0 transition-opacity duration-300 opacity-30">
+                        <p class="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider mb-1">Date & Time</p>
+                        <p id="summary-datetime" class="font-medium text-sm md:text-base">---</p>
+                    </div>
+
+                    <div id="summary-block-deposit" class="min-w-[140px] md:min-w-0 transition-opacity duration-300 opacity-30">
+                        <p class="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider mb-1">Deposit</p>
+                        <p id="summary-deposit" class="font-medium text-lg md:text-xl text-primary">---</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden md:block pt-12">
+                <p class="text-xs text-gray-500">Need help? Call +971 4 123 4567</p>
+            </div>
+        </div>
+
+        <!-- Right Panel - Interactive Steps -->
+        <div class="w-full md:w-2/3 p-6 md:p-12 relative min-h-[550px] flex flex-col">
+            
+            <!-- Header Controls -->
+            <div class="flex justify-between items-center mb-8 h-8">
+                <button id="btn-back" class="hidden items-center text-sm font-medium text-textLight hover:text-primary transition-colors group">
+                    <i data-lucide="arrow-left" class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform"></i> Back
+                </button>
+                <!-- Spacer to keep step indicator on the right when back button is hidden -->
+                <div id="header-spacer" class="flex-grow"></div> 
+                <div id="step-indicator" class="text-xs font-medium tracking-widest text-primary bg-accent px-3 py-1 rounded-full">
+                STEP 1 OF 4
+            </div>
+        </div>
+
+        <div class="flex-grow relative">
+            
+            <!-- Step 1: Select Service -->
+            <div id="step-1" class="fade-in-up absolute inset-0 overflow-y-auto pr-2 pb-4">
+                <h2 class="text-2xl md:text-3xl font-serif mb-6 text-apptext">Select a Service</h2>
+                    <div id="services-container" class="space-y-4">
+                        <!-- Injected via JS -->
+                    </div>
+                    <button id="btn-next-1" disabled class="mt-8 w-full py-4 rounded-xl font-medium tracking-wider text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary hover:bg-primaryHover hover:shadow-glow disabled:hover:shadow-none">
+                    CONTINUE
+                </button>
+            </div>
+
+            <!-- Step 2: Date & Time -->
+            <div id="step-2" class="hidden-step fade-in-up absolute inset-0 overflow-y-auto pr-2 pb-4">
+                <h2 class="text-2xl md:text-3xl font-serif mb-6 text-apptext">Choose Date & Time</h2>
+                    
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium mb-2 text-textLight">Select Date</label>
+                        <div class="relative group">
+                            <i data-lucide="calendar" class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors z-10"></i>
+                            <input type="date" id="input-date" class="w-full pl-12 pr-4 py-4 rounded-xl border border-appborder bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all cursor-pointer relative">
+                        </div>
+                    </div>
+
+                    <div id="time-slots-container" class="transition-all duration-300 opacity-50 pointer-events-none">
+                        <label class="block text-sm font-medium mb-3 text-textLight">Available Times</label>
+                        <div id="times-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <button id="btn-next-2" disabled class="mt-8 w-full py-4 rounded-xl font-medium tracking-wider text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center bg-primary hover:bg-primaryHover hover:shadow-glow disabled:hover:shadow-none">
+                    CONTINUE <i data-lucide="chevron-right" class="w-5 h-5 ml-2"></i>
+                </button>
+            </div>
+
+            <!-- Step 3: Client Details -->
+            <div id="step-3" class="hidden-step fade-in-up absolute inset-0 overflow-y-auto pr-2 pb-4">
+                <h2 class="text-2xl md:text-3xl font-serif mb-6 text-apptext">Your Details</h2>
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-textLight">Full Name</label>
+                        <input type="text" id="input-name" placeholder="e.g. Jane Doe" class="w-full px-4 py-4 rounded-xl border border-appborder bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-gray-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-textLight">Email Address</label>
+                        <input type="email" id="input-email" placeholder="jane@example.com" class="w-full px-4 py-4 rounded-xl border border-appborder bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-gray-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-textLight">Phone Number</label>
+                        <input type="tel" id="input-phone" placeholder="+971 50 000 0000" class="w-full px-4 py-4 rounded-xl border border-appborder bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder:text-gray-400">
+                    </div>
+                </div>
+
+                <button id="btn-next-3" disabled class="mt-8 w-full py-4 rounded-xl font-medium tracking-wider text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-primary hover:bg-primaryHover hover:shadow-glow disabled:hover:shadow-none">
+                    PROCEED TO PAYMENT
+                </button>
+            </div>
+
+            <!-- Step 4: Stripe Payment Form (Simulated) -->
+            <div id="step-4" class="hidden-step fade-in-up absolute inset-0 overflow-y-auto pr-2 pb-4">
+                <h2 class="text-2xl md:text-3xl font-serif mb-2 text-apptext">Secure Deposit</h2>
+                <p class="mb-6 text-sm text-textLight">
+                    A deposit of <strong class="text-primary font-semibold">300 AED</strong> is required to secure your booking.
+                </p>
+
+                <!-- Express Checkout (Apple/Google Pay) -->
+                <div class="mb-6 space-y-3">
+                    <button type="button" id="btn-apple-pay" class="w-full py-3.5 rounded-xl font-medium text-white transition-all flex justify-center items-center bg-black hover:bg-gray-800 hover:shadow-md disabled:opacity-70">
+                        <i data-lucide="apple" class="w-5 h-5 mr-1.5 -mt-0.5 fill-current"></i> Pay
+                    </button>
+                    <button type="button" id="btn-google-pay" class="w-full py-3.5 rounded-xl font-medium text-gray-800 transition-all flex justify-center items-center bg-white border border-gray-300 hover:bg-gray-50 hover:shadow-md disabled:opacity-70">
+                        <svg class="w-10 h-[18px] mr-1" viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.34 11.23c0-.75-.06-1.47-.18-2.18h-8.52v4.13h4.87c-.2 1.34-.98 2.47-2.14 3.25v2.7h3.45c2.02-1.87 3.19-4.63 3.19-7.9z" fill="#4285F4"/>
+                            <path d="M13.64 20.1c2.45 0 4.51-.81 6.01-2.2l-3.45-2.7c-.81.54-1.85.87-3.19.87-2.45 0-4.52-1.65-5.26-3.88h-3.57v2.77c1.5 2.98 4.52 5.14 8.46 5.14z" fill="#34A853"/>
+                            <path d="M8.38 12.19c-.19-.55-.3-1.15-.3-1.75s.11-1.2.3-1.75V5.92H4.81C4.12 7.3 3.73 8.83 3.73 10.44s.39 3.14 1.08 4.52l3.57-2.77z" fill="#FBBC04"/>
+                            <path d="M13.64 4.31c1.33 0 2.53.46 3.47 1.35l2.6-2.6C18.14 1.54 16.08.7 13.64.7 9.7.7 6.68 2.86 5.18 5.84l3.57 2.77c.74-2.22 2.81-3.87 5.26-3.87z" fill="#EA4335"/>
+                            <path d="M30.73 14.28h-2.16v4.61h-2.07V6.15h4.38c1.33 0 2.44.42 3.28 1.25.86.83 1.28 1.86 1.28 3.11s-.42 2.29-1.28 3.11c-.84.82-1.94 1.23-3.27 1.23zm-2.16-1.83h2.15c.78 0 1.41-.24 1.87-.72.47-.48.71-1.07.71-1.76s-.24-1.27-.71-1.76c-.47-.49-1.09-.73-1.87-.73h-2.15v4.97zM38.56 19.06c-1.22 0-2.2-.33-2.92-.99-.71-.67-1.12-1.52-1.23-2.55h1.94c.09.61.35 1.1.78 1.48.44.37.98.56 1.6.56.66 0 1.18-.16 1.56-.47.39-.32.58-.72.58-1.2 0-.41-.16-.74-.47-1-.31-.26-.88-.52-1.7-.76-1.01-.3-1.74-.63-2.19-1-.62-.51-.93-1.18-.93-2.01 0-.79.31-1.46.94-1.99.64-.54 1.46-.81 2.45-.81 1.06 0 1.9.28 2.53.84.64.55.99 1.28 1.05 2.19h-1.92c-.06-.5-.28-.9-.64-1.2-.36-.3-.82-.45-1.37-.45-.58 0-1.04.14-1.39.42-.34.28-.51.62-.51 1.02 0 .36.14.65.43.88.29.23.83.47 1.63.71 1.05.32 1.8.69 2.26 1.1.47.41.7 1.01.7 1.8 0 .82-.32 1.51-.96 2.07-.63.55-1.5.83-2.61.83zM46.7 23.36c-1.06 0-1.9-.27-2.51-.81-.61-.54-.95-1.2-1.02-1.98h1.96c.06.41.25.74.58 1 .33.26.74.39 1.25.39 1.14 0 1.71-.58 1.71-1.75v-1.09h-.06c-.34.46-.86.69-1.56.69-1.06 0-1.92-.37-2.59-1.11-.66-.75-.99-1.68-.99-2.79 0-1.15.34-2.11 1.01-2.87.68-.76 1.55-1.14 2.62-1.14.69 0 1.21.23 1.55.69h.06v-.55h1.96v7.35c0 1.34-.35 2.34-1.04 3.01-.7.65-1.67.97-2.93.97zm.52-5.75c.61 0 1.11-.22 1.52-.67.42-.45.62-1.03.62-1.75 0-.72-.21-1.3-.63-1.74-.42-.45-.93-.67-1.53-.67-.6 0-1.1.22-1.51.67-.4.44-.6 1.02-.6 1.74 0 .7.2 1.28.61 1.74.4.45.91.68 1.52.68z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <div class="flex-grow border-t border-gray-200"></div>
+                    <span class="px-4 text-xs text-gray-400 uppercase tracking-widest">Or pay with card</span>
+                    <div class="flex-grow border-t border-gray-200"></div>
+                </div>
+                
+                <form id="payment-form" class="flex flex-col h-full pb-8">
+                    <div class="p-6 rounded-xl border border-appborder mb-6 bg-gray-50">
+                        <div class="flex items-center mb-5 text-sm font-medium text-gray-700">
+                            <i data-lucide="credit-card" class="w-5 h-5 mr-2 text-primary"></i> Payment Details
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Card Number" required class="w-full px-4 py-3 border border-appborder rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                            </div>
+                            <div class="flex gap-4">
+                                <input type="text" placeholder="MM / YY" required class="w-1/2 px-4 py-3 border border-appborder rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                                <input type="text" placeholder="CVC" required class="w-1/2 px-4 py-3 border border-appborder rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-5 flex items-center justify-between text-[11px] uppercase tracking-wider text-gray-400 font-medium">
+                            <span>Powered by Stripe</span>
+                            <span class="flex items-center text-green-600/80"><i data-lucide="lock" class="w-3 h-3 mr-1"></i> SSL Encrypted</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-submit-payment" class="mt-auto w-full py-4 rounded-xl font-medium tracking-wider text-white transition-all disabled:opacity-70 flex justify-center items-center bg-primary hover:bg-primaryHover hover:shadow-glow absolute bottom-0">
+                        PAY 300 AED DEPOSIT
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 5: Success -->
+            <div id="step-5" class="hidden-step h-full flex flex-col items-center justify-center text-center fade-in-up absolute inset-0 overflow-y-auto pr-2 pb-4">
+                <div class="w-24 h-24 rounded-full flex items-center justify-center mb-8 bg-accent/50 ring-8 ring-accent mt-auto">
+                    <i data-lucide="check" class="w-12 h-12 text-primary"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif mb-4 text-apptext">Booking Confirmed</h2>
+                <p id="success-name" class="text-lg md:text-xl mb-2 text-apptext font-medium"></p>
+                <p id="success-datetime" class="text-textLight"></p>
+                
+                <div class="mt-8 p-4 bg-gray-50 rounded-xl border border-appborder inline-block">
+                    <p id="success-email" class="text-sm text-gray-500"></p>
+                </div>
+
+                <button onclick="window.location.reload()" class="mt-12 mb-auto text-xs uppercase tracking-widest font-semibold hover:text-primaryHover transition-colors text-primary flex items-center">
+                    <i data-lucide="plus" class="w-4 h-4 mr-1"></i> Book Another Service
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- Data & State ---
+        const SERVICES = [
+            { id: 's1', name: 'Signature Haircut & Styling', price: 450, deposit: 300, duration: '60 min', icon: 'scissors' },
+            { id: 's2', name: 'Balayage & Color Melt', price: 1200, deposit: 300, duration: '180 min', icon: 'droplets' },
+            { id: 's3', name: 'Elan Spa Manicure & Pedicure', price: 400, deposit: 300, duration: '90 min', icon: 'sparkles' },
+        ];
+        const TIME_SLOTS = ['09:00 AM', '10:00 AM', '11:30 AM', '01:00 PM', '02:30 PM', '04:00 PM'];
+        
+        let currentStep = 1;
+        let bookingData = {
+            serviceId: null,
+            date: '',
+            time: '',
+            name: '',
+            email: '',
+            phone: ''
+        };
+
+        // --- Initialize UI ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServices();
+            renderTimeSlots();
+            lucide.createIcons();
+            
+            // Set min date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('input-date').setAttribute('min', today);
+        });
+
+        // --- Render Functions ---
+        function renderServices() {
+            const container = document.getElementById('services-container');
+            container.innerHTML = SERVICES.map(service => `
+                <button type="button" onclick="selectService('${service.id}')" id="service-btn-${service.id}" 
+                    class="w-full flex items-center p-4 md:p-5 rounded-xl border border-appborder transition-all duration-300 text-left hover:shadow-soft hover:border-primary/50 hover:-translate-y-0.5 group bg-white">
+                    <div class="p-3 rounded-full mr-4 bg-gray-50 group-hover:bg-accent transition-colors">
+                        <i data-lucide="${service.icon}" class="w-5 h-5 md:w-6 md:h-6 text-primary"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-medium text-base md:text-lg text-apptext">${service.name}</h3>
+                        <p class="text-xs md:text-sm text-textLight mt-0.5">${service.duration} • Total: ${service.price} AED</p>
+                    </div>
+                    <div class="text-right pl-2">
+                        <p class="text-[10px] md:text-xs uppercase tracking-wider text-textLight">Deposit</p>
+                        <p class="font-semibold text-primary text-sm md:text-base">${service.deposit} AED</p>
+                    </div>
+                </button>
+            `).join('');
+        }
+
+        function renderTimeSlots() {
+            const container = document.getElementById('times-grid');
+            container.innerHTML = TIME_SLOTS.map(time => `
+                <button type="button" onclick="selectTime('${time}')" id="time-btn-${time.replace(/\s|:/g, '-')}" 
+                    class="py-3 md:py-4 rounded-xl border border-appborder bg-white text-apptext text-sm font-medium transition-all duration-200 hover:border-primary/50 hover:shadow-sm">
+                    ${time}
+                </button>
+            `).join('');
+        }
+
+        function updateUI() {
+            // Manage Step Visibility with animation reset trick
+            for (let i = 1; i <= 5; i++) {
+                const stepEl = document.getElementById(`step-${i}`);
+                if (i === currentStep) {
+                    stepEl.classList.remove('hidden-step');
+                    // Retrigger animation
+                    stepEl.style.animation = 'none';
+                    stepEl.offsetHeight; /* trigger reflow */
+                    stepEl.style.animation = null; 
+                } else {
+                    stepEl.classList.add('hidden-step');
+                }
+            }
+
+            // Manage Header Controls
+            const btnBack = document.getElementById('btn-back');
+            const stepIndicator = document.getElementById('step-indicator');
+            const spacer = document.getElementById('header-spacer');
+            
+            if (currentStep > 1 && currentStep < 5) {
+                btnBack.style.display = 'flex';
+                spacer.style.display = 'block';
+            } else {
+                btnBack.style.display = 'none';
+                spacer.style.display = 'none';
+            }
+
+            if (currentStep < 5) {
+                stepIndicator.style.display = 'block';
+                stepIndicator.innerText = `STEP ${currentStep} OF 4`;
+            } else {
+                stepIndicator.style.display = 'none';
+                btnBack.style.display = 'none'; // Ensure back is hidden on success
+            }
+
+            // Update Summary Panel Opacities
+            document.getElementById('summary-block-service').classList.toggle('opacity-30', currentStep < 1);
+            document.getElementById('summary-block-service').classList.toggle('opacity-100', currentStep >= 1);
+            
+            document.getElementById('summary-block-datetime').classList.toggle('opacity-30', currentStep < 2);
+            document.getElementById('summary-block-datetime').classList.toggle('opacity-100', currentStep >= 2);
+            
+            document.getElementById('summary-block-deposit').classList.toggle('opacity-30', currentStep < 4);
+            document.getElementById('summary-block-deposit').classList.toggle('opacity-100', currentStep >= 4);
+
+            // Update Success Page Details
+            if (currentStep === 5) {
+                document.getElementById('success-name').innerText = `Thank you, ${bookingData.name.split(' ')[0]}!`;
+                
+                const dateObj = new Date(bookingData.date);
+                const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                document.getElementById('success-datetime').innerHTML = `We look forward to seeing you on<br><strong class="text-apptext">${formattedDate} at ${bookingData.time}</strong>.`;
+                
+                document.getElementById('success-email').innerHTML = `Confirmation sent to <span class="font-medium text-apptext">${bookingData.email}</span>`;
+            }
+        }
+
+        // --- Interaction Handlers ---
+        
+        function selectService(id) {
+            bookingData.serviceId = id;
+            const selectedService = SERVICES.find(s => s.id === id);
+            
+            // Update Summary
+            document.getElementById('summary-service-name').innerText = selectedService.name;
+            document.getElementById('summary-deposit').innerText = `${selectedService.deposit}.00 AED`;
+
+            // Style Buttons
+            SERVICES.forEach(s => {
+                const btn = document.getElementById(`service-btn-${s.id}`);
+                if (s.id === id) {
+                    btn.classList.add('ring-2', 'ring-primary', 'bg-accent/30', 'border-primary');
+                    btn.classList.remove('border-appborder', 'bg-white');
+                } else {
+                    btn.classList.remove('ring-2', 'ring-primary', 'bg-accent/30', 'border-primary');
+                    btn.classList.add('border-appborder', 'bg-white');
+                }
+            });
+
+            document.getElementById('btn-next-1').disabled = false;
+        }
+
+        // Handle Date Selection
+        document.getElementById('input-date').addEventListener('change', (e) => {
+            bookingData.date = e.target.value;
+            
+            // Enable times container
+            const timeContainer = document.getElementById('time-slots-container');
+            if(bookingData.date) {
+                timeContainer.classList.remove('opacity-50', 'pointer-events-none');
+                timeContainer.classList.add('opacity-100');
+            } else {
+                timeContainer.classList.add('opacity-50', 'pointer-events-none');
+                timeContainer.classList.remove('opacity-100');
+            }
+            updateSummaryDateTime();
+            checkStep2Completion();
+        });
+
+        function selectTime(time) {
+            bookingData.time = time;
+            
+            // Style time buttons
+            TIME_SLOTS.forEach(t => {
+                const safeId = t.replace(/\s|:/g, '-');
+                const btn = document.getElementById(`time-btn-${safeId}`);
+                if (t === time) {
+                    btn.classList.add('bg-primary', 'text-white', 'border-primary', 'shadow-md');
+                    btn.classList.remove('text-apptext', 'border-appborder', 'bg-white', 'hover:border-primary/50', 'hover:shadow-sm');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white', 'border-primary', 'shadow-md');
+                    btn.classList.add('text-apptext', 'border-appborder', 'bg-white', 'hover:border-primary/50', 'hover:shadow-sm');
+                }
+            });
+
+            updateSummaryDateTime();
+            checkStep2Completion();
+        }
+
+        function updateSummaryDateTime() {
+            let text = '---';
+            if (bookingData.date) {
+                const dateObj = new Date(bookingData.date);
+                text = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                if (bookingData.time) {
+                    text += ` at ${bookingData.time}`;
+                }
+            }
+            document.getElementById('summary-datetime').innerText = text;
+        }
+
+        function checkStep2Completion() {
+            document.getElementById('btn-next-2').disabled = !(bookingData.date && bookingData.time);
+        }
+
+        // Handle Detail Inputs
+        const validateDetails = () => {
+            const inName = document.getElementById('input-name');
+            const inEmail = document.getElementById('input-email');
+            const inPhone = document.getElementById('input-phone');
+
+            if (inName) bookingData.name = inName.value;
+            if (inEmail) bookingData.email = inEmail.value;
+            if (inPhone) bookingData.phone = inPhone.value;
+            
+            const btnNext = document.getElementById('btn-next-3');
+            if (btnNext) {
+                btnNext.disabled = !(bookingData.name && bookingData.email && bookingData.phone);
+            }
+        };
+
+        const inName = document.getElementById('input-name');
+        if (inName) inName.addEventListener('input', validateDetails);
+        
+        const inEmail = document.getElementById('input-email');
+        if (inEmail) inEmail.addEventListener('input', validateDetails);
+        
+        const inPhone = document.getElementById('input-phone');
+        if (inPhone) inPhone.addEventListener('input', validateDetails);
+
+        // Navigation Buttons
+        const btn1 = document.getElementById('btn-next-1');
+        if (btn1) btn1.addEventListener('click', () => { currentStep++; updateUI(); });
+        
+        const btn2 = document.getElementById('btn-next-2');
+        if (btn2) btn2.addEventListener('click', () => { currentStep++; updateUI(); });
+        
+        const btn3 = document.getElementById('btn-next-3');
+        if (btn3) btn3.addEventListener('click', () => { currentStep++; updateUI(); });
+        
+        const btnBack = document.getElementById('btn-back');
+        if (btnBack) btnBack.addEventListener('click', () => { 
+            if(currentStep > 1) { currentStep--; updateUI(); }
+        });
+
+        // Wallet Payment Simulation
+        const handleWalletPay = (btnId) => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    // Disable all payment buttons
+                    const allBtns = [document.getElementById('btn-apple-pay'), document.getElementById('btn-google-pay'), document.getElementById('btn-submit-payment')];
+                    allBtns.forEach(b => { if(b) b.disabled = true; });
+
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> PROCESSING...';
+                    lucide.createIcons();
+                    
+                    // Simulate API Request
+                    setTimeout(() => {
+                        currentStep = 5;
+                        updateUI();
+                        // Reset buttons when animation finishes
+                        allBtns.forEach(b => { if(b) b.disabled = false; });
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                });
+            }
+        };
+
+        handleWalletPay('btn-apple-pay');
+        handleWalletPay('btn-google-pay');
+
+        // Payment Simulation
+        const payForm = document.getElementById('payment-form');
+        if (payForm) payForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-payment');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i> PROCESSING...';
+            }
+            lucide.createIcons(); // refresh icon
+            
+            // Simulate API Request
+            setTimeout(() => {
+                currentStep = 5;
+                updateUI();
+            }, 2000);
+        });
+
+    </script>
+</body>
+</html>
