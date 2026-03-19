@@ -1,1 +1,159 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogue Links</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0a0a0a; /* Deep black */
+            /* Added a subtle radial gradient for depth */
+            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #0a0a0a 70%);
+            background-attachment: fixed;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+
+        /* --- Custom Animations --- */
+        
+        /* Entrance Fade Up Animation */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        
+        /* Staggered Delays for elements */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        /* Advanced Button Hover Effects */
+        .btn-animated {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background-color: #0f0f0f;
+        }
+        
+        /* Subtle light sweep effect on hover */
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-animated:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px -10px rgba(255, 255, 255, 0.15);
+            border-color: #4b5563; /* gray-600 equivalent */
+            background-color: #1a1a1a;
+        }
+
+        .btn-animated:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen flex flex-col items-center py-16 px-4 sm:px-6 lg:px-8">
+
+    <!-- Main Title -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-12 tracking-tight text-center animate-fade-up delay-100">
+        Rogue Links
+    </h1>
+
+    <!-- Content Container -->
+    <div class="w-full max-w-3xl space-y-12">
+
+        <!-- Section 1: CII Layout Proposal -->
+        <section class="text-center animate-fade-up delay-200">
+            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+                CII Layout Proposal
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
+                <a href="/cii-layout-01.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 01</span>
+                </a>
+                <a href="/cii-layout-02.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 02</span>
+                </a>
+                <a href="/cii-layout-03.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 03</span>
+                </a>
+                <a href="/cii-layout-04.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 04</span>
+                </a>
+                <a href="/cii-layout-05.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl sm:col-span-2 lg:col-span-1">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 05</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 2: Cemar Email Signature -->
+        <section class="text-center animate-fade-up delay-300">
+            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+                Cemar Email Signature
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/cii-signature-01.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Signature 01</span>
+                </a>
+                <a href="/cii-signature-02.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Signature 02</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 3: Elan Proposal -->
+        <section class="text-center animate-fade-up delay-400">
+            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+                Elan Proposal
+            </h2>
+            <div class="flex justify-center">
+                <a href="/elan.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Elan Layout</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 4: Rogue Site Layout -->
+        <section class="text-center animate-fade-up delay-500">
+            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+                Rogue Site Layout
+            </h2>
+            <div class="flex justify-center">
+                <a href="/rogue-01.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
+                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Rogue 01</span>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
