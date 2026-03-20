@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROGUE | Dare To Be Different</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Font Injection */
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo.otf') format('opentype'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-it.otf') format('opentype'); font-weight: 400; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med.otf') format('opentype'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med-it.otf') format('opentype'); font-weight: 500; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold-it.otf') format('opentype'); font-weight: 700; font-style: italic; }
+
+        :root {
+            --red: #cc0000;
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --grid-color: rgba(204, 0, 0, 0.15);
+        }
+
+        body { 
+            font-family: 'Geo', sans-serif; 
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            text-transform: uppercase;
+        }
+        
+        ::selection {
+            background-color: var(--red);
+            color: var(--black);
+        }
+
+        /* Graph Paper Grid Background */
+        .bg-graph {
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+        }
+
+        /* glowing dome effect for hero */
+        .glowing-dome {
+            background: radial-gradient(circle at 50% 100%, rgba(204, 0, 0, 0.4) 0%, rgba(204, 0, 0, 0.05) 40%, transparent 70%);
+            border-top-left-radius: 500px;
+            border-top-right-radius: 500px;
+            border-top: 2px dashed rgba(204,0,0,0.5);
+            mask-image: radial-gradient(circle at 50% 100%, black 20%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 100%, black 20%, transparent 100%);
+        }
+
+        /* Buttons matching the Cipher reference */
+        .cipher-btn {
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        .cipher-btn:hover {
+            background-color: var(--red);
+            color: var(--black);
+        }
+
+        .cipher-btn-solid {
+            background-color: var(--black);
+            color: var(--red);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+        .cipher-btn-solid:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        /* Box Borders */
+        .grid-box {
+            border: 1px solid var(--grid-color);
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Ticker Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Typography utilities */
+        .text-huge {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="antialiased bg-graph relative min-h-screen flex flex-col pt-14">
+
+    <!-- Top Solid Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full h-14 bg-black/90 backdrop-blur-sm border-b border-[#cc0000]/20 z-50 flex justify-between items-center px-6">
+        <div class="flex items-center gap-4 h-full py-2">
+            <div class="w-3 h-3 bg-[#cc0000] flex-shrink-0"></div>
+            <!-- Untouched Logo -->
+            <img src="https://gochred.github.io/rogue/res/rogue.png" alt="ROGUE" class="h-full w-auto object-contain max-h-8">
+        </div>
+        
+        <div class="hidden md:flex items-center gap-8 h-full">
+            <a href="#manifesto" class="text-white font-bold text-sm tracking-widest hover:text-[#cc0000] transition-colors">MANIFESTO</a>
+            <a href="#digital" class="text-white font-bold text-sm tracking-widest hover:text-[#cc0000] transition-colors">DIGITAL PULSE</a>
+            <a href="#production" class="text-white font-bold text-sm tracking-widest hover:text-[#cc0000] transition-colors">THE LENS</a>
+            <a href="#contact" class="cipher-btn">DARE TO BE DIFFERENT</a>
+        </div>
+
+        <button class="md:hidden text-white hover:text-[#cc0000] transition-colors">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow flex flex-col max-w-[1600px] mx-auto w-full border-x border-[#cc0000]/20 bg-[#0a0a0a]">
+        
+        <!-- SECTION 01: HERO -->
+        <section id="home" class="relative pt-16 px-6 md:px-12 flex flex-col min-h-[85vh] justify-between overflow-hidden border-b border-[#cc0000]/20">
+            
+            <!-- Video Background -->
+            <div class="absolute inset-0 z-0">
+                <video autoplay loop muted playsinline class="w-full h-full object-cover grayscale opacity-30">
+                    <source src="https://framerusercontent.com/assets/cJqcySHrBn19p5GSKtinfc8nuJk.webm" type="video/webm">
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[#0a0a0a]"></div>
+            </div>
+
+            <!-- Hero Text -->
+            <div class="relative z-10 max-w-5xl">
+                <h1 class="text-huge font-bold text-[#cc0000] mb-6">
+                    DARE TO BE DIFFERENT
+                </h1>
+                <p class="text-white/70 font-bold max-w-lg mb-8 tracking-widest text-sm leading-relaxed">
+                    WE JOIN FORCES TO IGNITE GREAT LEAPS FORWARD. ROGUE IS A 360 CREATIVE POWERHOUSE SPECIALIZING IN DIGITAL DOMINANCE, HIGH-END PRODUCTION, AND IMMERSIVE EXPERIENCES.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#digital" class="cipher-btn bg-[#cc0000] text-black hover:bg-white hover:border-white">DIGITAL PULSE</a>
+                    <a href="#manifesto" class="cipher-btn">MANIFESTO</a>
+                </div>
+            </div>
+
+            <!-- Glowing Dome Graphic (Reference to Cipher globe) -->
+            <div class="absolute bottom-0 right-0 w-[800px] h-[400px] glowing-dome z-0 translate-x-[20%] translate-y-[10%]">
+                <!-- Inner grid lines to simulate the globe dots -->
+                <div class="w-full h-full opacity-30" style="background-image: radial-gradient(var(--red) 2px, transparent 2px); background-size: 20px 20px;"></div>
+            </div>
+            
+        </section>
+
+        <!-- SECTION 02: 3-COLUMN SERVICES GRID -->
+        <section id="digital" class="relative z-10 grid grid-cols-1 md:grid-cols-3 border-b border-[#cc0000]/20">
+            <!-- Box 1 -->
+            <div class="grid-box p-8 border-b md:border-b-0 md:border-r border-[#cc0000]/20 flex flex-col justify-between min-h-[250px] group hover:bg-[#cc0000]/5 transition-colors">
+                <i data-lucide="share-2" class="text-[#cc0000] w-6 h-6 mb-8"></i>
+                <div>
+                    <h3 class="text-[#cc0000] font-bold text-xl mb-2">SOCIAL MEDIA MANAGEMENT</h3>
+                    <p class="text-white/60 text-xs tracking-widest leading-relaxed">WE BUILD AND NURTURE YOUR BRAND'S PRESENCE ACROSS ALL PLATFORMS, TURNING FOLLOWERS INTO A LOYAL COMMUNITY.</p>
+                </div>
+            </div>
+            <!-- Box 2 -->
+            <div class="grid-box p-8 border-b md:border-b-0 md:border-r border-[#cc0000]/20 flex flex-col justify-between min-h-[250px] group hover:bg-[#cc0000]/5 transition-colors">
+                <i data-lucide="trending-up" class="text-[#cc0000] w-6 h-6 mb-8"></i>
+                <div>
+                    <h3 class="text-[#cc0000] font-bold text-xl mb-2">PERFORMANCE MARKETING</h3>
+                    <p class="text-white/60 text-xs tracking-widest leading-relaxed">WE DEPLOY DATA-DRIVEN CAMPAIGNS THAT DON'T JUST LOOK PRETTY—THEY DELIVER MEASURABLE RESULTS AND REAL ROI.</p>
+                </div>
+            </div>
+            <!-- Box 3 -->
+            <div class="grid-box p-8 flex flex-col justify-between min-h-[250px] group hover:bg-[#cc0000]/5 transition-colors">
+                <i data-lucide="crosshair" class="text-[#cc0000] w-6 h-6 mb-8"></i>
+                <div>
+                    <h3 class="text-[#cc0000] font-bold text-xl mb-2">CONTENT & BRANDING</h3>
+                    <p class="text-white/60 text-xs tracking-widest leading-relaxed">WE CRAFT THE MASTER PLAN AND CREATE BOLD IDENTITIES THAT CUT THROUGH THE NOISE AND MAKE YOUR AUDIENCE STOP SCROLLING.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03: LARGE MANIFESTO TEXT -->
+        <section id="manifesto" class="py-24 px-6 md:px-12 border-b border-[#cc0000]/20 relative">
+            <p class="text-[#cc0000] text-xs font-bold tracking-widest mb-6">/ AUTHENTIC & BOLD 2026</p>
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-[#cc0000] leading-[1.1] max-w-6xl">
+                WE PRODUCE RAW, AUTHENTIC CONTENT THAT CAPTURES ATTENTION AND TELLS YOUR STORY IN A WAY THAT RESONATES AND CONVERTS.
+            </h2>
+        </section>
+
+        <!-- SECTION 04: SPLIT GRID (LENS & EVENTS) -->
+        <section id="production" class="grid grid-cols-1 md:grid-cols-2 border-b border-[#cc0000]/20">
+            <!-- Left: The Lens -->
+            <div class="grid-box p-8 md:p-12 border-b md:border-b-0 md:border-r border-[#cc0000]/20 flex flex-col justify-between min-h-[400px]">
+                <h3 class="text-[#cc0000] text-2xl md:text-3xl font-bold mb-12">/ THE LENS<br/><span class="text-white">PRODUCTION [PHOTO & VIDEO]</span></h3>
+                
+                <div class="mt-auto">
+                    <p class="text-[#cc0000] font-bold text-sm tracking-widest leading-relaxed">
+                        HIGH-FIDELITY VISUALS FOR BRANDS THAT REFUSE TO BLEND IN. FROM 8K COMMERCIALS TO RAW STREET PHOTOGRAPHY.
+                    </p>
+                    <p class="text-white/40 text-xs tracking-widest mt-4">MODE 2026 // REC 00:39</p>
+                </div>
+            </div>
+
+            <!-- Right: Live Execution -->
+            <div class="grid-box p-8 md:p-12 flex flex-col justify-between min-h-[400px]">
+                <h3 class="text-[#cc0000] text-2xl md:text-3xl font-bold mb-12">/ LIVE EXECUTION<br/><span class="text-white">EVENTS [PROGRAMMING & STAFFING]</span></h3>
+                
+                <div class="mt-auto">
+                    <p class="text-[#cc0000] font-bold text-sm tracking-widest leading-relaxed mb-6">
+                        WE DON'T JUST HOST, WE ENGINEER EXPERIENCES.
+                    </p>
+                    <ul class="space-y-3 text-xs tracking-widest">
+                        <li class="flex gap-4"><span class="text-white/40 w-24">PROGRAMMING</span> <span class="text-white font-bold">CONCEPT TO CURATION.</span></li>
+                        <li class="flex gap-4"><span class="text-white/40 w-24">STAFFING</span> <span class="text-white font-bold">THE RIGHT FACES, THE RIGHT ENERGY.</span></li>
+                        <li class="flex gap-4"><span class="text-white/40 w-24">COVERAGE</span> <span class="text-white font-bold">REAL-TIME CONTENT FOR THE WORLD TO SEE.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 05: TICKER MARQUEE -->
+        <section class="border-b border-[#cc0000]/20 bg-[#cc0000]/5 py-4 overflow-hidden flex relative">
+            <div class="animate-marquee flex gap-8 items-center px-4">
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">DIGITAL DOMINANCE</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">HIGH-END PRODUCTION</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">IMMERSIVE EXPERIENCES</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">AUTHENTIC & BOLD</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">GO ROGUE</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+            </div>
+            <!-- Duplicate for seamless looping -->
+            <div class="animate-marquee flex gap-8 items-center px-4" aria-hidden="true">
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">DIGITAL DOMINANCE</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">HIGH-END PRODUCTION</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">IMMERSIVE EXPERIENCES</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">AUTHENTIC & BOLD</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+                <span class="text-[#cc0000] font-bold text-sm tracking-widest">GO ROGUE</span>
+                <div class="w-1.5 h-1.5 bg-[#cc0000]"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 06: CONTACT FOOTER -->
+        <section id="contact" class="grid grid-cols-1 lg:grid-cols-2 relative min-h-[60vh]">
+            <div class="p-8 md:p-12 lg:p-24 border-b lg:border-b-0 lg:border-r border-[#cc0000]/20 flex flex-col justify-center">
+                <p class="text-[#cc0000] text-xs font-bold tracking-widest mb-4">/ 2026</p>
+                <h2 class="text-5xl md:text-7xl font-bold text-white leading-[0.9] mb-8">
+                    READY TO GO <br/>
+                    <span class="text-[#cc0000]">ROGUE?</span>
+                </h2>
+                <p class="text-white/60 font-bold text-sm tracking-widest max-w-sm mb-12">
+                    DROP YOUR DETAILS AND WE WILL GET IN TOUCH.
+                </p>
+
+                <div class="space-y-2">
+                    <a href="http://goRogue.ae" class="block text-[#cc0000] font-bold text-sm tracking-widest hover:text-white transition-colors">HTTP://GOROGUE.AE</a>
+                    <a href="mailto:Sami.Barkoumi@goRogue.ae" class="block text-[#cc0000] font-bold text-sm tracking-widest hover:text-white transition-colors">SAMI.BARKOUMI@GOROGUE.AE</a>
+                    <a href="#" class="block text-[#cc0000] font-bold text-sm tracking-widest hover:text-white transition-colors">IG: @GOROGUE.AE</a>
+                </div>
+            </div>
+
+            <div class="p-8 md:p-12 lg:p-24 flex flex-col justify-center bg-black/50 backdrop-blur-sm relative">
+                <!-- Decorative Corner -->
+                <div class="absolute top-8 right-8 w-4 h-4 border-t-2 border-r-2 border-[#cc0000]"></div>
+                <div class="absolute bottom-8 left-8 w-4 h-4 border-b-2 border-l-2 border-[#cc0000]"></div>
+
+                <form class="space-y-8 max-w-md w-full mx-auto">
+                    <div>
+                        <label class="block text-[#cc0000] font-bold text-xs tracking-widest mb-2">NAME</label>
+                        <input type="text" class="w-full bg-transparent border-b border-[#cc0000]/50 text-white font-bold text-lg py-2 focus:outline-none focus:border-[#cc0000] transition-colors" placeholder="JOHN DOE">
+                    </div>
+                    <div>
+                        <label class="block text-[#cc0000] font-bold text-xs tracking-widest mb-2">EMAIL</label>
+                        <input type="email" class="w-full bg-transparent border-b border-[#cc0000]/50 text-white font-bold text-lg py-2 focus:outline-none focus:border-[#cc0000] transition-colors" placeholder="JOHN@EXAMPLE.COM">
+                    </div>
+                    <div>
+                        <label class="block text-[#cc0000] font-bold text-xs tracking-widest mb-2">DESCRIPTION</label>
+                        <textarea rows="2" class="w-full bg-transparent border-b border-[#cc0000]/50 text-white font-bold text-lg py-2 resize-none focus:outline-none focus:border-[#cc0000] transition-colors" placeholder="PROJECT DETAILS..."></textarea>
+                    </div>
+                    <button type="button" class="w-full bg-[#cc0000] text-black font-bold tracking-widest py-4 hover:bg-white transition-colors mt-4">
+                        DARE
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Footer border matching top -->
+    <div class="w-full h-2 bg-[#cc0000] mt-auto"></div>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
