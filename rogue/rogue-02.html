@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROGUE | Dare To Be Different</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Font Injection */
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo.otf') format('opentype'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-it.otf') format('opentype'); font-weight: 400; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med.otf') format('opentype'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med-it.otf') format('opentype'); font-weight: 500; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold-it.otf') format('opentype'); font-weight: 700; font-style: italic; }
+
+        :root {
+            --red: #cc0000;
+            --black: #080808; /* Slightly off-black to match poster aesthetic */
+            --white: #f0f0f0;
+            --border: rgba(255,255,255,0.1);
+        }
+
+        body { 
+            font-family: 'Geo', sans-serif; 
+            cursor: none; 
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            text-transform: uppercase;
+        }
+        
+        ::selection {
+            background-color: var(--red);
+            color: var(--white);
+        }
+        
+        /* Hide default cursor on interactive elements */
+        a, button, input, select, textarea, .interactive { cursor: none !important; }
+
+        /* Custom Cursor */
+        #cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        /* Editorial/Poster Utilities */
+        .red-bar {
+            background-color: var(--red);
+            color: var(--black);
+            padding: 0 0.15em;
+            display: inline-block;
+            line-height: 1;
+        }
+        
+        .red-text { color: var(--red); }
+        
+        .tiny-text {
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            line-height: 1.4;
+        }
+
+        .border-red { border-color: var(--red); }
+
+        /* Form Inputs */
+        .poster-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--white);
+            color: var(--white);
+            font-family: 'Geo', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 0;
+            padding: 0.5rem 0;
+        }
+        .poster-input:focus {
+            outline: none;
+            border-bottom-color: var(--red);
+            background-color: rgba(204,0,0,0.05);
+        }
+        .poster-input::placeholder { color: rgba(255,255,255,0.2); }
+
+        /* Image treatment */
+        .editorial-img {
+            filter: grayscale(100%) contrast(130%) brightness(0.8);
+            transition: all 0.3s ease;
+        }
+        .editorial-img:hover {
+            filter: grayscale(0%) contrast(110%) brightness(1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+
+    <!-- Navigation (Standard) -->
+    <nav class="fixed w-full z-50 mix-blend-difference top-0 p-6 md:px-12 flex justify-between items-center pointer-events-none">
+        <div class="pointer-events-auto interactive">
+            <!-- Unstyled Logo -->
+            <img src="https://gochred.github.io/rogue/res/rogue.png" alt="ROGUE" class="h-8 md:h-10">
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-8 pointer-events-auto">
+            <a href="#manifesto" class="text-xs font-bold hover:text-[#cc0000] transition-colors interactive">MANIFESTO</a>
+            <a href="#digital" class="text-xs font-bold hover:text-[#cc0000] transition-colors interactive">DIGITAL PULSE</a>
+            <a href="#production" class="text-xs font-bold hover:text-[#cc0000] transition-colors interactive">THE LENS</a>
+            <a href="#events" class="text-xs font-bold hover:text-[#cc0000] transition-colors interactive">LIVE EXECUTION</a>
+            <a href="#contact" class="text-xs font-bold bg-[#cc0000] text-black px-6 py-2 hover:bg-white hover:text-black transition-colors interactive ml-4 border border-[#cc0000]">DARE</a>
+        </div>
+
+        <button class="md:hidden text-white pointer-events-auto interactive">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </nav>
+
+    <!-- Decorative Corner Crosshairs -->
+    <i data-lucide="plus" class="fixed top-6 left-6 text-[#cc0000] w-4 h-4 z-40 hidden md:block"></i>
+    <i data-lucide="plus" class="fixed bottom-6 right-6 text-[#cc0000] w-4 h-4 z-40 hidden md:block"></i>
+    <i data-lucide="plus" class="fixed bottom-6 left-6 text-[#cc0000] w-4 h-4 z-40 hidden md:block"></i>
+
+    <main class="max-w-[1600px] mx-auto min-h-screen relative border-x border-white/5">
+        
+        <!-- SECTION 01: HERO / POSTER -->
+        <section id="home" class="pt-32 pb-16 px-6 md:px-12 relative min-h-screen flex flex-col justify-center overflow-hidden">
+            <!-- Video Background -->
+            <div class="absolute inset-0 z-0">
+                <video autoplay loop muted playsinline class="w-full h-full object-cover grayscale opacity-50">
+                    <source src="https://framerusercontent.com/assets/cJqcySHrBn19p5GSKtinfc8nuJk.webm" type="video/webm">
+                </video>
+                <div class="absolute inset-0 bg-black/40"></div>
+            </div>
+
+            <div class="z-10 relative flex flex-col justify-center h-full w-full">
+                <p class="tiny-text text-[#cc0000] mb-4">++ 2026 // ROGUE MEDIA</p>
+                <h1 class="text-[15vw] lg:text-[11vw] leading-[0.8] font-bold tracking-tighter mb-4">
+                    DARE TO BE <br/>
+                    <span class="red-bar">DIFFERENT.</span>
+                </h1>
+                
+                <div class="mt-8 flex gap-8">
+                    <div class="w-8 h-8 rounded-full bg-[#cc0000] flex-shrink-0"></div>
+                    <p class="tiny-text max-w-[200px] text-white/60">
+                        ROGUE IS A 360 CREATIVE POWERHOUSE SPECIALIZING IN DIGITAL DOMINANCE.
+                    </p>
+                </div>
+                
+                <div class="absolute bottom-[-10px] right-4 z-20 text-right hidden md:block">
+                    <p class="tiny-text text-white">SYS.01</p>
+                    <p class="tiny-text text-[#cc0000]">AUTHENTIC & BOLD</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 02: MANIFESTO -->
+        <section id="manifesto" class="py-24 px-6 md:px-12 border-t border-white/10 relative">
+            <i data-lucide="plus" class="absolute top-12 right-12 text-[#cc0000] w-4 h-4"></i>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-[#cc0000] mb-2">MANIFESTO</h2>
+                    <p class="tiny-text text-white/50">2026 // AUTHENTIC & BOLD</p>
+                </div>
+                
+                <div class="md:col-span-9">
+                    <h3 class="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tighter">
+                        ROGUE IS A 360 CREATIVE POWERHOUSE SPECIALIZING IN <span class="red-bar">DIGITAL DOMINANCE</span>, HIGH-END PRODUCTION, AND IMMERSIVE EXPERIENCES.
+                    </h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03: DIGITAL PULSE -->
+        <section id="digital" class="py-24 px-6 md:px-12 border-t border-white/10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/20 pb-8">
+                <div>
+                    <p class="tiny-text text-[#cc0000] mb-2">ROGUE MARKETING</p>
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter leading-none">DIGITAL PULSE</h2>
+                </div>
+                <div class="text-[10rem] font-bold text-[#cc0000] leading-none hidden md:block opacity-80">7</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Item -->
+                <div class="relative group interactive">
+                    <div class="absolute -left-4 top-0 w-1 h-full bg-[#cc0000] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+                    <h3 class="text-2xl font-bold mb-4 red-text group-hover:text-white transition-colors">SOCIAL MEDIA<br/>MANAGEMENT</h3>
+                    <p class="tiny-text text-white/70">
+                        WE BUILD AND NURTURE YOUR BRAND'S PRESENCE ACROSS ALL PLATFORMS, TURNING FOLLOWERS INTO A LOYAL COMMUNITY THAT ACTUALLY GIVES A DAY.
+                    </p>
+                </div>
+                <!-- Item -->
+                <div class="relative group interactive">
+                    <div class="absolute -left-4 top-0 w-1 h-full bg-[#cc0000] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+                    <h3 class="text-2xl font-bold mb-4 red-text group-hover:text-white transition-colors">PERFORMANCE<br/>MARKETING</h3>
+                    <p class="tiny-text text-white/70">
+                        WE DEPLOY DATA-DRIVEN CAMPAIGNS THAT DON'T JUST LOOK PRETTY—THEY DELIVER MEASURABLE RESULTS AND REAL ROI THAT MOVES THE NEEDLE.
+                    </p>
+                </div>
+                <!-- Item -->
+                <div class="relative group interactive">
+                    <div class="absolute -left-4 top-0 w-1 h-full bg-[#cc0000] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+                    <h3 class="text-2xl font-bold mb-4 red-text group-hover:text-white transition-colors">CONTENT<br/>STRATEGY</h3>
+                    <p class="tiny-text text-white/70">
+                        WE CRAFT THE MASTER PLAN BEHIND YOUR CONTENT. EVERY PIECE SERVES A PURPOSE AND DRIVES YOUR BRAND TOWARD ITS GOAL.
+                    </p>
+                </div>
+                <!-- Item -->
+                <div class="relative group interactive">
+                    <div class="absolute -left-4 top-0 w-1 h-full bg-[#cc0000] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+                    <h3 class="text-2xl font-bold mb-4 red-text group-hover:text-white transition-colors">BRANDING &<br/>IDENTITY</h3>
+                    <p class="tiny-text text-white/70">
+                        WE CREATE BOLD, UNFORGETTABLE BRAND IDENTITIES THAT CUT THROUGH THE NOISE AND MAKE YOUR AUDIENCE STOP SCROLLING.
+                    </p>
+                </div>
+                <!-- Item -->
+                <div class="relative group interactive">
+                    <div class="absolute -left-4 top-0 w-1 h-full bg-[#cc0000] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+                    <h3 class="text-2xl font-bold mb-4 red-text group-hover:text-white transition-colors">CONTENT<br/>CREATION</h3>
+                    <p class="tiny-text text-white/70">
+                        WE PRODUCE RAW, AUTHENTIC CONTENT THAT CAPTURES ATTENTION AND TELLS YOUR STORY IN A WAY THAT RESONATES AND CONVERTS.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04: THE LENS -->
+        <section id="production" class="py-24 px-6 md:px-12 border-t border-white/10 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="order-2 lg:order-1 relative p-4">
+                    <div class="absolute top-0 right-0 w-1/2 h-full border-t border-r border-[#cc0000] z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="The Lens" class="w-full aspect-square object-cover editorial-img relative z-10 interactive">
+                    <div class="absolute bottom-8 left-8 z-20 bg-black/80 p-2 border border-white/20 flex gap-2 items-center">
+                        <span class="w-2 h-2 rounded-full bg-[#cc0000] animate-pulse"></span>
+                        <p class="tiny-text">REC</p>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <div class="mb-8 border-b border-white/20 pb-4 flex justify-between">
+                        <p class="tiny-text text-[#cc0000]">00:39</p>
+                        <p class="tiny-text text-white/50">MODE 2026</p>
+                    </div>
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter leading-none mb-4">THE <br/><span class="red-bar">LENS</span></h2>
+                    <p class="text-xl font-bold text-white/50 tracking-widest mb-12">PRODUCTION [PHOTO&VIDEO]</p>
+                    
+                    <p class="text-lg md:text-2xl leading-[1.2] font-bold">
+                        HIGH-FIDELITY VISUALS FOR BRANDS THAT REFUSE TO BLEND IN. FROM 8K COMMERCIALS TO RAW STREET PHOTOGRAPHY.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 05: LIVE EXECUTION -->
+        <section id="events" class="py-24 px-6 md:px-12 border-t border-white/10 bg-[#0a0a0a]">
+            <div class="mb-16 relative">
+                <p class="tiny-text text-[#cc0000] mb-2 absolute -top-8 left-0">24A // 25</p>
+                <h2 class="text-[10vw] md:text-[8vw] font-bold tracking-tighter leading-[0.8] mb-8">
+                    LIVE <br/><span class="red-text">EXECUTION</span>
+                </h2>
+                <p class="text-2xl md:text-4xl font-bold max-w-2xl bg-[#cc0000] text-black p-2 inline-block">
+                    WE DON'T JUST HOST, WE ENGINEER EXPERIENCES.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-7">
+                    <img src="https://images.unsplash.com/photo-1540039155732-d674d5e8ac04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Live Event" class="w-full aspect-video object-cover editorial-img interactive">
+                </div>
+                
+                <div class="md:col-span-5 flex flex-col justify-end space-y-8">
+                    <div class="border-l-2 border-[#cc0000] pl-4">
+                        <h4 class="text-xl font-bold mb-1">PROGRAMMING:</h4>
+                        <p class="tiny-text text-white/60">CONCEPT TO CURATION.</p>
+                    </div>
+                    <div class="border-l-2 border-[#cc0000] pl-4">
+                        <h4 class="text-xl font-bold mb-1">STAFFING:</h4>
+                        <p class="tiny-text text-white/60">THE RIGHT FACES, THE RIGHT ENERGY.</p>
+                    </div>
+                    <div class="border-l-2 border-[#cc0000] pl-4">
+                        <h4 class="text-xl font-bold mb-1">COVERAGE:</h4>
+                        <p class="tiny-text text-white/60">REAL-TIME CONTENT FOR THE WORLD TO SEE.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 06: CONTACT -->
+        <section id="contact" class="py-24 px-6 md:px-12 border-t border-[#cc0000] relative min-h-[80vh] flex flex-col justify-center">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 z-10 relative">
+                <div>
+                    <h2 class="text-6xl md:text-[8rem] font-bold leading-[0.85] tracking-tighter mb-12">
+                        READY <br/>TO GO <br/>
+                        <span class="red-bar">ROGUE?</span>
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <p class="text-xl font-bold mb-8">DROP YOUR DETAILS AND WE WILL GET IN TOUCH</p>
+                        <a href="http://goRogue.ae" class="block text-sm font-bold tracking-[0.2em] hover:text-[#cc0000] transition-colors interactive w-fit">HTTP://GOROGUE.AE</a>
+                        <a href="mailto:Sami.Barkoumi@goRogue.ae" class="block text-sm font-bold tracking-[0.2em] hover:text-[#cc0000] transition-colors interactive w-fit">SAMI.BARKOUMI@GOROGUE.AE</a>
+                        <a href="#" class="block text-sm font-bold tracking-[0.2em] hover:text-[#cc0000] transition-colors interactive w-fit">IG: @GOROGUE.AE</a>
+                    </div>
+                </div>
+
+                <div class="bg-[#0f0f0f] p-8 md:p-12 border border-white/10">
+                    <form class="space-y-12 flex flex-col">
+                        <div class="group">
+                            <label class="block tiny-text text-[#cc0000] mb-2">NAME</label>
+                            <input type="text" class="w-full poster-input interactive text-2xl" placeholder="JOHN DOE">
+                        </div>
+                        
+                        <div class="group">
+                            <label class="block tiny-text text-[#cc0000] mb-2">EMAIL</label>
+                            <input type="email" class="w-full poster-input interactive text-2xl" placeholder="JOHN@EXAMPLE.COM">
+                        </div>
+                        
+                        <div class="group">
+                            <label class="block tiny-text text-[#cc0000] mb-2">DESCRIPTION</label>
+                            <textarea rows="3" class="w-full poster-input interactive text-2xl resize-none" placeholder="PROJECT DETAILS..."></textarea>
+                        </div>
+
+                        <button type="button" class="mt-8 bg-[#cc0000] text-black font-bold text-3xl py-4 px-12 hover:bg-white transition-colors interactive self-start tracking-tighter w-full md:w-auto">
+                            DARE
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Huge Background Text -->
+            <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none z-0">
+                <h1 class="text-[20vw] font-bold text-white/5 leading-[0.7] whitespace-nowrap">
+                    DARE TO BE
+                </h1>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Custom Dot Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        // Interactive hover states
+        document.querySelectorAll('.interactive').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(3)';
+                cursorDot.style.backgroundColor = '#fff';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorDot.style.backgroundColor = 'var(--red)';
+            });
+        });
+    </script>
+</body>
+</html>
