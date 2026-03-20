@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROGUE | Dare To Be Different</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Font Injection */
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo.otf') format('opentype'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-it.otf') format('opentype'); font-weight: 400; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med.otf') format('opentype'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med-it.otf') format('opentype'); font-weight: 500; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold-it.otf') format('opentype'); font-weight: 700; font-style: italic; }
+
+        :root {
+            --red: #cc0000;
+            --black: #111111; /* Slightly lighter black for vintage print feel */
+            --white: #e5e5e5;
+            --border: #cc0000;
+        }
+
+        body { 
+            font-family: 'Geo', monospace; 
+            cursor: none; 
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            text-transform: uppercase;
+        }
+        
+        ::selection {
+            background-color: var(--red);
+            color: var(--black);
+        }
+        
+        a, button, input, select, textarea, .interactive { cursor: none !important; }
+
+        /* Custom Crosshair Cursor */
+        #cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background-color: var(--red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+        #cursor-ring {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border: 1px solid var(--red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease;
+        }
+        .cursor-hover #cursor-ring {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(204,0,0,0.1);
+        }
+
+        /* Heavy Noise Texture */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.12;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* Editorial Borders */
+        .ed-border-t { border-top: 1px solid var(--border); }
+        .ed-border-b { border-bottom: 1px solid var(--border); }
+        .ed-border-l { border-left: 1px solid var(--border); }
+        .ed-border-r { border-right: 1px solid var(--border); }
+        
+        /* Typography Utilities */
+        .text-huge {
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.85;
+            letter-spacing: -0.02em;
+        }
+
+        .text-micro {
+            font-size: 0.6rem;
+            letter-spacing: 0.05em;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Red wireframe styling for SVGs */
+        .wireframe-red {
+            stroke: var(--red);
+            stroke-width: 1;
+            fill: none;
+        }
+
+        /* Dotted patterns */
+        .dot-pattern {
+            background-image: radial-gradient(var(--red) 1px, transparent 1px);
+            background-size: 8px 8px;
+        }
+
+        /* Checker pattern */
+        .checker-pattern {
+            background-image: linear-gradient(45deg, var(--red) 25%, transparent 25%, transparent 75%, var(--red) 75%, var(--red)),
+                              linear-gradient(45deg, var(--red) 25%, transparent 25%, transparent 75%, var(--red) 75%, var(--red));
+            background-size: 10px 10px;
+            background-position: 0 0, 5px 5px;
+        }
+
+        /* Form Inputs */
+        .ed-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            font-family: 'Geo', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.5rem 0;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        .ed-input:focus {
+            outline: none;
+            border-bottom-color: var(--red);
+        }
+
+        /* Image Box */
+        .img-box {
+            border: 2px solid var(--red);
+            padding: 4px;
+            position: relative;
+        }
+        
+        .ed-img {
+            filter: grayscale(100%) contrast(150%) brightness(0.7);
+            transition: filter 0.4s ease;
+        }
+        .ed-img:hover {
+            filter: grayscale(0%) contrast(120%) brightness(1);
+        }
+    </style>
+</head>
+<body class="antialiased relative p-4 md:p-8">
+
+    <div class="noise-overlay"></div>
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-ring" class="hidden md:block"></div>
+
+    <!-- Main Container Frame -->
+    <div class="max-w-[1400px] mx-auto relative flex flex-col min-h-screen">
+
+        <!-- Top Header / Nav -->
+        <header class="flex justify-between items-end pb-4 mb-8">
+            <div class="interactive">
+                <img src="https://gochred.github.io/rogue/res/rogue.png" alt="ROGUE" class="h-8 md:h-12">
+            </div>
+            <div class="text-center hidden md:block">
+                <h3 class="text-[#cc0000] font-bold tracking-widest text-sm">ROGUE MEDIA IN USE</h3>
+            </div>
+            <nav class="hidden md:flex gap-6 text-xs font-bold text-white/50 tracking-widest">
+                <a href="#digital" class="hover:text-[#cc0000] interactive">PULSE</a>
+                <a href="#production" class="hover:text-[#cc0000] interactive">LENS</a>
+                <a href="#events" class="hover:text-[#cc0000] interactive">EXECUTION</a>
+                <a href="#contact" class="hover:text-[#cc0000] interactive">DARE</a>
+            </nav>
+            <button class="md:hidden text-[#cc0000] interactive">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </header>
+
+        <!-- MAIN LAYOUT GRID -->
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12 relative z-10">
+
+            <!-- LEFT COLUMN (Span 8) -->
+            <div class="lg:col-span-8 flex flex-col">
+                
+                <!-- Title Row -->
+                <div class="flex items-start justify-between mb-4">
+                    <h1 class="text-huge font-bold">ROGUE</h1>
+                    
+                    <!-- Abstract Red Graphic -->
+                    <svg width="60" height="80" viewBox="0 0 60 80" class="mt-4 hidden sm:block">
+                        <path d="M30 0 L30 80 M0 40 L60 40" class="wireframe-red" />
+                        <ellipse cx="30" cy="40" rx="15" ry="5" class="wireframe-red" />
+                        <ellipse cx="30" cy="40" rx="20" ry="10" class="wireframe-red" />
+                        <ellipse cx="30" cy="40" rx="25" ry="15" class="wireframe-red" />
+                        <path d="M30 10 L40 0 L30 -10 Z" fill="#cc0000" transform="translate(0, 15)"/>
+                    </svg>
+                </div>
+
+                <!-- Dotted divider row -->
+                <div class="flex items-center gap-4 mb-6">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="15" class="wireframe-red" />
+                        <circle cx="20" cy="20" r="5" fill="#cc0000" />
+                        <path d="M20 0 L20 40 M0 20 L40 20" class="wireframe-red" />
+                    </svg>
+                    <div class="h-[2px] w-12 bg-[#cc0000]"></div>
+                    <div class="flex-grow text-[#cc0000] font-bold tracking-[0.3em] overflow-hidden whitespace-nowrap text-xs">
+                        •••••••• •••• ••• •••••••• •••• ••• •••••••• •••• ••• •••••••• ••••
+                    </div>
+                </div>
+
+                <!-- Main Video Box -->
+                <div class="img-box w-full aspect-video md:aspect-[21/9] interactive group mb-6">
+                    <video autoplay loop muted playsinline class="w-full h-full object-cover ed-img">
+                        <source src="https://framerusercontent.com/assets/cJqcySHrBn19p5GSKtinfc8nuJk.webm" type="video/webm">
+                    </video>
+                    <!-- Internal HUD lines -->
+                    <div class="absolute top-4 left-4 w-4 h-4 border-t border-l border-[#cc0000]"></div>
+                    <div class="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-[#cc0000]"></div>
+                </div>
+
+                <!-- Video Metadata & Manifesto -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-2">SYS.01</h2>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-full h-[1px] bg-[#cc0000]"></div>
+                            <span class="text-[#cc0000] text-xs font-bold whitespace-nowrap">DARE TO BE DIFFERENT</span>
+                        </div>
+                        <p class="text-micro">
+                            WE JOIN FORCES TO IGNITE GREAT LEAPS FORWARD. ROGUE IS A 360 CREATIVE POWERHOUSE SPECIALIZING IN DIGITAL DOMINANCE, HIGH-END PRODUCTION, AND IMMERSIVE EXPERIENCES.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-micro mb-4">
+                            LOREM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING ELIT, SED DIAM NONUMMY NIBH EUISMOD TINCIDUNT UT LAOREET DOLORE MAGNA ALIQUAM ERAT VOLUTPAT. UT WISI ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCI TATION ULLAMCORPER SUSCIPIT.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 border border-[#cc0000] rounded-full flex items-center justify-center">
+                                <i data-lucide="globe" class="text-[#cc0000] w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold tracking-tighter">ROGUE</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN (Span 4) -->
+            <div class="lg:col-span-4 flex flex-col ed-border-l pl-0 lg:pl-8 border-white/10">
+                
+                <!-- Huge Numbers Header -->
+                <div class="flex justify-between items-start mb-12 border-b border-[#cc0000]/30 pb-4">
+                    <div class="relative">
+                        <!-- Layered 360 text effect -->
+                        <h2 class="text-7xl font-bold text-transparent" style="-webkit-text-stroke: 1px #cc0000; transform: translateY(4px); position: absolute;">360</h2>
+                        <h2 class="text-7xl font-bold text-transparent" style="-webkit-text-stroke: 1px #cc0000; transform: translateY(8px); position: absolute;">360</h2>
+                        <h2 class="text-7xl font-bold text-[#cc0000] relative z-10">360</h2>
+                    </div>
+                    <div class="text-[#cc0000] font-bold text-2xl flex items-center gap-2">
+                        <i data-lucide="crosshair" class="w-8 h-8"></i>
+                    </div>
+                </div>
+
+                <!-- Attributes List -->
+                <div class="space-y-2 mb-12">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="plus-circle" class="text-[#cc0000] w-4 h-4"></i>
+                        <div class="h-[1px] flex-grow bg-white/20"></div>
+                        <span class="text-xs font-bold tracking-widest text-white/80">DIGITAL DOMINANCE</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="plus-circle" class="text-[#cc0000] w-4 h-4"></i>
+                        <div class="h-[1px] flex-grow bg-white/20"></div>
+                        <span class="text-xs font-bold tracking-widest text-white/80">HIGH-END PRODUCTION</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="plus-circle" class="text-[#cc0000] w-4 h-4"></i>
+                        <div class="h-[1px] flex-grow bg-white/20"></div>
+                        <span class="text-xs font-bold tracking-widest text-white/80">IMMERSIVE EXPERIENCES</span>
+                    </div>
+                </div>
+
+                <!-- Stretched Text Effect -->
+                <div class="mb-12">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-3xl font-bold">DI—</h3>
+                        <div class="h-[2px] bg-white w-1/3"></div>
+                        <h3 class="text-3xl font-bold">GI—</h3>
+                        <div class="h-[2px] bg-white w-1/3"></div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-3xl font-bold">TAL</h3>
+                        <div class="h-[2px] bg-white flex-grow mx-4"></div>
+                        <h3 class="text-3xl font-bold">PULSE</h3>
+                    </div>
+                </div>
+
+                <!-- Red Globe & Paragraphs -->
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex gap-2">
+                        <i data-lucide="target" class="text-white/50 w-6 h-6"></i>
+                        <i data-lucide="aperture" class="text-white/50 w-6 h-6"></i>
+                    </div>
+                    <!-- Inline SVG Wireframe Sphere -->
+                    <svg width="80" height="80" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" class="wireframe-red" />
+                        <ellipse cx="50" cy="50" rx="20" ry="45" class="wireframe-red" />
+                        <ellipse cx="50" cy="50" rx="45" ry="20" class="wireframe-red" />
+                        <line x1="5" y1="50" x2="95" y2="50" class="wireframe-red" />
+                        <line x1="50" y1="5" x2="50" y2="95" class="wireframe-red" />
+                    </svg>
+                </div>
+
+                <div class="space-y-4 mb-12">
+                    <p class="text-micro">
+                        <span class="text-[#cc0000] font-bold">SOCIAL MEDIA MANAGEMENT:</span> WE BUILD AND NURTURE YOUR BRAND'S PRESENCE ACROSS ALL PLATFORMS, TURNING FOLLOWERS INTO A LOYAL COMMUNITY THAT ACTUALLY GIVES A DAY.
+                    </p>
+                    <p class="text-micro">
+                        <span class="text-[#cc0000] font-bold">PERFORMANCE MARKETING:</span> WE DEPLOY DATA-DRIVEN CAMPAIGNS THAT DON'T JUST LOOK PRETTY—THEY DELIVER MEASURABLE RESULTS AND REAL ROI THAT MOVES THE NEEDLE.
+                    </p>
+                    <p class="text-micro">
+                        <span class="text-[#cc0000] font-bold">CONTENT STRATEGY & BRANDING:</span> WE CRAFT THE MASTER PLAN AND CREATE BOLD, UNFORGETTABLE IDENTITIES THAT CUT THROUGH THE NOISE.
+                    </p>
+                </div>
+
+                <!-- Checker pattern bottom -->
+                <div class="h-6 w-full checker-pattern mt-auto"></div>
+
+            </div>
+
+        </main>
+
+        <!-- DIVIDER ROW -->
+        <div class="w-full h-[1px] bg-[#cc0000]/30 my-16"></div>
+
+        <!-- LOWER SECTION: THE LENS & EVENTS -->
+        <section id="production" class="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12 relative z-10 mb-16">
+            
+            <div class="lg:col-span-8 flex flex-col">
+                <div class="flex justify-between items-end mb-4">
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter">THE LENS</h2>
+                    <p class="text-[#cc0000] font-bold tracking-widest mb-2 hidden sm:block">MODE 2026 // REC</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="img-box w-full aspect-square interactive">
+                        <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Production" class="w-full h-full object-cover ed-img">
+                        <div class="absolute bottom-2 left-2 bg-[#cc0000] text-black text-xs px-2 font-bold">00:39</div>
+                    </div>
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-[#cc0000] mb-2 border-b border-[#cc0000] pb-1 inline-block">PRODUCTION [PHOTO & VIDEO]</p>
+                            <h3 class="text-2xl font-bold mb-4 leading-tight mt-4">HIGH-FIDELITY VISUALS FOR BRANDS THAT REFUSE TO BLEND IN.</h3>
+                            <p class="text-micro mb-6">FROM 8K COMMERCIALS TO RAW STREET PHOTOGRAPHY, WE CAPTURE RAW, AUTHENTIC CONTENT THAT TELLS YOUR STORY IN A WAY THAT RESONATES AND CONVERTS.</p>
+                        </div>
+                        <div class="dot-pattern w-full h-16 opacity-50"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 ed-border-l pl-0 lg:pl-8 border-white/10 flex flex-col">
+                <h2 class="text-5xl font-bold tracking-tighter mb-8">LIVE<br/>EXECUTION</h2>
+                
+                <div class="bg-[#cc0000] text-black p-4 font-bold text-lg mb-8 inline-block">
+                    WE DON'T JUST HOST, WE ENGINEER EXPERIENCES.
+                </div>
+
+                <div class="space-y-6">
+                    <div class="border-l-2 border-[#cc0000] pl-4">
+                        <h4 class="text-sm font-bold">PROGRAMMING</h4>
+                        <p class="text-micro text-white/60">CONCEPT TO CURATION.</p>
+                    </div>
+                    <div class="border-l-2 border-[#cc0000] pl-4">
+                        <h4 class="text-sm font-bold">STAFFING</h4>
+                        <p class="text-micro text-white/60">THE RIGHT FACES, THE RIGHT ENERGY.</p>
+                    </div>
+                    <div class="border-l-2 border-[#cc0000] pl-4">
+                        <h4 class="text-sm font-bold">COVERAGE</h4>
+                        <p class="text-micro text-white/60">REAL-TIME CONTENT FOR THE WORLD TO SEE.</p>
+                    </div>
+                </div>
+
+                <!-- Abstract technical code blocks -->
+                <div class="mt-auto pt-12">
+                    <p class="text-micro text-[#cc0000]">24A // 25 // SYS.ON</p>
+                    <p class="text-micro text-white/30 tracking-[0.3em]">01010010 01001111 01000111 01010101 01000101</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- DIVIDER ROW -->
+        <div class="w-full h-[1px] bg-[#cc0000]/30 my-8"></div>
+
+        <!-- FOOTER / CONTACT FORM -->
+        <footer id="contact" class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10 pb-16">
+            <div>
+                <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-transparent" style="-webkit-text-stroke: 1px #fff;">READY TO GO<br/>ROGUE?</h2>
+                <p class="text-xs text-[#cc0000] font-bold tracking-widest mb-8">DROP YOUR DETAILS AND WE WILL GET IN TOUCH.</p>
+                
+                <div class="flex flex-col gap-2">
+                    <a href="http://goRogue.ae" class="text-micro hover:text-[#cc0000] interactive w-fit">HTTP://GOROGUE.AE</a>
+                    <a href="mailto:Sami.Barkoumi@goRogue.ae" class="text-micro hover:text-[#cc0000] interactive w-fit">SAMI.BARKOUMI@GOROGUE.AE</a>
+                    <a href="#" class="text-micro hover:text-[#cc0000] interactive w-fit">IG: @GOROGUE.AE</a>
+                </div>
+            </div>
+
+            <div class="bg-[#0a0a0a] p-8 border border-white/10 relative">
+                <i data-lucide="plus" class="absolute top-2 right-2 text-[#cc0000] w-4 h-4"></i>
+                <form class="space-y-8">
+                    <div>
+                        <label class="block text-micro text-[#cc0000] mb-1">NAME [REQ]</label>
+                        <input type="text" class="ed-input interactive text-lg" placeholder="JOHN DOE">
+                    </div>
+                    <div>
+                        <label class="block text-micro text-[#cc0000] mb-1">EMAIL [REQ]</label>
+                        <input type="email" class="ed-input interactive text-lg" placeholder="JOHN@EXAMPLE.COM">
+                    </div>
+                    <div>
+                        <label class="block text-micro text-[#cc0000] mb-1">DESCRIPTION [OPT]</label>
+                        <textarea rows="2" class="ed-input interactive text-lg resize-none" placeholder="PROJECT DETAILS..."></textarea>
+                    </div>
+                    <button type="button" class="bg-white text-black font-bold px-8 py-3 text-sm hover:bg-[#cc0000] transition-colors interactive w-full md:w-auto">
+                        DARE
+                    </button>
+                </form>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Custom Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorRing = document.getElementById('cursor-ring');
+        
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+            
+            // Add slight delay to ring for smooth effect
+            setTimeout(() => {
+                cursorRing.style.left = `${e.clientX}px`;
+                cursorRing.style.top = `${e.clientY}px`;
+            }, 50);
+        });
+
+        // Interactive hover states for cursor
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest('.interactive') || e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') {
+                document.body.classList.add('cursor-hover');
+            }
+        });
+        
+        document.body.addEventListener('mouseout', (e) => {
+            if (e.target.closest('.interactive') || e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') {
+                document.body.classList.remove('cursor-hover');
+            }
+        });
+    </script>
+</body>
+</html>
