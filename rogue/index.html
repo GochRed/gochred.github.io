@@ -7,9 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #0a0a0a; /* Deep black */
-            /* Added a subtle radial gradient for depth */
-            background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #0a0a0a 70%);
+            background-color: #030303; /* Deeper black */
+            /* Rogue thematic radial gradient with a very subtle dark red hint at the top */
+            background-image: radial-gradient(circle at 50% 0%, #1a0505 0%, #030303 60%);
             background-attachment: fixed;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
@@ -19,14 +19,13 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0a0a0a; 
+            background: #030303; 
         }
         ::-webkit-scrollbar-thumb {
-            background: #333; 
-            border-radius: 4px;
+            background: #222; 
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #555; 
+            background: #dc2626; /* Rogue Red */
         }
 
         /* --- Custom Animations --- */
@@ -49,105 +48,160 @@
         .delay-400 { animation-delay: 400ms; }
         .delay-500 { animation-delay: 500ms; }
 
-        /* Advanced Button Hover Effects */
-        .btn-animated {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Rogue Button Hover Effects */
+        .btn-rogue {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            background-color: #0f0f0f;
+            background-color: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(4px);
+            border: 1px solid #222;
         }
         
-        /* Subtle light sweep effect on hover */
-        .btn-animated::before {
+        /* Red stylized sweep effect on hover */
+        .btn-rogue::before {
             content: '';
             position: absolute;
             top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
-            transition: all 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.15), transparent);
+            transition: all 0.5s ease;
         }
 
-        .btn-animated:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 24px -10px rgba(255, 255, 255, 0.15);
-            border-color: #4b5563; /* gray-600 equivalent */
-            background-color: #1a1a1a;
+        /* Subtle left red accent border intrinsic to the button */
+        .btn-rogue::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 2px; height: 100%;
+            background-color: transparent;
+            transition: all 0.3s ease;
         }
 
-        .btn-animated:hover::before {
+        .btn-rogue:hover {
+            transform: translateY(-2px);
+            border-color: #551111;
+            background-color: #0a0000;
+            box-shadow: 0 8px 20px -5px rgba(220, 38, 38, 0.2), inset 0 0 12px rgba(220, 38, 38, 0.05);
+        }
+
+        .btn-rogue:hover::before {
             left: 100%;
+        }
+
+        .btn-rogue:hover::after {
+            background-color: #dc2626; /* Vibrant red line appears on hover */
         }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center py-16 px-4 sm:px-6 lg:px-8">
 
-    <!-- Main Title -->
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-12 tracking-tight text-center animate-fade-up delay-100">
-        Rogue Links
-    </h1>
+    <!-- Rogue Logo / Main Title -->
+    <div class="text-center animate-fade-up delay-100 mb-14">
+        <!-- Image Logo -->
+        <img src="https://gochred.github.io/rogue/res/rogue.png" alt="Rogue Logo" class="h-16 w-auto object-contain mx-auto mb-4">
+        <p class="text-gray-500 tracking-[0.3em] uppercase text-xs font-semibold">Directory Links</p>
+    </div>
 
     <!-- Content Container -->
-    <div class="w-full max-w-3xl space-y-12">
+    <div class="w-full max-w-4xl space-y-12">
 
         <!-- Section 1: CII Layout Proposal -->
-        <section class="text-center animate-fade-up delay-200">
-            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+        <section class="animate-fade-up delay-200">
+            <h2 class="text-lg font-bold text-gray-400 mb-6 uppercase tracking-[0.2em] text-sm border-b border-gray-800 pb-3 flex items-center">
+                <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
                 CII Layout Proposal
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
-                <a href="https://gochred.github.io/rogue/cii-layout-01.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 01</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="https://gochred.github.io/rogue/cii-layout-01.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Layout 01</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
-                <a href="https://gochred.github.io/rogue/cii-layout-02.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 02</span>
+                <a href="https://gochred.github.io/rogue/cii-layout-02.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Layout 02</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
-                <a href="https://gochred.github.io/rogue/cii-layout-03.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 03</span>
+                <a href="https://gochred.github.io/rogue/cii-layout-03.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Layout 03</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
-                <a href="https://gochred.github.io/rogue/cii-layout-04.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 04</span>
+                <a href="https://gochred.github.io/rogue/cii-layout-04.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Layout 04</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
-                <a href="https://gochred.github.io/rogue/cii-layout-05.html" class="btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl sm:col-span-2 lg:col-span-1">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Layout 05</span>
+                <a href="https://gochred.github.io/rogue/cii-layout-05.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Layout 05</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
             </div>
         </section>
 
         <!-- Section 2: Cemar Email Signature -->
-        <section class="text-center animate-fade-up delay-300">
-            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+        <section class="animate-fade-up delay-300">
+            <h2 class="text-lg font-bold text-gray-400 mb-6 uppercase tracking-[0.2em] text-sm border-b border-gray-800 pb-3 flex items-center">
+                <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
                 Cemar Email Signature
             </h2>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://gochred.github.io/rogue/cii-signature-01.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Signature 01</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="https://gochred.github.io/rogue/cii-signature-01.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Signature 01</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
-                <a href="https://gochred.github.io/rogue/cii-signature-02.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Signature 02</span>
+                <a href="https://gochred.github.io/rogue/cii-signature-02.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Signature 02</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
             </div>
         </section>
 
         <!-- Section 3: Elan Proposal -->
-        <section class="text-center animate-fade-up delay-400">
-            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+        <section class="animate-fade-up delay-400">
+            <h2 class="text-lg font-bold text-gray-400 mb-6 uppercase tracking-[0.2em] text-sm border-b border-gray-800 pb-3 flex items-center">
+                <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
                 Elan Proposal
             </h2>
-            <div class="flex justify-center">
-                <a href="https://gochred.github.io/rogue/elan.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Elan Layout</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="https://gochred.github.io/rogue/elan.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Elan Layout</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
+                </a>
+                <a href="https://gochred.github.io/rogue/elan-booking.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Elan Booking</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
             </div>
         </section>
 
         <!-- Section 4: Rogue Site Layout -->
-        <section class="text-center animate-fade-up delay-500">
-            <h2 class="text-xl font-semibold text-gray-400 mb-6 uppercase tracking-wider text-sm border-b border-gray-800 pb-2">
+        <section class="animate-fade-up delay-500">
+            <h2 class="text-lg font-bold text-gray-400 mb-6 uppercase tracking-[0.2em] text-sm border-b border-gray-800 pb-3 flex items-center">
+                <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
                 Rogue Site Layout
             </h2>
-            <div class="flex justify-center">
-                <a href="https://gochred.github.io/rogue/rogue-01.html" class="w-full sm:w-64 btn-animated group flex items-center justify-center py-3 px-6 border border-gray-800 rounded-xl">
-                    <span class="font-medium text-gray-400 group-hover:text-white transition-colors duration-300">Rogue 01</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="https://gochred.github.io/rogue/rogue-01.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Rogue 01</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
+                </a>
+                <a href="https://gochred.github.io/rogue/rogue-02.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Rogue 02</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
+                </a>
+                <a href="https://gochred.github.io/rogue/rogue-03.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Rogue 03</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
+                </a>
+                <a href="https://gochred.github.io/rogue/rogue-04.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Rogue 04</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
+                </a>
+                <a href="https://gochred.github.io/rogue/rogue-05.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Rogue 05</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
+                </a>
+                <a href="https://gochred.github.io/rogue/rogue-06.html" class="btn-rogue group flex items-center justify-between py-4 px-6 rounded-sm">
+                    <span class="font-bold tracking-wider text-gray-500 group-hover:text-white transition-colors duration-300 text-sm uppercase">Rogue 06</span>
+                    <span class="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:translate-x-1 font-bold">&rarr;</span>
                 </a>
             </div>
         </section>
