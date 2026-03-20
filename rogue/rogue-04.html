@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROGUE | Dare To Be Different</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Font Injection */
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo.otf') format('opentype'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-it.otf') format('opentype'); font-weight: 400; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med.otf') format('opentype'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-med-it.otf') format('opentype'); font-weight: 500; font-style: italic; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+        @font-face { font-family: 'Geo'; src: url('https://gochred.github.io/rogue/res/geo-bold-it.otf') format('opentype'); font-weight: 700; font-style: italic; }
+
+        :root {
+            --red: #cc0000;
+            --black: #050505;
+            --white: #e5e5e5;
+        }
+
+        body { 
+            font-family: 'Geo', monospace; 
+            cursor: none; 
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            text-transform: uppercase;
+        }
+        
+        ::selection {
+            background-color: var(--red);
+            color: var(--black);
+        }
+        
+        a, button, input, select, textarea, .interactive { cursor: none !important; }
+
+        /* Custom Crosshair Cursor */
+        #cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--white);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .cursor-hover #cursor-dot {
+            transform: translate(-50%, -50%) scale(3);
+            background-color: var(--red);
+        }
+
+        /* Typography Styles based on Reference */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .text-outline:hover {
+            color: rgba(255, 255, 255, 0.1);
+            -webkit-text-stroke: 1px var(--red);
+        }
+
+        .text-solid {
+            color: var(--white);
+        }
+
+        /* Orbital Graphics */
+        .orbital-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            max-width: 1200px;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbital-svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+        }
+
+        .star-icon {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background-color: var(--red);
+            clip-path: polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
+        }
+
+        .star-icon-sm {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: var(--red);
+            clip-path: polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
+        }
+
+        /* Form Inputs */
+        .space-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+            font-family: 'Geo', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.75rem 0;
+            width: 100%;
+            font-size: 1.5rem;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+        .space-input:focus {
+            outline: none;
+            border-bottom-color: var(--red);
+        }
+        .space-input::placeholder { color: rgba(255,255,255,0.1); }
+
+        /* Left Sidebar styling */
+        .writing-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
+
+        /* Thin elegant lines */
+        .line-accent {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+
+    <!-- Solid Left Sidebar (Reference style) -->
+    <div class="fixed left-0 top-0 w-8 md:w-16 h-full bg-[#cc0000] z-50 flex flex-col justify-between items-center py-8">
+        <i data-lucide="crosshair" class="w-4 h-4 md:w-6 md:h-6 text-black"></i>
+        <div class="writing-vertical text-black font-bold tracking-widest text-xs md:text-sm whitespace-nowrap">
+            ROGUE MEDIA: A CREATIVE COLLECTIVE
+        </div>
+        <i data-lucide="globe" class="w-4 h-4 md:w-6 md:h-6 text-black"></i>
+    </div>
+
+    <!-- Main Content Wrapper (offset by sidebar) -->
+    <div class="ml-8 md:ml-16 relative min-h-screen">
+
+        <!-- Top Navigation -->
+        <nav class="absolute top-0 w-full z-40 p-6 md:px-12 flex justify-between items-center mix-blend-difference">
+            <div class="interactive">
+                <img src="https://gochred.github.io/rogue/res/rogue.png" alt="ROGUE" class="h-6 md:h-8">
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-12">
+                <a href="#manifesto" class="text-xs font-bold tracking-widest hover:text-[#cc0000] transition-colors interactive">MANIFESTO</a>
+                <a href="#digital" class="text-xs font-bold tracking-widest hover:text-[#cc0000] transition-colors interactive">DIGITAL</a>
+                <a href="#production" class="text-xs font-bold tracking-widest hover:text-[#cc0000] transition-colors interactive">PRODUCTION</a>
+                <a href="#events" class="text-xs font-bold tracking-widest hover:text-[#cc0000] transition-colors interactive">EVENTS</a>
+                <a href="#contact" class="flex items-center gap-2 text-xs font-bold tracking-widest hover:text-[#cc0000] transition-colors interactive">
+                    GET IN TOUCH <i data-lucide="arrow-right" class="w-4 h-4 bg-white text-black rounded-full p-0.5"></i>
+                </a>
+            </div>
+
+            <button class="md:hidden text-white interactive">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- SECTION 01: HERO -->
+        <section id="home" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20">
+            <!-- Video Background -->
+            <div class="absolute inset-0 z-0">
+                <video autoplay loop muted playsinline class="w-full h-full object-cover grayscale opacity-20">
+                    <source src="https://framerusercontent.com/assets/cJqcySHrBn19p5GSKtinfc8nuJk.webm" type="video/webm">
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+            </div>
+
+            <!-- Orbital Graphics -->
+            <div class="orbital-container">
+                <svg class="orbital-svg" viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="500" cy="300" rx="450" ry="150" transform="rotate(30 500 300)" stroke="white" stroke-width="1"/>
+                    <ellipse cx="500" cy="300" rx="450" ry="150" transform="rotate(-30 500 300)" stroke="white" stroke-width="1"/>
+                    <!-- Horizontal faint line -->
+                    <line x1="0" y1="300" x2="1000" y2="300" stroke="white" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.5"/>
+                </svg>
+            </div>
+
+            <div class="z-10 relative flex flex-col items-center text-center w-full px-4">
+                <div class="star-icon mb-12"></div>
+                
+                <h1 class="text-6xl md:text-8xl lg:text-[7rem] font-bold leading-[0.9] tracking-tighter mb-8 max-w-5xl text-outline interactive">
+                    DARE TO BE<br/>DIFFERENT.
+                </h1>
+                
+                <p class="font-bold text-sm tracking-[0.3em] mt-8 text-white/50 uppercase">
+                    SYS.01 // BUILT FOR REBELS
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 02: MANIFESTO -->
+        <section id="manifesto" class="py-32 relative flex flex-col items-center justify-center border-t border-white/5">
+            <div class="line-accent w-full h-[1px] top-0 left-0"></div>
+            
+            <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
+                <div class="star-icon-sm mb-8 opacity-50"></div>
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tighter mb-12 max-w-6xl mx-auto text-outline interactive">
+                    WE JOIN FORCES TO IGNITE GREAT LEAPS FORWARD. <br/>
+                    <span class="text-solid">ROGUE IS A 360 CREATIVE POWERHOUSE.</span>
+                </h2>
+                <p class="text-lg md:text-2xl font-medium text-white/60 max-w-3xl mx-auto leading-relaxed uppercase">
+                    Specializing in digital dominance, high-end production, and immersive experiences. Authentic & Bold. 2026.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 03: DIGITAL PULSE (SERVICES) -->
+        <section id="digital" class="py-32 relative border-t border-white/5 overflow-hidden">
+            <!-- Subtle orbital curve bottom -->
+            <div class="absolute -bottom-[50%] left-1/2 -translate-x-1/2 w-[150%] h-[100%] border border-white/10 rounded-[100%] pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
+                <h3 class="text-3xl md:text-5xl font-bold tracking-tighter mb-24 text-outline">
+                    DIGITAL PULSE // ROGUE MARKETING
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-24 relative">
+                    <!-- S1 -->
+                    <div class="flex flex-col items-center group interactive">
+                        <div class="star-icon-sm mb-6 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                        <h4 class="text-2xl font-bold mb-4 uppercase">SOCIAL MEDIA</h4>
+                        <p class="text-sm text-white/50 leading-relaxed max-w-xs text-center">
+                            We build and nurture your brand's presence across all platforms, turning followers into a loyal community.
+                        </p>
+                    </div>
+                    <!-- S2 -->
+                    <div class="flex flex-col items-center group interactive">
+                        <div class="star-icon-sm mb-6 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                        <h4 class="text-2xl font-bold mb-4 uppercase">PERFORMANCE</h4>
+                        <p class="text-sm text-white/50 leading-relaxed max-w-xs text-center">
+                            We deploy data-driven campaigns that don't just look pretty—they deliver measurable results and real ROI.
+                        </p>
+                    </div>
+                    <!-- S3 -->
+                    <div class="flex flex-col items-center group interactive">
+                        <div class="star-icon-sm mb-6 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                        <h4 class="text-2xl font-bold mb-4 uppercase">STRATEGY</h4>
+                        <p class="text-sm text-white/50 leading-relaxed max-w-xs text-center">
+                            We craft the master plan behind your content. Every piece serves a purpose and drives your brand forward.
+                        </p>
+                    </div>
+                    <!-- S4 -->
+                    <div class="flex flex-col items-center group interactive lg:col-start-2 lg:-ml-12">
+                        <div class="star-icon-sm mb-6 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                        <h4 class="text-2xl font-bold mb-4 uppercase">BRANDING</h4>
+                        <p class="text-sm text-white/50 leading-relaxed max-w-xs text-center">
+                            We create bold, unforgettable brand identities that cut through the noise and make your audience stop scrolling.
+                        </p>
+                    </div>
+                    <!-- S5 -->
+                    <div class="flex flex-col items-center group interactive lg:-mr-12">
+                        <div class="star-icon-sm mb-6 opacity-30 group-hover:opacity-100 transition-opacity"></div>
+                        <h4 class="text-2xl font-bold mb-4 uppercase">CONTENT</h4>
+                        <p class="text-sm text-white/50 leading-relaxed max-w-xs text-center">
+                            We produce raw, authentic content that captures attention and tells your story in a way that resonates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04: THE LENS & EVENTS -->
+        <section id="production" class="py-32 relative border-t border-white/5">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    
+                    <!-- Text Block -->
+                    <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+                        <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-4 text-outline interactive">
+                            THE LENS
+                        </h2>
+                        <h3 class="text-2xl md:text-4xl font-bold mb-8 text-solid uppercase">
+                            PRODUCTION // EVENTS
+                        </h3>
+                        
+                        <div class="space-y-8 max-w-md">
+                            <div>
+                                <div class="flex items-center gap-3 mb-2 justify-center lg:justify-start">
+                                    <div class="star-icon-sm w-3 h-3"></div>
+                                    <h4 class="font-bold uppercase tracking-widest text-[#cc0000]">PRODUCTION</h4>
+                                </div>
+                                <p class="text-white/60 text-sm leading-relaxed">High-fidelity visuals for brands that refuse to blend in. From 8K commercials to raw street photography.</p>
+                            </div>
+                            
+                            <div class="w-full h-[1px] bg-white/10"></div>
+                            
+                            <div>
+                                <div class="flex items-center gap-3 mb-2 justify-center lg:justify-start">
+                                    <div class="star-icon-sm w-3 h-3"></div>
+                                    <h4 class="font-bold uppercase tracking-widest text-[#cc0000]">LIVE EXECUTION</h4>
+                                </div>
+                                <p class="text-white/60 text-sm leading-relaxed mb-4">We don't just host, we engineer experiences.</p>
+                                <ul class="text-xs text-white/40 space-y-2 uppercase tracking-widest">
+                                    <li><span class="text-white/80">Programming:</span> Concept to Curation</li>
+                                    <li><span class="text-white/80">Staffing:</span> The right faces, right energy</li>
+                                    <li><span class="text-white/80">Coverage:</span> Real-time content</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Block w/ Orbital accent -->
+                    <div class="relative w-full aspect-[3/4] md:aspect-square flex items-center justify-center group interactive">
+                        <!-- Orbital Ring -->
+                        <div class="absolute w-[120%] h-[60%] border border-white/20 rounded-[100%] rotate-45 pointer-events-none group-hover:border-[#cc0000]/50 transition-colors duration-700"></div>
+                        <div class="absolute w-[60%] h-[120%] border border-white/20 rounded-[100%] rotate-45 pointer-events-none group-hover:border-[#cc0000]/50 transition-colors duration-700"></div>
+                        
+                        <div class="relative w-3/4 h-3/4 overflow-hidden rounded-full border border-white/10 z-10 bg-black">
+                            <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Production" class="w-full h-full object-cover grayscale opacity-70 group-hover:scale-105 transition-transform duration-1000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 05: CONTACT -->
+        <section id="contact" class="py-32 relative border-t border-white/5 min-h-[80vh] flex flex-col items-center justify-center">
+            
+            <!-- Orbital Graphics Base -->
+            <div class="orbital-container top-[80%] opacity-50">
+                <svg class="orbital-svg" viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="500" cy="300" rx="600" ry="200" stroke="white" stroke-width="0.5"/>
+                </svg>
+            </div>
+
+            <div class="container mx-auto px-6 md:px-12 text-center relative z-10 max-w-4xl">
+                <div class="star-icon mb-8"></div>
+                <h2 class="text-5xl md:text-7xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter mb-16 text-outline interactive">
+                    READY TO<br/>GO ROGUE?
+                </h2>
+                
+                <form class="space-y-12 flex flex-col items-center w-full max-w-2xl mx-auto mb-16">
+                    <input type="text" class="space-input interactive" placeholder="NAME">
+                    <input type="email" class="space-input interactive" placeholder="EMAIL">
+                    <input type="text" class="space-input interactive" placeholder="DESCRIPTION / PROJECT DETAILS">
+                    
+                    <button type="button" class="mt-8 text-lg font-bold uppercase tracking-widest hover:text-[#cc0000] flex items-center gap-4 transition-colors interactive">
+                        SUBMIT TRANSMISSION <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                </form>
+
+                <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-sm font-bold tracking-widest text-white/50 uppercase">
+                    <a href="http://goRogue.ae" class="hover:text-[#cc0000] transition-colors interactive">GOROGUE.AE</a>
+                    <a href="mailto:Sami.Barkoumi@goRogue.ae" class="hover:text-[#cc0000] transition-colors interactive">SAMI.BARKOUMI@GOROGUE.AE</a>
+                    <a href="#" class="hover:text-[#cc0000] transition-colors interactive">IG: @GOROGUE.AE</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Cursor Logic
+        const cursorDot = document.getElementById('cursor-dot');
+        
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+        });
+
+        // Interactive hover states for cursor
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest('.interactive') || e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') {
+                document.body.classList.add('cursor-hover');
+            }
+        });
+        
+        document.body.addEventListener('mouseout', (e) => {
+            if (e.target.closest('.interactive') || e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') {
+                document.body.classList.remove('cursor-hover');
+            }
+        });
+    </script>
+</body>
+</html>
