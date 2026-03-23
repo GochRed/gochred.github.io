@@ -63,19 +63,6 @@
             transform: scale(1.05);
         }
 
-        /* Subtle floating animation for hero images */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-            animation: float 7s ease-in-out infinite 2s;
-        }
-
         /* Parallax Background */
         .parallax-bg {
             background-attachment: fixed;
@@ -149,23 +136,18 @@
     <header class="max-w-7xl mx-auto px-6 md:px-12 pt-10 pb-24 overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
-            <!-- Left: Hero Imagery (Interactive) -->
-            <div class="lg:col-span-6 relative h-[600px] flex items-center justify-center reveal">
+            <!-- Left: Hero Imagery -->
+            <div class="lg:col-span-6 relative flex items-center justify-center reveal">
                 <!-- Decorative Blur -->
                 <div class="absolute inset-0 bg-slate/20 blur-3xl rounded-full opacity-50 mix-blend-multiply"></div>
                 
-                <!-- Main Portrait -->
-                <div class="relative w-3/4 aspect-[4/5] z-10 animate-float img-zoom-wrap border border-oak/10 shadow-2xl">
+                <!-- Main Portrait (Enlarged) -->
+                <div class="relative w-full md:w-11/12 lg:w-full aspect-[4/5] z-10 img-zoom-wrap border border-oak/10 shadow-2xl">
                     <img src="elan/owner.jpeg" alt="Nickelloh Ferguson, Founder of Élan" class="w-full h-full object-cover">
-                    <div class="absolute bottom-4 left-4 bg-cream/95 backdrop-blur-sm px-5 py-3 border border-oak/10">
-                        <p class="font-heading text-[10px] font-bold tracking-widest uppercase text-oak">Nickelloh Ferguson</p>
-                        <p class="font-body text-[10px] text-oak/60 mt-0.5 italic">Founder & Master Artist</p>
+                    <div class="absolute bottom-6 left-6 bg-cream/95 backdrop-blur-sm px-6 py-4 border border-oak/10 shadow-lg">
+                        <p class="font-heading text-xs font-bold tracking-widest uppercase text-oak">Nickelloh Ferguson</p>
+                        <p class="font-body text-xs text-oak/60 mt-1 italic">Founder & Master Artist</p>
                     </div>
-                </div>
-                
-                <!-- Secondary Overlapping Image -->
-                <div class="absolute bottom-10 -right-4 w-1/2 aspect-square z-20 animate-float-delayed img-zoom-wrap border-4 border-cream shadow-xl">
-                    <img src="elan/002.jpeg" alt="Styling Detail" class="w-full h-full object-cover">
                 </div>
             </div>
 
@@ -211,7 +193,7 @@
                     <p class="font-body text-oak/70 leading-relaxed text-lg mb-8">
                         Experience beauty tailored perfectly to you. Our state-of-the-art 180-degree facial and scalp imaging allows our experts to craft a highly personalized care journey, transforming your appointment into a prescriptive, scientific ritual.
                     </p>
-                    <a href="#booking" class="font-heading text-xs font-bold tracking-[0.15em] uppercase text-terracotta border-b border-terracotta pb-1 hover:text-oak hover:border-oak transition-colors">Experience The Blueprint</a>
+                    <a href="#booking" class="font-heading text-xs font-bold tracking-[0.15em] uppercase text-terracotta border-b border-terracotta pb-1 hover:text-oak hover:border-oak transition-colors">Discover Our Tech</a>
                 </div>
             </div>
 
@@ -246,7 +228,7 @@
         </div>
     </section>
 
-    <!-- Services Section (Cards) -->
+    <!-- Services Section (Grid) -->
     <section id="services" class="py-32 bg-sand/10 max-w-7xl mx-auto px-6 md:px-12">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
             <div>
@@ -258,50 +240,53 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <!-- Service 1 -->
+            <!-- Service 1: Hair Artistry & Color -->
             <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-100">
                 <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <!-- Scissors/Hair Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
                 </div>
-                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Couture Balayage</h3>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Couture Color & Styling</h3>
                 <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
-                    Our Master Colorists utilize advanced techniques alongside restorative, nourishing treatments for dimensional, mirror-shine transformations.
+                    Featuring our Signature Ladies Cut, High-Definition Highlights, and the renowned Couture Balayage & Toning Ritual for mirror-like shine and dimensional artistry.
                 </p>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
-                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 2,800</span>
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 750</span>
                     <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
                         Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
             </div>
 
-            <!-- Service 2 -->
+            <!-- Service 2: Hair Wellness -->
             <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-200">
                 <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 013 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+                    <!-- Leaf/Wellness Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
                 </div>
-                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Russian Manicure</h3>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Advanced Hair Wellness</h3>
                 <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
-                    A 90-minute masterclass in precision. Unmatched e-file cuticle care and structural overlays for flawless, long-lasting nail perfection.
+                    Elevate your hair health with Advanced Bond-Repair Therapy (Olaplex/K18), Luxury Keratin Smoothing, and our bespoke AI-Diagnostic Scalp Detox Therapy.
                 </p>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
-                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 320</span>
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 450</span>
                     <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
                         Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
             </div>
 
-            <!-- Service 3 -->
+            <!-- Service 3: Extensions -->
             <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-300">
                 <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <!-- Extensions/Layers Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v18"/><path d="M11 3v18"/><path d="M15 3v18"/><path d="M19 3v18"/><path d="M3 3v18"/></svg>
                 </div>
-                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Nano-Bond Extensions</h3>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Extensions & Texture</h3>
                 <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
-                    The ultimate in discreet volume and length. We meticulously match textures utilizing an exclusive selection of premium Remy human hair.
+                    The ultimate in discreet volume featuring Élan Nano-Bond Extensions, Tape-In Volume Boosts, and specialist Braiding & Sewing Installations for diverse textures.
                 </p>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
                     <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 4,500</span>
@@ -311,17 +296,54 @@
                 </div>
             </div>
 
-            <!-- Service 4 -->
-            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-300">
+            <!-- Service 4: Nails -->
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-100">
                 <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <!-- Hand/Nails Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 013 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Nail Precision & Care</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Masterclasses in precision including our Signature Russian Gel Manicure, Builder Gel Overlay (BIAB), Plexigel Sculpting, and the Luxury Detox Spa Pedicure.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 300</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Service 5: Makeup -->
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-200">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <!-- Sparkle/Makeup Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M12 12v-6"/><path d="M8 6h8"/><path d="M12 6a4 4 0 0 0-4-4h8a4 4 0 0 0-4 4z"/></svg>
                 </div>
-                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Glam & Bridal Artistry</h3>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Bridal & Glam Artistry</h3>
                 <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
-                    HD-ready, flawless airbrush makeup designed for Dubai's red carpets and elite weddings. Radiant skin and timeless elegance guaranteed.
+                    Command the room with HD-ready Full Glam Airbrush Makeup, AI-Validated Consultations, and the comprehensive Élan Luxury Day Bridal Package.
                 </p>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
                     <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 1,100</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 6: Brows & Lashes -->
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-300">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <!-- Eye/Lash Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Lash & Brow Architecture</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Define your features with Volume/Mega-Volume Lash Extensions, Precision Brow Sculpting, and our polished Brow Lamination & Henna Combos.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 250</span>
                     <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
                         Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
