@@ -279,7 +279,13 @@
                     const outlookWrapperStart = `<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>`;
                     const outlookWrapperEnd = `</body></html>`;
                     
-                    const htmlStr = outlookWrapperStart + container.innerHTML + outlookWrapperEnd;
+                    // Intercept the HTML to force left-alignment for the pasted output
+                    let adjustedHtml = container.innerHTML;
+                    adjustedHtml = adjustedHtml.replace(/align="center"/g, 'align="left"');
+                    adjustedHtml = adjustedHtml.replace(/align="right"/g, 'align="left"');
+                    adjustedHtml = adjustedHtml.replace(/margin:\s*0\s+auto/g, 'margin: 0');
+                    
+                    const htmlStr = outlookWrapperStart + adjustedHtml + outlookWrapperEnd;
                     
                     const blobHtml = new Blob([htmlStr], { type: "text/html" });
                     const blobText = new Blob([container.innerText], { type: "text/plain" });
@@ -300,9 +306,19 @@
                     }
 
                 } catch (err) {
-                    // Fallback to legacy execCommand if modern ClipboardItem fails
+                    // Legacy fallback - temporarily alter DOM to left-align before copying
+                    const rightAligned = container.querySelectorAll('[align="right"]');
+                    rightAligned.forEach(el => el.setAttribute('align', 'left'));
+                    const table = container.querySelector('table');
+                    if(table) table.style.margin = "0";
+
                     selectContainer('socials-container');
                     document.execCommand('copy');
+                    
+                    // Revert DOM changes so the visual preview remains unchanged
+                    rightAligned.forEach(el => el.setAttribute('align', 'right'));
+                    if(table) table.style.margin = "0 auto";
+
                     const msgBox = document.getElementById('copyMessage');
                     if(msgBox) {
                         msgBox.innerText = "Socials copied! (Legacy Mode)";
@@ -336,7 +352,7 @@
 
                 html2canvas(container, {
                     useCORS: true,
-                    scale: 2,
+                    scale: 1,
                     backgroundColor: '#ffffff'
                 }).then(canvas => {
                     const link = document.createElement('a');
