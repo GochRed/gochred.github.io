@@ -279,10 +279,11 @@
                     const outlookWrapperStart = `<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>`;
                     const outlookWrapperEnd = `</body></html>`;
                     
-                    // Intercept the HTML to force left-alignment for the pasted output
+                    // Intercept the HTML to force left-alignment for the pasted output table container
                     let adjustedHtml = container.innerHTML;
+                    
+                    // ONLY replace outer table centering mechanisms, DO NOT replace align="right" (which keeps the icons on the right)
                     adjustedHtml = adjustedHtml.replace(/align="center"/g, 'align="left"');
-                    adjustedHtml = adjustedHtml.replace(/align="right"/g, 'align="left"');
                     adjustedHtml = adjustedHtml.replace(/margin:\s*0\s+auto/g, 'margin: 0');
                     
                     const htmlStr = outlookWrapperStart + adjustedHtml + outlookWrapperEnd;
@@ -306,18 +307,32 @@
                     }
 
                 } catch (err) {
-                    // Legacy fallback - temporarily alter DOM to left-align before copying
-                    const rightAligned = container.querySelectorAll('[align="right"]');
-                    rightAligned.forEach(el => el.setAttribute('align', 'left'));
-                    const table = container.querySelector('table');
-                    if(table) table.style.margin = "0";
+                    // Legacy fallback - temporarily alter DOM outer tables to left-align before copying
+                    const tables = container.querySelectorAll('table');
+                    const originalMargins = [];
+                    
+                    tables.forEach((t, i) => {
+                        originalMargins[i] = t.style.margin;
+                        if (t.getAttribute('align') === 'center') {
+                            t.setAttribute('align', 'left');
+                            t.dataset.wasCenter = 'true';
+                        }
+                        if (t.style.margin.includes('auto')) {
+                            t.style.margin = "0";
+                        }
+                    });
 
                     selectContainer('socials-container');
                     document.execCommand('copy');
                     
                     // Revert DOM changes so the visual preview remains unchanged
-                    rightAligned.forEach(el => el.setAttribute('align', 'right'));
-                    if(table) table.style.margin = "0 auto";
+                    tables.forEach((t, i) => {
+                        t.style.margin = originalMargins[i];
+                        if (t.dataset.wasCenter === 'true') {
+                            t.setAttribute('align', 'center');
+                            delete t.dataset.wasCenter;
+                        }
+                    });
 
                     const msgBox = document.getElementById('copyMessage');
                     if(msgBox) {
