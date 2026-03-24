@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Élan by Nickelloh | Where Elegance Meets Extravagance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F2EEE6',
+                        sand: '#E3D3B9',
+                        slate: '#B5C6CB',
+                        terracotta: '#C1642F',
+                        oak: '#2D2823',
+                    },
+                    fontFamily: {
+                        /* Explicitly forcing sans-serif for all type */
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                        heading: ['Montserrat', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                        body: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth reveals for scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Interactive Hover States */
+        .hover-lift {
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(45, 40, 35, 0.12);
+        }
+        
+        /* Image Zoom Wrap */
+        .img-zoom-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+        .img-zoom-wrap img {
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .img-zoom-wrap:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Parallax Background */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Dynamic Nav Transition */
+        #navbar {
+            transition: background-color 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
+        }
+        .nav-scrolled {
+            background-color: rgba(242, 238, 230, 0.98) !important;
+            border-bottom: 1px solid rgba(45, 40, 35, 0.1) !important;
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+
+        /* Enforce sans-serif globally as a fallback safeguard */
+        * {
+            font-family: inherit;
+        }
+    </style>
+</head>
+<body class="bg-cream text-oak font-sans antialiased selection:bg-terracotta selection:text-cream overflow-x-hidden">
+
+    <nav id="navbar" class="w-full px-6 py-6 md:px-12 flex justify-between items-center sticky top-0 bg-cream/0 border-b border-transparent backdrop-blur-sm z-50">
+        <div class="h-8 md:h-10 flex items-center z-50 relative">
+             <img src="elan/elan.png" alt="Élan Logo" class="h-full w-auto object-contain">
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-10">
+            <a href="#philosophy" class="font-heading text-xs font-semibold tracking-[0.15em] uppercase text-oak/80 hover:text-terracotta transition-colors relative group">
+                Philosophy
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#services" class="font-heading text-xs font-semibold tracking-[0.15em] uppercase text-oak/80 hover:text-terracotta transition-colors relative group">
+                Services
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#contact" class="font-heading text-xs font-semibold tracking-[0.15em] uppercase text-oak/80 hover:text-terracotta transition-colors relative group">
+                Contact
+                <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#booking" class="bg-oak text-cream px-6 py-3 font-heading text-xs font-semibold tracking-[0.15em] uppercase hover:bg-terracotta transition-colors transform hover:scale-105 duration-300">Booking</a>
+        </div>
+
+        <div class="md:hidden z-50 relative">
+            <button id="mobile-menu-btn" class="text-oak focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="fixed inset-0 bg-cream z-40 flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-opacity duration-300">
+            <a href="#philosophy" class="mobile-link font-heading text-xl font-semibold tracking-[0.15em] uppercase text-oak">Philosophy</a>
+            <a href="#services" class="mobile-link font-heading text-xl font-semibold tracking-[0.15em] uppercase text-oak">Services</a>
+            <a href="#contact" class="mobile-link font-heading text-xl font-semibold tracking-[0.15em] uppercase text-oak">Contact</a>
+            <a href="#booking" class="mobile-link bg-oak text-cream px-10 py-4 font-heading text-sm font-semibold tracking-[0.15em] uppercase mt-4">Book Now</a>
+        </div>
+    </nav>
+
+    <header class="max-w-7xl mx-auto px-6 md:px-12 pt-10 pb-24 overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <div class="lg:col-span-6 relative flex items-center justify-center reveal">
+                <div class="absolute inset-0 bg-slate/20 blur-3xl rounded-full opacity-50 mix-blend-multiply"></div>
+                
+                <div class="relative w-full md:w-11/12 lg:w-full aspect-[4/5] z-10 img-zoom-wrap border border-oak/10 shadow-2xl">
+                    <img src="elan/00.webp" alt="Nickelloh Ferguson, Founder of Élan" class="w-full h-full object-cover">
+                    <div class="absolute bottom-6 left-6 bg-cream/95 backdrop-blur-sm px-6 py-4 border border-oak/10 shadow-lg">
+                        <p class="font-heading text-xs font-bold tracking-widest uppercase text-oak">Nickelloh Ferguson</p>
+                        <p class="font-body text-xs text-oak/60 mt-1 italic">Founder & Master Artist</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 flex flex-col justify-center relative z-20 pt-10 lg:pt-0">
+                <p class="font-heading text-terracotta tracking-[0.2em] text-xs font-bold uppercase mb-6 flex items-center gap-4 reveal delay-100">
+                    <span class="w-8 h-[1px] bg-terracotta"></span>
+                    Dubai's Premier Sanctuary of Beauty
+                </p>
+                <h1 class="font-heading text-5xl md:text-7xl font-semibold leading-[1.1] tracking-tight text-oak mb-8 reveal delay-200">
+                    Where Elegance <br><span class="italic font-light">Meets Extravagance.</span>
+                </h1>
+                <p class="font-body text-lg md:text-xl font-light text-oak/80 leading-relaxed max-w-lg mb-10 reveal delay-300">
+                    Step into a realm of unparalleled artistry and bespoke care. We curate event-ready perfection for Dubai's most discerning clientele, ensuring every detail reflects your unique brilliance.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 reveal delay-300">
+                    <a href="#booking" class="bg-oak text-cream px-10 py-5 font-heading text-sm font-semibold tracking-[0.15em] uppercase text-center hover:bg-terracotta transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">
+                        Reserve Your Ritual
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <section id="philosophy" class="bg-white py-20 md:py-32 border-y border-oak/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center mb-16 md:mb-24 reveal">
+                <h2 class="font-heading text-3xl md:text-5xl font-semibold tracking-wide text-oak mb-6">The Art of Refinement</h2>
+                <div class="w-16 h-[1px] bg-terracotta mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-center mb-20 md:mb-32 relative">
+                <div class="w-full md:w-3/4 lg:w-5/12 aspect-[4/5] relative z-0 img-zoom-wrap reveal">
+                    <img src="elan/01.webp" alt="Bespoke Consultations" class="w-full h-full object-cover border border-oak/10">
+                </div>
+                <div class="w-11/12 md:w-3/4 lg:w-6/12 bg-cream border border-oak/10 p-8 md:p-12 lg:p-16 lg:-ml-20 -mt-20 lg:mt-0 relative z-10 shadow-[0_20px_50px_rgba(45,40,35,0.05)] reveal delay-100">
+                    <span class="absolute top-4 right-6 text-terracotta/10 font-heading font-bold text-6xl md:text-8xl select-none">01</span>
+                    <h3 class="font-heading text-xl md:text-2xl font-bold tracking-widest text-oak uppercase mb-4 relative z-10">Bespoke Consultations</h3>
+                    <p class="font-body text-oak/75 leading-relaxed text-sm md:text-base mb-6 relative z-10">
+                        Experience beauty tailored perfectly to you. Our state-of-the-art 180-degree facial and scalp imaging allows our experts to craft a highly personalized care journey, transforming your appointment into a prescriptive, scientific ritual.
+                    </p>
+                    <a href="#booking" class="inline-block font-heading text-xs font-bold tracking-[0.15em] uppercase text-terracotta border-b border-terracotta pb-1 hover:text-oak hover:border-oak transition-colors relative z-10">Discover Our Tech</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row-reverse items-center justify-center mb-20 md:mb-32 relative">
+                <div class="w-full md:w-3/4 lg:w-5/12 aspect-[4/5] relative z-0 img-zoom-wrap reveal">
+                    <img src="elan/02.webp" alt="Red-Carpet Readiness" class="w-full h-full object-cover border border-oak/10">
+                </div>
+                <div class="w-11/12 md:w-3/4 lg:w-6/12 bg-cream border border-oak/10 p-8 md:p-12 lg:p-16 lg:-mr-20 -mt-20 lg:mt-0 relative z-10 shadow-[0_20px_50px_rgba(45,40,35,0.05)] reveal delay-100 text-left">
+                    <span class="absolute top-4 right-6 lg:right-auto lg:left-6 text-terracotta/10 font-heading font-bold text-6xl md:text-8xl select-none">02</span>
+                    <h3 class="font-heading text-xl md:text-2xl font-bold tracking-widest text-oak uppercase mb-4 relative z-10">Red-Carpet Readiness</h3>
+                    <p class="font-body text-oak/75 leading-relaxed text-sm md:text-base mb-6 relative z-10">
+                        Designed for high-definition moments and prestigious society events. From flawless Airbrush Glam to Couture Balayage, our elite artistry ensures you command every room with breathtaking confidence and longevity.
+                    </p>
+                    <a href="#services" class="inline-block font-heading text-xs font-bold tracking-[0.15em] uppercase text-terracotta border-b border-terracotta pb-1 hover:text-oak hover:border-oak transition-colors relative z-10">Explore Glam</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center justify-center relative">
+                <div class="w-full md:w-3/4 lg:w-5/12 aspect-[4/5] relative z-0 img-zoom-wrap reveal">
+                    <img src="elan/03.webp" alt="Inclusive Luxury" class="w-full h-full object-cover border border-oak/10">
+                </div>
+                <div class="w-11/12 md:w-3/4 lg:w-6/12 bg-cream border border-oak/10 p-8 md:p-12 lg:p-16 lg:-ml-20 -mt-20 lg:mt-0 relative z-10 shadow-[0_20px_50px_rgba(45,40,35,0.05)] reveal delay-100">
+                    <span class="absolute top-4 right-6 text-terracotta/10 font-heading font-bold text-6xl md:text-8xl select-none">03</span>
+                    <h3 class="font-heading text-xl md:text-2xl font-bold tracking-widest text-oak uppercase mb-4 relative z-10">Inclusive Luxury</h3>
+                    <p class="font-body text-oak/75 leading-relaxed text-sm md:text-base mb-6 relative z-10">
+                        Uncompromised elegance for the cosmopolitan woman. Our Master Artists are highly specialized in diverse textures and styles—from complex precision braiding to seamlessly blended, premium Remy human hair extensions.
+                    </p>
+                    <a href="#services" class="inline-block font-heading text-xs font-bold tracking-[0.15em] uppercase text-terracotta border-b border-terracotta pb-1 hover:text-oak hover:border-oak transition-colors relative z-10">View Extensions</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="services" class="py-32 bg-sand/10 max-w-7xl mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+            <div>
+                <p class="font-heading text-terracotta tracking-[0.2em] text-xs font-bold uppercase mb-4">Our Offerings</p>
+                <h2 class="font-heading text-4xl md:text-5xl font-semibold tracking-tight text-oak">Curated Rituals</h2>
+            </div>
+            <a href="#booking" class="mt-6 md:mt-0 font-heading text-xs font-bold tracking-[0.15em] uppercase text-oak border-b border-oak pb-1 hover:text-terracotta hover:border-terracotta transition-colors">
+                View Full Menu
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-100">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Couture Color & Styling</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Featuring our Signature Ladies Cut, High-Definition Highlights, and the renowned Couture Balayage & Toning Ritual for mirror-like shine and dimensional artistry.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 750</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-200">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Advanced Hair Wellness</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Elevate your hair health with Advanced Bond-Repair Therapy (Olaplex/K18), Luxury Keratin Smoothing, and our bespoke AI-Diagnostic Scalp Detox Therapy.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 450</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-300">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v18"/><path d="M11 3v18"/><path d="M15 3v18"/><path d="M19 3v18"/><path d="M3 3v18"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Extensions & Texture</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    The ultimate in discreet volume featuring Élan Nano-Bond Extensions, Tape-In Volume Boosts, and specialist Braiding & Sewing Installations for diverse textures.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 4,500</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-100">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 013 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Nail Precision & Care</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Masterclasses in precision including our Signature Russian Gel Manicure, Builder Gel Overlay (BIAB), Plexigel Sculpting, and the Luxury Detox Spa Pedicure.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 300</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-200">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M12 12v-6"/><path d="M8 6h8"/><path d="M12 6a4 4 0 0 0-4-4h8a4 4 0 0 0-4 4z"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Bridal & Glam Artistry</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Command the room with HD-ready Full Glam Airbrush Makeup, AI-Validated Consultations, and the comprehensive Élan Luxury Day Bridal Package.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 1,100</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-cream border border-oak/10 p-10 hover-lift flex flex-col h-full group reveal delay-300">
+                <div class="w-14 h-14 bg-white shadow-sm rounded-full flex items-center justify-center mb-8 text-oak group-hover:bg-terracotta group-hover:text-cream transition-colors duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3 class="font-heading text-lg font-bold tracking-wider uppercase text-oak mb-4">Lash & Brow Architecture</h3>
+                <p class="font-body text-sm text-oak/70 mb-8 flex-grow leading-relaxed">
+                    Define your features with Volume/Mega-Volume Lash Extensions, Precision Brow Sculpting, and our polished Brow Lamination & Henna Combos.
+                </p>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-oak/10">
+                    <span class="font-heading text-[10px] tracking-widest uppercase text-terracotta font-semibold">From AED 250</span>
+                    <a href="#booking" class="font-heading text-[10px] tracking-widest uppercase text-oak hover:text-terracotta transition-colors flex items-center gap-1">
+                        Book <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="booking" class="relative py-32 border-y-8 border-terracotta parallax-bg" style="background-image: url('elan/006.jpeg');">
+        <div class="absolute inset-0 bg-oak/80 mix-blend-multiply"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="font-heading text-3xl md:text-5xl font-semibold tracking-wide mb-6 text-cream">Élan Atelier On-Location</h2>
+            <p class="font-body text-lg text-cream/90 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                For our most exclusive clientele, Élan offers highly discreet, luxury mobile services delivered directly to your penthouse or private estate. Allow our Master Artists to bring the sanctuary to you.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#" class="bg-cream text-oak px-10 py-5 font-heading text-sm font-bold tracking-[0.15em] uppercase hover:bg-terracotta hover:text-cream transition-colors duration-300 shadow-xl">
+                    Book Salon Appointment
+                </a>
+                <a href="#" class="backdrop-blur-sm border border-cream/40 text-cream px-10 py-5 font-heading text-sm font-bold tracking-[0.15em] uppercase hover:bg-cream/20 transition-colors duration-300">
+                    Inquire Mobile Atelier
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-slate/10 py-20 border-t border-oak/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 text-center md:text-left reveal">
+            
+            <div class="md:col-span-5 pr-0 md:pr-12 border-b md:border-b-0 md:border-r border-oak/10 pb-10 md:pb-0">
+                <div class="h-10 mb-8 flex justify-center md:justify-start">
+                    <img src="elan/elan.png" alt="Élan Logo" class="h-full w-auto object-contain opacity-90">
+                </div>
+                <p class="font-body text-sm text-oak/70 leading-relaxed">
+                    Where Elegance Meets Extravagance. <br>Cultivating tranquility and high aesthetics in the heart of Dubai.
+                </p>
+            </div>
+
+            <div class="md:col-span-3">
+                <h4 class="font-heading font-bold text-oak uppercase tracking-widest text-xs mb-6">Location & Contact</h4>
+                <p class="font-body text-sm text-oak/70 mb-2">Prime Location, Jumeirah / JBR</p>
+                <p class="font-body text-sm text-oak/70 mb-6">Dubai, United Arab Emirates</p>
+                <a href="mailto:nickellohferg@gmail.com" class="font-body text-sm text-terracotta font-semibold hover:text-oak transition-colors">E: nickellohferg@gmail.com</a>
+            </div>
+
+            <div class="md:col-span-4">
+                <h4 class="font-heading font-bold text-oak uppercase tracking-widest text-xs mb-6">The Ritual Hours</h4>
+                <p class="font-body text-sm text-oak/70 mb-2 flex justify-between md:justify-start gap-4"><span>Mon – Sat:</span> <span>10:00 AM - 9:00 PM</span></p>
+                <p class="font-body text-sm text-terracotta/80 mb-8 flex justify-between md:justify-start gap-4 italic"><span>Sunday:</span> <span>Reserved for Private Events</span></p>
+                
+                <div class="flex gap-6 justify-center md:justify-start">
+                    <a href="#" class="font-heading text-xs font-semibold tracking-widest uppercase text-oak hover:text-terracotta transition-colors">Instagram</a>
+                    <a href="#" class="font-heading text-xs font-semibold tracking-widest uppercase text-oak hover:text-terracotta transition-colors">WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mt-16 pt-8 border-t border-oak/10 flex flex-col md:flex-row justify-between items-center text-xs text-oak/40 font-body">
+            <p>&copy; 2026 Élan by Nickelloh. All rights reserved.</p>
+            <p class="mt-2 md:mt-0 uppercase tracking-widest">Version 1.0</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Scroll Animations (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // Optional: Stop observing once revealed
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+        });
+
+        // 2. Dynamic Navbar on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // 3. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                // Change icon to 'X'
+                mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" /></svg>';
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                document.body.style.overflow = ''; // Restore scrolling
+                // Change icon back to hamburger
+                mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" /></svg>';
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        
+        // Close mobile menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>
