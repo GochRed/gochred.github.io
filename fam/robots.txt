@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://gochred.github.io/sitemap.xml
