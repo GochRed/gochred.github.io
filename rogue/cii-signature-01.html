@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Import brand fonts for clients that support them (Apple Mail, iOS) -->
+    <!-- Import brand fonts for clients that support them (Apple Mail, iOS, Webmail) -->
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
         
@@ -13,7 +13,27 @@
             font-style: normal;
         }
 
-        /* Styles for the utility buttons (not part of the signature) */
+        /* --- STYLES FOR THE EDITABLE FIELDS --- */
+        .editable {
+            transition: background-color 0.2s, box-shadow 0.2s;
+            border-radius: 2px;
+            cursor: text;
+        }
+        .editable:hover, .editable:focus {
+            background-color: rgba(0, 72, 147, 0.08);
+            box-shadow: 0 0 0 2px rgba(0, 72, 147, 0.2);
+            outline: none;
+        }
+
+        /* Styles for the utility UI (not part of the signature) */
+        .generator-hint {
+            text-align: center;
+            font-family: 'Manrope', sans-serif;
+            color: #7A7A7A;
+            font-size: 13px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
         .utility-container {
             text-align: center;
             margin-top: 40px;
@@ -64,120 +84,180 @@
         }
     </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f4f4f5;">
+<body style="margin: 0; padding: 40px 0; background-color: #f4f4f5;">
 
-    <!-- Signature Container (Only this part gets selected/copied) -->
-    <div id="signature-container">
-        <!-- Wrapper Table (Ensures max width and background) -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 727px; margin: 0 auto; background-color: #ffffff; background-image: url('https://gochred.github.io/rogue/img/email-bg.jpg'); background-position: bottom right; background-repeat: no-repeat; border: 1px solid #e5e7eb;">
-            <tr>
-                <td style="padding: 40px 30px;">
-                    
-                    <!-- TOP SECTION: Info, Socials & Logos -->
-                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                            <!-- Left Column: Details -->
-                            <td width="45%" valign="top" style="padding-right: 20px;">
-                                <h1 style="margin: 0 0 6px 0; font-family: 'Unison', 'Arial Black', Impact, sans-serif; font-size: 20px; color: #111827; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2;">
-                                    Firstname Lastname
-                                </h1>
-                                <p style="margin: 0 0 12px 0; font-family: 'Manrope', Arial, sans-serif; font-size: 12px; color: #C9002B; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">
-                                    Job Title
-                                </p>
-                                
-                                <p style="margin: 0 0 12px 0; font-family: 'Manrope', Arial, sans-serif; font-size: 13px; color: #111827; font-weight: 600;">
-                                    Cemar International Industrial LLC.
-                                </p>
-                                
-                                <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Manrope', Arial, sans-serif; font-size: 11px; color: #4b5563;">
-                                    <tr>
-                                        <td style="padding-bottom: 4px;"><strong style="color: #C9002B;">TEL:</strong></td>
-                                        <td style="padding-bottom: 4px; padding-left: 8px;">+971 4 8839 798</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong style="color: #C9002B;">EML:</strong></td>
-                                        <td style="padding-left: 8px;">
-                                            <a href="mailto:firstname@cemar-international.com" style="color: #4b5563; text-decoration: none;">firstname@cemar-international.com</a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
+    <div id="export-wrapper">
+        <!-- Socials Container (Above the main signature, selectively copied) -->
+        <div id="socials-container" style="background-color: transparent;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table width="727" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 727px; background-color: transparent;">
+                <tr>
+                    <td bgcolor="transparent">
+            <![endif]-->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 727px; width: 100%; margin: 0 auto; background-color: transparent;">
+                <tr>
+                    <td align="right" style="padding-bottom: 15px; background-color: transparent;">
+                        <table cellpadding="0" cellspacing="0" border="0" style="background-color: transparent;">
+                            <tr>
+                                <td style="padding: 0 4px; background-color: transparent;"><a href="https://www.youtube.com/@Cemar_International"><img src="https://img.icons8.com/ios-filled/24/C9002B/youtube-play.png" width="24" height="24" alt="YouTube" style="display: block; border: none;"></a></td>
+                                <td style="padding: 0 4px; background-color: transparent;"><a href="https://www.linkedin.com/company/cemar-international/"><img src="https://img.icons8.com/ios-filled/24/C9002B/linkedin.png" width="24" height="24" alt="LinkedIn" style="display: block; border: none;"></a></td>
+                                <td style="padding: 0 4px; background-color: transparent;"><a href="https://www.facebook.com/watch/61568210845592/"><img src="https://img.icons8.com/ios-filled/24/C9002B/facebook-new.png" width="24" height="24" alt="Facebook" style="display: block; border: none;"></a></td>
+                                <td style="padding: 0 4px; background-color: transparent;"><a href="https://www.instagram.com/cemar_international/"><img src="https://img.icons8.com/ios-filled/24/C9002B/instagram-new.png" width="24" height="24" alt="Instagram" style="display: block; border: none;"></a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                </tr>
+            </table>
+            <![endif]-->
+        </div>
 
-                            <!-- Right Column: Socials & Partner Logos (Blue Box Area) -->
-                            <td width="55%" valign="top" align="right">
-                                
-                                <!-- Socials -->
-                                <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                                    <tr>
-                                        <td align="right">
-                                            <table cellpadding="0" cellspacing="0" border="0">
-                                                <tr>
-                                                    <td style="padding: 0 4px;"><a href="https://www.youtube.com/@Cemar_International"><img src="https://img.icons8.com/ios-filled/24/C9002B/youtube-play.png" width="24" height="24" alt="YouTube" style="display: block; border: none;"></a></td>
-                                                    <td style="padding: 0 4px;"><a href="https://www.linkedin.com/company/cemar-international/"><img src="https://img.icons8.com/ios-filled/24/C9002B/linkedin.png" width="24" height="24" alt="LinkedIn" style="display: block; border: none;"></a></td>
-                                                    <td style="padding: 0 4px;"><a href="https://www.facebook.com/watch/61568210845592/"><img src="https://img.icons8.com/ios-filled/24/C9002B/facebook-new.png" width="24" height="24" alt="Facebook" style="display: block; border: none;"></a></td>
-                                                    <td style="padding: 0 4px;"><a href="https://www.instagram.com/cemar_international/"><img src="https://img.icons8.com/ios-filled/24/C9002B/instagram-new.png" width="24" height="24" alt="Instagram" style="display: block; border: none;"></a></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
+        <!-- Signature Container (Main PNG target) -->
+        <div id="signature-container" style="max-width: 727px; margin: 0 auto; background-color: #ffffff;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table width="727" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 727px;">
+                <tr>
+                    <td>
+            <![endif]-->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 727px; width: 100%; margin: 0 auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-bottom: none;">
+                <tr>
+                    <td background="https://gochred.github.io/rogue/img/email-bg.jpg" bgcolor="#ffffff" valign="top" style="background-image: url('https://gochred.github.io/rogue/img/email-bg.jpg'); background-position: bottom right; background-repeat: no-repeat;">
+                        
+                        <!-- [OUTLOOK VML BACKGROUND] Forces background image to render in Outlook -->
+                        <!--[if gte mso 9]>
+                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:727px;">
+                        <v:fill type="tile" src="https://gochred.github.io/rogue/img/email-bg.jpg" color="#ffffff" />
+                        <v:textbox inset="0,0,0,0" style="mso-fit-shape-to-text:true;">
+                        <![endif]-->
 
-                                <!-- Group Companies -->
-                                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top: 15px;">
-                                    <tr>
-                                        <td align="right">
-                                            <h3 style="margin: 0 0 10px 0; font-family: 'Unison', 'Arial Black', Impact, sans-serif; font-size: 11px; color: #111827; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; text-align: right;">
-                                                CEMAR GROUP COMPANIES:
-                                            </h3>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right">
-                                            <table cellpadding="0" cellspacing="0" border="0" align="right">
-                                                <tr>
-                                                    <td align="right" valign="middle"><img src="https://gochred.github.io/rogue/img/arcem.png" width="68" alt="ARCEM" style="display: block; max-width: 100%;"></td>
-                                                    <td align="right" valign="middle" style="padding-left: 20px;"><img src="https://gochred.github.io/rogue/img/cad.png" width="68" alt="CAD" style="display: block; max-width: 100%;"></td>
-                                                    <td align="right" valign="middle" style="padding-left: 20px;"><img src="https://gochred.github.io/rogue/img/cii.png" width="100" alt="CII" style="display: block; max-width: 100%;"></td>
-                                                    <td align="right" valign="middle" style="padding-left: 20px;"><img src="https://gochred.github.io/rogue/img/cie.png" width="68" alt="CIE" style="display: block; max-width: 100%;"></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td style="padding: 40px 30px;">
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <!-- Left Column: Details (Editable Fields) -->
+                                            <td width="327" valign="top" style="width: 327px; padding-right: 20px;">
+                                                <h1 style="margin: 0 0 6px 0; font-family: 'Unison', 'Arial Black', Impact, sans-serif; font-size: 20px; color: #111827; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2;">
+                                                    <span class="editable" contenteditable="true" spellcheck="false" style="outline:none; display:inline-block;">Firstname Lastname</span>
+                                                </h1>
+                                                <p style="margin: 0 0 12px 0; font-family: 'Manrope', Arial, sans-serif; font-size: 12px; color: #C9002B; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;">
+                                                    <span class="editable" contenteditable="true" spellcheck="false" style="outline:none; display:inline-block;">Job Title</span>
+                                                </p>
+                                                
+                                                <p style="margin: 0 0 12px 0; font-family: 'Manrope', Arial, sans-serif; font-size: 13px; color: #111827; font-weight: 600;">
+                                                    <span class="editable" contenteditable="true" spellcheck="false" style="outline:none; display:inline-block;">Cemar International Industrial LLC.</span>
+                                                </p>
+                                                
+                                                <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Manrope', Arial, sans-serif; font-size: 11px; color: #4b5563;">
+                                                    <tr>
+                                                        <td style="padding-bottom: 4px;"><strong style="color: #C9002B;">TEL:</strong></td>
+                                                        <td style="padding-bottom: 4px; padding-left: 8px;">
+                                                            <span class="editable" contenteditable="true" spellcheck="false" style="outline:none; display:inline-block;">+971 4 8839 798</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong style="color: #C9002B;">EML:</strong></td>
+                                                        <td style="padding-left: 8px;">
+                                                            <a id="email-link" href="mailto:firstname@cemar-international.com" style="color: #4b5563; text-decoration: none;">
+                                                                <span id="edit-email" class="editable" contenteditable="true" spellcheck="false" style="outline:none; display:inline-block;">firstname@cemar-international.com</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
 
-                            </td>
-                        </tr>
-                    </table>
+                                            <!-- Right Column: Partner Logos -->
+                                            <td width="340" valign="top" align="right" style="width: 340px;">
+                                                <h3 style="margin: 0 0 16px 0; font-family: 'Unison', 'Arial Black', Impact, sans-serif; font-size: 11px; color: #111827; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; text-align: right;">
+                                                    CEMAR GROUP COMPANIES:
+                                                </h3>
+                                                <table cellpadding="0" cellspacing="0" border="0" align="right">
+                                                    <tr>
+                                                        <td align="right" valign="middle" style="padding-left: 10px; padding-right: 10px;"><img src="https://gochred.github.io/rogue/img/cii.png" width="95" alt="CII" style="display: block; max-width: 100%;"></td>
+                                                        <td align="right" valign="middle" style="padding-left: 10px; padding-right: 10px;"><img src="https://gochred.github.io/rogue/img/cad.png" width="60" alt="CAD" style="display: block; max-width: 100%;"></td>
+                                                        <td align="right" valign="middle" style="padding-left: 10px; padding-right: 10px;"><img src="https://gochred.github.io/rogue/img/arcem.png" width="60" alt="ARCEM" style="display: block; max-width: 100%;"></td>
+                                                        <td align="right" valign="middle" style="padding-left: 10px; padding-right: 0px;"><img src="https://gochred.github.io/rogue/img/cie.png" width="60" alt="CIE" style="display: block; max-width: 100%;"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
 
-                </td>
-            </tr>
-        </table>
+                        <!--[if gte mso 9]>
+                        </v:textbox>
+                        </v:rect>
+                        <![endif]-->
+                    </td>
+                </tr>
+            </table>
 
-        <!-- EVENT CTA SEPARATE TABLE (IMAGE ONLY) -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 727px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-top: none;">
-            <tr>
-                <td style="padding: 0; line-height: 0; font-size: 0;">
-                    <a href="https://www.eurosatory.com/" target="_blank" style="display: block;">
-                        <img src="https://gochred.github.io/rogue/img/eurosat.png" alt="Meet us at Eurosatory 2026" width="727" style="display: block; width: 100%; max-width: 727px; height: auto; border: none; outline: none;">
-                    </a>
-                </td>
-            </tr>
-        </table>
+            <!-- EVENT CTA SEPARATE TABLE (IMAGE ONLY) -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 727px; width: 100%; margin: 0 auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-top: none;">
+                <tr>
+                    <td style="padding: 0; line-height: 0; font-size: 0;">
+                        <a href="https://www.eurosatory.com/" target="_blank" style="display: block;">
+                            <img src="https://gochred.github.io/rogue/img/eurosat.png" alt="Meet us at Eurosatory 2026" width="727" style="display: block; width: 100%; max-width: 727px; height: auto; border: none; outline: none;">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                </tr>
+            </table>
+            <![endif]-->
+        </div>
     </div>
 
     <!-- UTILITY BUTTONS (Not part of the signature) -->
     <div class="utility-container">
-        <button id="selectAllBtn" class="utility-btn outline">Select All</button>
-        <button id="copyBtn" class="utility-btn">Copy Signature</button>
+        <button id="copyBtn" class="utility-btn">COPY SOCIALS</button>
+        <button id="downloadPngBtn" class="utility-btn outline">Download PNG</button>
+    </div>
+
+    <div class="generator-hint">
+        ✏️ Click on the text (Name, Title, Tel, Email) above to edit your details!
     </div>
 
     <!-- Custom Copy Message Box -->
-    <div id="copyMessage">Signature copied to clipboard!</div>
+    <div id="copyMessage">Signature successfully copied! (Ready for Outlook)</div>
 
-    <!-- SCRIPTS FOR SELECTION AND COPYING -->
+    <!-- HTML2Canvas Library for PNG Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- SCRIPTS FOR SELECTION, COPYING AND EDITING -->
     <script>
-        function selectSignature() {
-            const container = document.getElementById('signature-container');
+        // Use safe DOM selection to prevent TypeError if elements are missing
+        const editEmail = document.getElementById('edit-email');
+        if (editEmail) {
+            editEmail.addEventListener('input', function() {
+                const emailLink = document.getElementById('email-link');
+                if (emailLink) {
+                    emailLink.href = 'mailto:' + this.innerText.trim();
+                }
+            });
+        }
+
+        // Function to temporarily remove the contenteditable attributes so they don't break Outlook
+        function cleanForCopy() {
+            document.querySelectorAll('.editable').forEach(el => el.removeAttribute('contenteditable'));
+        }
+
+        // Function to restore editability after copying is done
+        function restoreEditable() {
+            document.querySelectorAll('.editable').forEach(el => el.setAttribute('contenteditable', 'true'));
+        }
+
+        function selectContainer(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
             const range = document.createRange();
             range.selectNodeContents(container);
             const selection = window.getSelection();
@@ -185,23 +265,135 @@
             selection.addRange(range);
         }
 
-        document.getElementById('selectAllBtn').addEventListener('click', selectSignature);
+        const copyBtn = document.getElementById('copyBtn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async function() {
+                const container = document.getElementById('socials-container');
+                if (!container) return;
+                
+                // Clean the HTML before copying (just in case)
+                cleanForCopy();
 
-        document.getElementById('copyBtn').addEventListener('click', function() {
-            selectSignature();
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
+                try {
+                    // Wrapper ensures Outlook recognizes VML schemas when pasted into the client
+                    const outlookWrapperStart = `<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>`;
+                    const outlookWrapperEnd = `</body></html>`;
+                    
+                    // Intercept the HTML to force left-alignment for the pasted output table container
+                    let adjustedHtml = container.innerHTML;
+                    
+                    // ONLY replace outer table centering mechanisms, DO NOT replace align="right" (which keeps the icons on the right)
+                    adjustedHtml = adjustedHtml.replace(/align="center"/g, 'align="left"');
+                    adjustedHtml = adjustedHtml.replace(/margin:\s*0\s+auto/g, 'margin: 0');
+                    
+                    const htmlStr = outlookWrapperStart + adjustedHtml + outlookWrapperEnd;
+                    
+                    const blobHtml = new Blob([htmlStr], { type: "text/html" });
+                    const blobText = new Blob([container.innerText], { type: "text/plain" });
+                    const data = [new ClipboardItem({
+                        "text/html": blobHtml,
+                        "text/plain": blobText,
+                    })];
+
+                    await navigator.clipboard.write(data);
+                    
                     const msgBox = document.getElementById('copyMessage');
-                    msgBox.style.display = 'block';
-                    setTimeout(() => {
-                        msgBox.style.display = 'none';
-                    }, 3000);
+                    if(msgBox) {
+                        msgBox.innerText = "Socials successfully copied!";
+                        msgBox.style.display = 'block';
+                        setTimeout(() => {
+                            msgBox.style.display = 'none';
+                        }, 3000);
+                    }
+
+                } catch (err) {
+                    // Legacy fallback - temporarily alter DOM outer tables to left-align before copying
+                    const tables = container.querySelectorAll('table');
+                    const originalMargins = [];
+                    
+                    tables.forEach((t, i) => {
+                        originalMargins[i] = t.style.margin;
+                        if (t.getAttribute('align') === 'center') {
+                            t.setAttribute('align', 'left');
+                            t.dataset.wasCenter = 'true';
+                        }
+                        if (t.style.margin.includes('auto')) {
+                            t.style.margin = "0";
+                        }
+                    });
+
+                    selectContainer('socials-container');
+                    document.execCommand('copy');
+                    
+                    // Revert DOM changes so the visual preview remains unchanged
+                    tables.forEach((t, i) => {
+                        t.style.margin = originalMargins[i];
+                        if (t.dataset.wasCenter === 'true') {
+                            t.setAttribute('align', 'center');
+                            delete t.dataset.wasCenter;
+                        }
+                    });
+
+                    const msgBox = document.getElementById('copyMessage');
+                    if(msgBox) {
+                        msgBox.innerText = "Socials copied! (Legacy Mode)";
+                        msgBox.style.display = 'block';
+                        setTimeout(() => {
+                            msgBox.style.display = 'none';
+                        }, 3000);
+                    }
                 }
-            } catch (err) {
-                console.error('Oops, unable to copy');
-            }
-        });
+                
+                // Restore editability immediately after copy
+                restoreEditable();
+            });
+        }
+
+        const downloadPngBtn = document.getElementById('downloadPngBtn');
+        if (downloadPngBtn) {
+            downloadPngBtn.addEventListener('click', function() {
+                const container = document.getElementById('signature-container');
+                const msgBox = document.getElementById('copyMessage');
+                
+                if (!container) return;
+
+                // Clean before screenshot to remove hover states/outlines
+                cleanForCopy();
+                
+                if(msgBox) {
+                    msgBox.innerText = "Generating PNG...";
+                    msgBox.style.display = 'block';
+                }
+
+                html2canvas(container, {
+                    useCORS: true,
+                    scale: 1,
+                    backgroundColor: '#ffffff'
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'Cemar_Signature.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    
+                    if(msgBox) {
+                        msgBox.innerText = "PNG Downloaded!";
+                        setTimeout(() => {
+                            msgBox.style.display = 'none';
+                        }, 3000);
+                    }
+                    restoreEditable();
+                }).catch(err => {
+                    console.error('Error generating PNG:', err);
+                    if(msgBox) {
+                        msgBox.innerText = "Error generating PNG. External images may be blocked.";
+                        setTimeout(() => {
+                            msgBox.style.display = 'none';
+                        }, 3000);
+                    }
+                    restoreEditable();
+                });
+            });
+        }
     </script>
 </body>
 </html>
