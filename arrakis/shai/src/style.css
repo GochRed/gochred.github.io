@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --color-basalt: #2F2F2F;
+  --color-ochre: #AD9776;
+  --color-melange: #8E6B4A;
+  --color-erg: #EFE3D5;
+  --color-ibad: #D92B00;
+  --color-sand: #CBA173;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+body {
+  background-color: #000000;
+  color: var(--color-erg);
+  font-family: var(--font-mono);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.game-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.phone-container {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  max-height: 95vh;
+  transform: scale(1.7887);
+}
+
+.phone-image {
+  display: block;
+  max-width: 100%;
+  max-height: 95vh;
+  object-fit: contain;
+}
+
+.game-container {
+  position: absolute;
+  /* These percentages are set to fit the screen area of the background image. */
+  top: 20.6395%;
+  left: 30.2083%;
+  width: 39.4531%;
+  height: 21.2209%;
+  border-radius: 12px; /* Rounded corners of the background image screen */
+  background-color: var(--color-sand);
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* LCD Dot Matrix Effect */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 3px 3px;
+  /* Screen depth vignette */
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.screen-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Curved glass glare */
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 45%, rgba(0,0,0,0) 100%);
+  z-index: 11;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  /* Subtle glow on all drawn elements */
+  filter: drop-shadow(0 0 4px rgba(217, 43, 0, 0.4)) contrast(1.15) brightness(1.05);
+}
